@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "date": "2024-10-06",
+      "location": { "lat": 38.7441843, "lng": -9.2423072 },
+      "name": "EDP Lisbon Marathon",
+      "distance": "42.2km",
+      "time": "5h 37m"
+    },
+    {
+      "id": 2,
+      "date": "2025-02-16",
+      "location": { "lat": 43.5145224, "lng": 16.1641277 },
+      "name": "Split Marathon",
+      "distance": "42.2km",
+      "time": "4h 31m"
+    }
+]
