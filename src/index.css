@@ -44,7 +44,7 @@ body {
 }
 
 .event {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(66 123 38);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -53,6 +53,15 @@ body {
   }
   
 .event:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(52, 100, 28);
+}
+
+.event-link {
+    color: #4dabf7;
+    text-decoration: none;
+    font-weight: bold;
 }
   
+.event-link:hover {
+    text-decoration: underline;
+}

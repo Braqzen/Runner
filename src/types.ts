@@ -8,4 +8,5 @@ export interface Race {
     name: string;
     distance: string;
     time: string;
+    link: string;
 }

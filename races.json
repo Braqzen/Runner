@@ -5,7 +5,8 @@
       "location": { "lat": 38.7441843, "lng": -9.2423072 },
       "name": "EDP Lisbon Marathon",
       "distance": "42.2km",
-      "time": "5h 37m"
+      "time": "5h 37m",
+      "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html"
     },
     {
       "id": 2,
@@ -13,6 +14,7 @@
       "location": { "lat": 43.5145224, "lng": 16.1641277 },
       "name": "Split Marathon",
       "distance": "42.2km",
-      "time": "4h 31m"
+      "time": "4h 31m",
+      "link": "https://splitmarathon.com/marathon/?lang=en"
     }
 ]
