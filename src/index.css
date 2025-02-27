@@ -42,11 +42,17 @@ body {
     padding: 0;
     list-style: none;
 }
-  
+
 .event {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    display: block;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+.event:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
+  

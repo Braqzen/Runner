@@ -9,4 +9,3 @@ export interface Race {
     distance: string;
     time: string;
 }
-  
