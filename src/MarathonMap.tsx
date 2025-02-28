@@ -4,6 +4,27 @@ import { useEffect, useRef, useState } from "react";
 import raceData from "../races.json";
 import { Race } from "./types";
 import L from "leaflet";
+import defaultMarker from "./assets/marker-icon-blue.png";  
+import selectedMarker from "./assets/marker-icon-red.png"; 
+import shadowMarker from "./assets/marker-shadow.png"; 
+
+const defaultIcon = new L.Icon({
+    iconUrl: defaultMarker,
+    shadowUrl: shadowMarker,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+});
+  
+const selectedIcon = new L.Icon({
+    iconUrl: selectedMarker,
+    shadowUrl: shadowMarker,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+});
 
 const MapInitializer = ({ mapRef }: { mapRef: React.RefObject<L.Map | null> }) => {
     const map = useMap();
@@ -16,10 +37,10 @@ const MapInitializer = ({ mapRef }: { mapRef: React.RefObject<L.Map | null> }) =
     return null;
 };
 
-const MarathonMap = ({ selectedRace }: { selectedRace: Race | null }) => {
+const MarathonMap = ({ selectedRace, onSelectRace }: { selectedRace: Race | null; onSelectRace: (race: Race) => void }) => {
     const [races, setRaces] = useState<Race[]>([]);
     const mapRef = useRef<L.Map | null>(null);
-    const markerRefs = useRef<Record<number, L.Marker | null>>({});
+    const markerRefs = useRef<Map<number, L.Marker | null>>(new Map());
 
     useEffect(() => {
         setRaces(raceData);
@@ -33,7 +54,7 @@ const MarathonMap = ({ selectedRace }: { selectedRace: Race | null }) => {
                 { animate: true, duration: 2 }
             );
 
-            const marker = markerRefs.current[selectedRace.id];
+            const marker = markerRefs.current.get(selectedRace.id);
             if (marker) {
                 marker.openPopup();
             }
@@ -51,8 +72,12 @@ const MarathonMap = ({ selectedRace }: { selectedRace: Race | null }) => {
             <Marker
                 key={race.id}
                 position={[race.location.lat, race.location.lng]}
+                icon={selectedRace?.id === race.id ? selectedIcon : defaultIcon}
                 ref={(ref) => {
-                    if (ref) markerRefs.current[race.id] = ref;
+                    if (ref) markerRefs.current.set(race.id, ref);
+                }}
+                eventHandlers={{
+                    click: () => onSelectRace(race), 
                 }}
             >
                 <Popup>

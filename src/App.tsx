@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <MarathonMap selectedRace={selectedRace} />
+      <MarathonMap selectedRace={selectedRace} onSelectRace={setSelectedRace} />
       <Sidebar onSelectRace={setSelectedRace} />
     </div>
   );
