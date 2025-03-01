@@ -11,9 +11,24 @@ import {
   List,
   ListItem,
   ListItemText,
+  Autocomplete,
+  TextField,
 } from "@mui/material";
+import { TileLayerOption } from "../types/tiles";
 
-const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
+interface SidebarProps {
+  tileOptions: TileLayerOption[];
+  selectedTile: TileLayerOption;
+  onTileChange: (tile: TileLayerOption) => void;
+  onSelectRace: (race: Race) => void;
+}
+
+const Sidebar = ({
+  tileOptions,
+  selectedTile,
+  onTileChange,
+  onSelectRace,
+}: SidebarProps) => {
   const [races, setRaces] = useState<Race[]>([]);
   const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
   const [openNotes, setOpenNotes] = useState(false);
@@ -41,6 +56,25 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
 
   return (
     <div className="sidebar">
+      <h2>Map Theme</h2>
+      <Autocomplete
+        options={tileOptions}
+        getOptionLabel={(option) => option.name}
+        value={selectedTile}
+        onChange={(_event, newValue) => {
+          if (newValue) onTileChange(newValue);
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Select Map Theme"
+            variant="outlined"
+            margin="dense"
+          />
+        )}
+      />
+      <hr />
+
       <h2>Events</h2>
       <TagFilter options={uniqueTags} onChange={setSelectedTags} />
       <ul>

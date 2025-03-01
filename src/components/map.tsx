@@ -7,6 +7,7 @@ import { Race } from "../types/race";
 import defaultMarker from "../assets/marker-icon-blue.png";
 import selectedMarker from "../assets/marker-icon-red.png";
 import shadowMarker from "../assets/marker-shadow.png";
+import { TileLayerOption } from "../types/tiles";
 
 const defaultIcon = new L.Icon({
   iconUrl: defaultMarker,
@@ -33,6 +34,7 @@ interface MapInitializerProps {
 interface EventMapProps {
   selectedRace: Race | null;
   onSelectRace: (race: Race) => void;
+  selectedTile: TileLayerOption;
 }
 
 const MapInitializer = ({ mapRef }: MapInitializerProps) => {
@@ -46,7 +48,11 @@ const MapInitializer = ({ mapRef }: MapInitializerProps) => {
   return null;
 };
 
-const EventMap = ({ selectedRace, onSelectRace }: EventMapProps) => {
+const EventMap = ({
+  selectedRace,
+  onSelectRace,
+  selectedTile,
+}: EventMapProps) => {
   const [races, setRaces] = useState<Race[]>([]);
   const mapRef = useRef<L.Map | null>(null);
   const markerRefs = useRef<Map<number, L.Marker | null>>(new Map());
@@ -75,7 +81,12 @@ const EventMap = ({ selectedRace, onSelectRace }: EventMapProps) => {
       <MapContainer center={[51.505, -0.09]} zoom={3} className="map">
         <MapInitializer mapRef={mapRef} />
 
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        <TileLayer
+          url={selectedTile.url}
+          minZoom={selectedTile.minZoom}
+          maxZoom={selectedTile.maxZoom}
+          attribution={selectedTile.attribution}
+        />
 
         {races.map((race) => (
           <Marker
