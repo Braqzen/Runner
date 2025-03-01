@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import raceData from "../races.json";
-import { Race } from "./types";
+import raceData from "../../races.json";
+import { Race } from "../types/race";
 import TagFilter, { TagOption } from "./tag";
 
 const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
@@ -11,7 +11,7 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
     setRaces(raceData);
   }, []);
 
-  const uniqueTags: TagOption[] = Array.from(
+  const uniqueTags = Array.from(
     new Set(races.flatMap((race) => race.tags || []))
   ).map((tag) => ({ label: tag, value: tag }));
 
@@ -19,9 +19,7 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
     selectedTags.length === 0
       ? races
       : races.filter((race) =>
-          selectedTags.every(
-            (tag) => race.tags && race.tags.includes(tag.value)
-          )
+          selectedTags.every((tag) => race.tags.includes(tag.value))
         );
 
   return (

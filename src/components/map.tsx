@@ -1,12 +1,12 @@
+import { RefObject, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useEffect, useRef, useState } from "react";
-import raceData from "../races.json";
-import { Race } from "./types";
 import L from "leaflet";
-import defaultMarker from "./assets/marker-icon-blue.png";
-import selectedMarker from "./assets/marker-icon-red.png";
-import shadowMarker from "./assets/marker-shadow.png";
+import raceData from "../../races.json";
+import { Race } from "../types/race";
+import defaultMarker from "../assets/marker-icon-blue.png";
+import selectedMarker from "../assets/marker-icon-red.png";
+import shadowMarker from "../assets/marker-shadow.png";
 
 const defaultIcon = new L.Icon({
   iconUrl: defaultMarker,
@@ -26,11 +26,16 @@ const selectedIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const MapInitializer = ({
-  mapRef,
-}: {
-  mapRef: React.RefObject<L.Map | null>;
-}) => {
+interface MapInitializerProps {
+  mapRef: RefObject<L.Map | null>;
+}
+
+interface EventMapProps {
+  selectedRace: Race | null;
+  onSelectRace: (race: Race) => void;
+}
+
+const MapInitializer = ({ mapRef }: MapInitializerProps) => {
   const map = useMap();
   useEffect(() => {
     if (!mapRef.current) {
@@ -41,13 +46,7 @@ const MapInitializer = ({
   return null;
 };
 
-const MarathonMap = ({
-  selectedRace,
-  onSelectRace,
-}: {
-  selectedRace: Race | null;
-  onSelectRace: (race: Race) => void;
-}) => {
+const EventMap = ({ selectedRace, onSelectRace }: EventMapProps) => {
   const [races, setRaces] = useState<Race[]>([]);
   const mapRef = useRef<L.Map | null>(null);
   const markerRefs = useRef<Map<number, L.Marker | null>>(new Map());
@@ -111,4 +110,4 @@ const MarathonMap = ({
   );
 };
 
-export default MarathonMap;
+export default EventMap;
