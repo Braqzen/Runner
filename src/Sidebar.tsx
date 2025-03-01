@@ -19,7 +19,9 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
     selectedTags.length === 0
       ? races
       : races.filter((race) =>
-          selectedTags.every((tag) => race.tags && race.tags.includes(tag.value))
+          selectedTags.every(
+            (tag) => race.tags && race.tags.includes(tag.value)
+          )
         );
 
   return (
@@ -28,15 +30,23 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
       <TagFilter options={uniqueTags} onChange={setSelectedTags} />
       <ul>
         {filteredRaces.map((race, index) => (
-          <li key={race.id} className="event" onClick={() => onSelectRace(race)}>
-            <strong>{index + 1}) {race.name}</strong>
+          <li
+            key={race.id}
+            className="event"
+            onClick={() => onSelectRace(race)}
+          >
+            <strong>
+              {index + 1}) {race.name}
+            </strong>
             <p>Type: {race.type}</p>
             <p>Date: {race.date}</p>
             <p>Distance: {race.distance}</p>
             <p>Time: {race.time}</p>
-            <p><a href={race.link} target="_blank" className="event-link">
+            <p>
+              <a href={race.link} target="_blank" className="event-link">
                 Event Link
-            </a></p>
+              </a>
+            </p>
           </li>
         ))}
       </ul>

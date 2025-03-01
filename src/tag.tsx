@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import * as React from "react";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 export interface TagOption {
   label: string;
@@ -21,7 +21,12 @@ const TagFilter: React.FC<TagFilterProps> = ({ options, onChange }) => {
       filterSelectedOptions
       onChange={(event, value) => onChange(value)}
       renderInput={(params) => (
-        <TextField {...params} variant="outlined" label="Filter by Tags" placeholder="Select tags" />
+        <TextField
+          {...params}
+          variant="outlined"
+          label="Filter by Tags"
+          placeholder="Select tags"
+        />
       )}
     />
   );
