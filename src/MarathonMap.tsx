@@ -86,6 +86,7 @@ const MarathonMap = ({ selectedRace, onSelectRace }: { selectedRace: Race | null
                     Date: {race.date}<br />
                     Distance: {race.distance}<br />
                     Time: {race.time}<br />
+                    Tags: {race.tags.join(", ")}
                 </Popup>
             </Marker>
             ))}

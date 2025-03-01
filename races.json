@@ -6,7 +6,8 @@
       "name": "EDP Lisbon Marathon",
       "distance": "42.2km",
       "time": "5h 37m",
-      "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html"
+      "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html",
+      "tags": ["Marathon"]
     },
     {
       "id": 2,
@@ -15,6 +16,7 @@
       "name": "Split Marathon",
       "distance": "42.2km",
       "time": "4h 31m",
-      "link": "https://splitmarathon.com/marathon/?lang=en"
+      "link": "https://splitmarathon.com/marathon/?lang=en",
+      "tags": ["Marathon"]
     }
 ]

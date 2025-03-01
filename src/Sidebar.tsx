@@ -19,15 +19,10 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
             <p>Date: {race.date}</p>
             <p>Distance: {race.distance}</p>
             <p>Time: {race.time}</p>
-            {race.link && (
-                <p><a
-                    href={race.link}
-                    target="_blank"
-                    className="event-link"
-                >
-                    Event Link
-                </a></p>
-            )}
+            Tags: {race.tags.join(", ")}
+            <p><a href={race.link} target="_blank" className="event-link">
+                Event Link
+            </a></p>
           </li>
         ))}
       </ul>

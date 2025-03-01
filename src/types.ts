@@ -9,4 +9,5 @@ export interface Race {
     distance: string;
     time: string;
     link: string;
+    tags: string[];
 }
