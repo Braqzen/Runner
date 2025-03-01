@@ -1,53 +1,31 @@
 import { useEffect, useState } from "react";
 import raceData from "../races.json";
 import { Race } from "./types";
+import TagFilter, { TagOption } from "./tag";
 
 const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
   const [races, setRaces] = useState<Race[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
 
   useEffect(() => {
     setRaces(raceData);
   }, []);
 
-  const uniqueTags = Array.from(
+  const uniqueTags: TagOption[] = Array.from(
     new Set(races.flatMap((race) => race.tags || []))
-  );
+  ).map((tag) => ({ label: tag, value: tag }));
 
   const filteredRaces =
     selectedTags.length === 0
       ? races
-      : races.filter((race) => {
-          if (!race.tags) return false;
-          return selectedTags.every((tag) => race.tags.includes(tag));
-        });
-
-    const toggleTag = (tag: string) => {
-        if (selectedTags.includes(tag)) {
-            setSelectedTags(selectedTags.filter((t) => t !== tag));
-        } else {
-            setSelectedTags([...selectedTags, tag]);
-        }
-    };
+      : races.filter((race) =>
+          selectedTags.every((tag) => race.tags && race.tags.includes(tag.value))
+        );
 
   return (
     <div className="sidebar">
       <h2>Events</h2>
-      <div className="filter">
-        <h3>Filter by Tags:</h3>
-        {uniqueTags.map((tag, index) => (
-          <div key={index}>
-            <input
-              type="checkbox"
-              id={`tag-${tag}`}
-              value={tag}
-              checked={selectedTags.includes(tag)}
-              onChange={() => toggleTag(tag)}
-            />
-            <label htmlFor={`tag-${tag}`}>{tag}</label>
-          </div>
-        ))}
-      </div>
+      <TagFilter options={uniqueTags} onChange={setSelectedTags} />
       <ul>
         {filteredRaces.map((race, index) => (
           <li key={race.id} className="event" onClick={() => onSelectRace(race)}>
