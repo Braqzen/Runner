@@ -2,10 +2,22 @@ import { useEffect, useState } from "react";
 import raceData from "../../races.json";
 import { Race } from "../types/race";
 import TagFilter, { TagOption } from "./tag";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 
 const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
   const [races, setRaces] = useState<Race[]>([]);
   const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
+  const [openNotes, setOpenNotes] = useState(false);
+  const [notes, setNotes] = useState<string[] | null>(null);
 
   useEffect(() => {
     setRaces(raceData);
@@ -21,6 +33,11 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
       : races.filter((race) =>
           selectedTags.every((tag) => race.tags.includes(tag.value))
         );
+
+  const handleNotes = (notes: string[]) => {
+    setNotes(notes);
+    setOpenNotes(true);
+  };
 
   return (
     <div className="sidebar">
@@ -45,9 +62,41 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
                 Event Link
               </a>
             </p>
+            <Button variant="outlined" onClick={() => handleNotes(race.notes)}>
+              Notes
+            </Button>
           </li>
         ))}
       </ul>
+      <Dialog
+        open={openNotes}
+        onClose={() => setOpenNotes(false)}
+        slotProps={{
+          transition: {
+            onExited: () => setNotes([]),
+          },
+        }}
+      >
+        <DialogTitle>Event Notes</DialogTitle>
+        <DialogContent>
+          {notes && notes.length > 0 ? (
+            <List>
+              {notes.map((note, idx) => (
+                <ListItem key={idx}>
+                  <ListItemText primary={note} />
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <div>No notes available.</div>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenNotes(false)} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

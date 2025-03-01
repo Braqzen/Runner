@@ -8,7 +8,14 @@
       "time": "5h 37m",
       "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html",
       "tags": ["Marathon", "Portugal", "Lisbon"],
-      "type": "Marathon"
+      "type": "Marathon",
+      "notes": [
+        "Health issues, had no training the entire year.",
+        "Run about 2/3 and walked about 1/3 of the distance.",
+        "Low electrolyte intake caused cramping.",
+        "Feet blistered, barely walking, 1 month to recover just walking.",
+        "Barely finished in time."
+      ]
     },
     {
       "id": 2,
@@ -19,6 +26,13 @@
       "time": "4h 31m",
       "link": "https://splitmarathon.com/marathon/?lang=en",
       "tags": ["Marathon", "Croatia", "Split"],
-      "type": "Marathon"
+      "type": "Marathon",
+      "notes": [
+        "Had about 6 weeks training until health crashed for the next 6 weeks prior to event.",
+        "Less than half the calories/gels of previous run, need to increase.",
+        "Much better electrolytes but need to increase.",
+        "Run almost the entire distance, but slowly with some walking at the end.",
+        "Quick partial recovery, felt ok within 1 week but need more time."
+      ]
     }
 ]

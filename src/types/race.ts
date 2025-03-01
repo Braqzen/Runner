@@ -13,6 +13,7 @@
  * @property {string} link - URL to event website.
  * @property {string[]} tags - An array of tags used to filter events.
  * @property {string} type - The category race.
+ * @property {string[]} notes - Notes for an event.
  */
 export interface Race {
   id: number;
@@ -27,4 +28,5 @@ export interface Race {
   link: string;
   tags: string[];
   type: string;
+  notes: string[];
 }
