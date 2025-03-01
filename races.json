@@ -7,7 +7,8 @@
       "distance": "42.2km",
       "time": "5h 37m",
       "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html",
-      "tags": ["Marathon"]
+      "tags": ["Marathon", "Portugal", "Lisbon"],
+      "type": "Marathon"
     },
     {
       "id": 2,
@@ -17,6 +18,7 @@
       "distance": "42.2km",
       "time": "4h 31m",
       "link": "https://splitmarathon.com/marathon/?lang=en",
-      "tags": ["Marathon"]
+      "tags": ["Marathon", "Croatia", "Split"],
+      "type": "Marathon"
     }
 ]

@@ -4,7 +4,7 @@ import { Race } from "./types";
 
 const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
   const [races, setRaces] = useState<Race[]>([]);
-  const [selectedTag, setSelectedTag] = useState<string>("All");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
     setRaces(raceData);
@@ -15,36 +15,47 @@ const Sidebar = ({ onSelectRace }: { onSelectRace: (race: Race) => void }) => {
   );
 
   const filteredRaces =
-    selectedTag === "All"
+    selectedTags.length === 0
       ? races
-      : races.filter((race) => race.tags.includes(selectedTag));
+      : races.filter((race) => {
+          if (!race.tags) return false;
+          return selectedTags.every((tag) => race.tags.includes(tag));
+        });
+
+    const toggleTag = (tag: string) => {
+        if (selectedTags.includes(tag)) {
+            setSelectedTags(selectedTags.filter((t) => t !== tag));
+        } else {
+            setSelectedTags([...selectedTags, tag]);
+        }
+    };
 
   return (
     <div className="sidebar">
       <h2>Events</h2>
       <div className="filter">
-        <label htmlFor="tagFilter">Filter by Tag: </label>
-        <select
-          id="tagFilter"
-          value={selectedTag}
-          onChange={(e) => setSelectedTag(e.target.value)}
-        >
-          <option value="All">All</option>
-          {uniqueTags.map((tag, i) => (
-            <option key={i} value={tag}>
-              {tag}
-            </option>
-          ))}
-        </select>
+        <h3>Filter by Tags:</h3>
+        {uniqueTags.map((tag, index) => (
+          <div key={index}>
+            <input
+              type="checkbox"
+              id={`tag-${tag}`}
+              value={tag}
+              checked={selectedTags.includes(tag)}
+              onChange={() => toggleTag(tag)}
+            />
+            <label htmlFor={`tag-${tag}`}>{tag}</label>
+          </div>
+        ))}
       </div>
       <ul>
         {filteredRaces.map((race, index) => (
           <li key={race.id} className="event" onClick={() => onSelectRace(race)}>
             <strong>{index + 1}) {race.name}</strong>
+            <p>Type: {race.type}</p>
             <p>Date: {race.date}</p>
             <p>Distance: {race.distance}</p>
             <p>Time: {race.time}</p>
-            <p>Tags: {race.tags.join(", ")}</p>
             <p><a href={race.link} target="_blank" className="event-link">
                 Event Link
             </a></p>

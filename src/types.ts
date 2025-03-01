@@ -10,4 +10,5 @@ export interface Race {
     time: string;
     link: string;
     tags: string[];
+    type: string;
 }
