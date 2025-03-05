@@ -3,6 +3,7 @@ import raceData from "../../races.json";
 import { Race } from "../types/race";
 import TagFilter, { TagOption } from "./tag";
 import {
+  Box,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -13,8 +14,11 @@ import {
   ListItemText,
   Autocomplete,
   TextField,
+  Typography,
+  Divider,
 } from "@mui/material";
 import { TileLayerOption } from "../types/tiles";
+import EventCard from "./eventCard";
 
 interface SidebarProps {
   tileOptions: TileLayerOption[];
@@ -56,49 +60,56 @@ const Sidebar = ({
 
   return (
     <div className="sidebar">
-      <h2>Map Theme</h2>
-      <Autocomplete
-        options={tileOptions}
-        getOptionLabel={(option) => option.name}
-        value={selectedTile}
-        onChange={(_event, newValue) => {
-          if (newValue) onTileChange(newValue);
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Select Map Theme"
-            variant="outlined"
-            margin="dense"
-          />
-        )}
-      />
-      <hr />
-
-      <h2>Events</h2>
-      <TagFilter options={uniqueTags} onChange={setSelectedTags} />
+      <Box>
+        <Typography variant="h6" gutterBottom>
+          Map Theme
+        </Typography>
+        <Autocomplete
+          options={tileOptions}
+          getOptionLabel={(option) => option.name}
+          value={selectedTile}
+          onChange={(_event, newValue) => {
+            if (newValue) onTileChange(newValue);
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Select Map Theme"
+              variant="outlined"
+              margin="dense"
+              sx={{
+                input: { color: "#fff" },
+                label: { color: "#fff" },
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#fff",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#ccc",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#fff",
+                  },
+                },
+              }}
+            />
+          )}
+        />
+        <Divider sx={{ my: 1 }} />
+        <Typography variant="h6" gutterBottom>
+          Events
+        </Typography>
+        <TagFilter options={uniqueTags} onChange={setSelectedTags} />
+        <Divider sx={{ my: 1 }} />
+      </Box>
       <ul>
-        {filteredRaces.map((race, index) => (
-          <li
-            key={race.id}
-            className="event"
-            onClick={() => onSelectRace(race)}
-          >
-            <strong>
-              {index + 1}) {race.name}
-            </strong>
-            <p>Type: {race.type}</p>
-            <p>Date: {race.date}</p>
-            <p>Distance: {race.distance}</p>
-            <p>Time: {race.time}</p>
-            <p>
-              <a href={race.link} target="_blank" className="event-link">
-                Event Link
-              </a>
-            </p>
-            <Button variant="outlined" onClick={() => handleNotes(race.notes)}>
-              Notes
-            </Button>
+        {filteredRaces.map((race, _index) => (
+          <li key={race.id}>
+            <EventCard
+              race={race}
+              onSelectRace={onSelectRace}
+              handleNotes={handleNotes}
+            />
           </li>
         ))}
       </ul>

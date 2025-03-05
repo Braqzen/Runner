@@ -25,6 +25,26 @@ const TagFilter = ({ options, onChange }: TagFilterProps) => {
           variant="outlined"
           label="Filter by Tags"
           placeholder="Select tags"
+          sx={{
+            input: { color: "#fff" },
+            label: { color: "#fff" },
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "#fff",
+              },
+              "& .MuiChip-root": {
+                backgroundColor: "#444",
+                color: "#fff",
+                borderColor: "#fff",
+              },
+              "&:hover fieldset": {
+                borderColor: "#ccc",
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#fff",
+              },
+            },
+          }}
         />
       )}
     />
