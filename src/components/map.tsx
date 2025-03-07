@@ -8,6 +8,7 @@ import defaultMarker from "../assets/marker-icon-blue.png";
 import selectedMarker from "../assets/marker-icon-red.png";
 import shadowMarker from "../assets/marker-shadow.png";
 import { TileLayerOption } from "../types/tiles";
+import { Box, Typography } from "@mui/material";
 
 const defaultIcon = new L.Icon({
   iconUrl: defaultMarker,
@@ -27,9 +28,20 @@ const selectedIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-interface MapInitializerProps {
-  mapRef: RefObject<L.Map | null>;
+interface InitializerProps {
+  map: RefObject<L.Map | null>;
 }
+
+const Initializer = ({ map }: InitializerProps) => {
+  const leafletMap = useMap();
+  useEffect(() => {
+    if (!map.current) {
+      map.current = leafletMap;
+    }
+  }, [leafletMap, map]);
+
+  return null;
+};
 
 interface EventMapProps {
   selectedRace: Race | null;
@@ -37,39 +49,28 @@ interface EventMapProps {
   selectedTile: TileLayerOption;
 }
 
-const MapInitializer = ({ mapRef }: MapInitializerProps) => {
-  const map = useMap();
-  useEffect(() => {
-    if (!mapRef.current) {
-      mapRef.current = map;
-    }
-  }, [map, mapRef]);
-
-  return null;
-};
-
 const EventMap = ({
   selectedRace,
   onSelectRace,
   selectedTile,
 }: EventMapProps) => {
   const [races, setRaces] = useState<Race[]>([]);
-  const mapRef = useRef<L.Map | null>(null);
-  const markerRefs = useRef<Map<number, L.Marker | null>>(new Map());
+  const map = useRef<L.Map | null>(null);
+  const markers = useRef<Map<number, L.Marker | null>>(new Map());
 
   useEffect(() => {
     setRaces(raceData);
   }, []);
 
   useEffect(() => {
-    if (selectedRace && mapRef.current) {
-      mapRef.current.flyTo(
+    if (selectedRace && map.current) {
+      map.current.flyTo(
         [selectedRace.location.lat, selectedRace.location.lng],
         12,
         { animate: true, duration: 2 }
       );
 
-      const marker = markerRefs.current.get(selectedRace.id);
+      const marker = markers.current.get(selectedRace.id);
       if (marker) {
         marker.openPopup();
       }
@@ -79,7 +80,7 @@ const EventMap = ({
   return (
     <div className="map-container">
       <MapContainer center={[51.505, -0.09]} zoom={3} className="map">
-        <MapInitializer mapRef={mapRef} />
+        <Initializer map={map} />
 
         <TileLayer
           url={selectedTile.url}
@@ -94,25 +95,33 @@ const EventMap = ({
             position={[race.location.lat, race.location.lng]}
             icon={selectedRace?.id === race.id ? selectedIcon : defaultIcon}
             ref={(ref) => {
-              if (ref) markerRefs.current.set(race.id, ref);
+              if (ref) markers.current.set(race.id, ref);
             }}
             eventHandlers={{
               click: () => onSelectRace(race),
             }}
           >
             <Popup>
-              <strong>{race.name}</strong>
-              <br />
-              Event #{races.indexOf(race) + 1}
-              <br />
-              Type: {race.type}
-              <br />
-              Date: {race.date}
-              <br />
-              Distance: {race.distance}
-              <br />
-              Time: {race.time}
-              <br />
+              <Box sx={{ "& p": { mb: 0.5 } }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", fontSize: "1.3rem", mb: 1 }}
+                >
+                  {race.name}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  <strong>Type:</strong> {race.type}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  <strong>Date:</strong> {race.date}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  <strong>Distance:</strong> {race.distance}
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  <strong>Time:</strong> {race.time}
+                </Typography>
+              </Box>
             </Popup>
           </Marker>
         ))}

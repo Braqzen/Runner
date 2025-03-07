@@ -9,9 +9,6 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  List,
-  ListItem,
-  ListItemText,
   Autocomplete,
   TextField,
   Typography,
@@ -122,19 +119,25 @@ const Sidebar = ({
           },
         }}
       >
-        <DialogTitle>Event Notes</DialogTitle>
+        <DialogTitle sx={{ fontSize: "1.5rem" }}>Notes</DialogTitle>
         <DialogContent>
-          {notes && notes.length > 0 ? (
-            <List>
-              {notes.map((note, idx) => (
-                <ListItem key={idx}>
-                  <ListItemText primary={note} />
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <div>No notes available.</div>
-          )}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+            }}
+          >
+            {notes!.map((note, idx) => (
+              <Typography
+                key={idx}
+                variant="body1"
+                sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}
+              >
+                {note}
+              </Typography>
+            ))}
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenNotes(false)} color="primary">
