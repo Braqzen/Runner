@@ -47,15 +47,16 @@ interface EventMapProps {
   selectedRace: Race | null;
   onSelectRace: (race: Race) => void;
   selectedTile: TileLayerOption;
+  map: RefObject<L.Map | null>;
 }
 
 const EventMap = ({
   selectedRace,
   onSelectRace,
   selectedTile,
+  map,
 }: EventMapProps) => {
   const [races, setRaces] = useState<Race[]>([]);
-  const map = useRef<L.Map | null>(null);
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
 
   useEffect(() => {
@@ -102,7 +103,7 @@ const EventMap = ({
             }}
           >
             <Popup>
-              <Box sx={{ "& p": { mb: 0.5 } }}>
+              <Box sx={{ "& p": { mb: 0.2, mt: 0 } }}>
                 <Typography
                   variant="h6"
                   sx={{ fontWeight: "bold", fontSize: "1.3rem", mb: 1 }}

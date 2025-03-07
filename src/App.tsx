@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import EventMap from "./components/map";
 import Sidebar from "./components/sidebar";
 import { Race } from "./types/race";
@@ -9,6 +9,7 @@ function App() {
   const [selectedTile, setSelectedTile] = useState<TileLayerOption>(
     tileOptions[0]
   );
+  const map = useRef<L.Map | null>(null);
 
   return (
     <div className="app-container">
@@ -16,12 +17,14 @@ function App() {
         selectedRace={selectedRace}
         onSelectRace={setSelectedRace}
         selectedTile={selectedTile}
+        map={map}
       />
       <Sidebar
         onSelectRace={setSelectedRace}
         tileOptions={tileOptions}
         selectedTile={selectedTile}
         onTileChange={setSelectedTile}
+        map={map}
       />
     </div>
   );

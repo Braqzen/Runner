@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import raceData from "../../races.json";
 import { Race } from "../types/race";
 import TagFilter, { TagOption } from "./tag";
@@ -22,6 +22,7 @@ interface SidebarProps {
   selectedTile: TileLayerOption;
   onTileChange: (tile: TileLayerOption) => void;
   onSelectRace: (race: Race) => void;
+  map: RefObject<L.Map | null>;
 }
 
 const Sidebar = ({
@@ -29,6 +30,7 @@ const Sidebar = ({
   selectedTile,
   onTileChange,
   onSelectRace,
+  map,
 }: SidebarProps) => {
   const [races, setRaces] = useState<Race[]>([]);
   const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
@@ -55,9 +57,21 @@ const Sidebar = ({
     setOpenNotes(true);
   };
 
+  const handleResetView = () => {
+    if (map.current) {
+      map.current.flyTo([51.505, -0.09], 3, { animate: true, duration: 1 });
+    }
+  };
+
   return (
-    <div className="sidebar">
-      <Box>
+    <Box
+      className="sidebar"
+      sx={{
+        display: "grid",
+        gridTemplateRows: "auto 1fr 80px",
+      }}
+    >
+      <Box sx={{ flex: 1, overflowY: "auto" }}>
         <Typography variant="h6" gutterBottom>
           Map Theme
         </Typography>
@@ -99,17 +113,30 @@ const Sidebar = ({
         <TagFilter options={uniqueTags} onChange={setSelectedTags} />
         <Divider sx={{ my: 1 }} />
       </Box>
-      <ul>
-        {filteredRaces.map((race, _index) => (
-          <li key={race.id}>
-            <EventCard
-              race={race}
-              onSelectRace={onSelectRace}
-              handleNotes={handleNotes}
-            />
-          </li>
-        ))}
-      </ul>
+      <Box sx={{ overflowY: "auto", pr: 1, pt: 1 }}>
+        <Box component="ul" sx={{ m: 0 }}>
+          {filteredRaces.map((race) => (
+            <li key={race.id}>
+              <EventCard
+                race={race}
+                onSelectRace={onSelectRace}
+                handleNotes={handleNotes}
+              />
+            </li>
+          ))}
+        </Box>
+      </Box>
+      <Box sx={{ mt: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={handleResetView}
+        >
+          Reset View
+        </Button>
+      </Box>
+
       <Dialog
         open={openNotes}
         onClose={() => setOpenNotes(false)}
@@ -128,15 +155,16 @@ const Sidebar = ({
               gap: 1,
             }}
           >
-            {notes!.map((note, idx) => (
-              <Typography
-                key={idx}
-                variant="body1"
-                sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}
-              >
-                {note}
-              </Typography>
-            ))}
+            {notes &&
+              notes.map((note, idx) => (
+                <Typography
+                  key={idx}
+                  variant="body1"
+                  sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}
+                >
+                  {note}
+                </Typography>
+              ))}
           </Box>
         </DialogContent>
         <DialogActions>
@@ -145,7 +173,7 @@ const Sidebar = ({
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 
