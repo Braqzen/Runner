@@ -9,6 +9,7 @@ import selectedMarker from "../assets/marker-icon-red.png";
 import shadowMarker from "../assets/marker-shadow.png";
 import { TileLayerOption } from "../types/tiles";
 import { Box, Typography } from "@mui/material";
+import { TagOption } from "./tag";
 
 const defaultIcon = new L.Icon({
   iconUrl: defaultMarker,
@@ -48,6 +49,7 @@ interface EventMapProps {
   onSelectRace: (race: Race) => void;
   selectedTile: TileLayerOption;
   map: RefObject<L.Map | null>;
+  selectedTags: TagOption[];
 }
 
 const EventMap = ({
@@ -55,6 +57,7 @@ const EventMap = ({
   onSelectRace,
   selectedTile,
   map,
+  selectedTags,
 }: EventMapProps) => {
   const [races, setRaces] = useState<Race[]>([]);
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
@@ -78,6 +81,15 @@ const EventMap = ({
     }
   }, [selectedRace]);
 
+  const filteredRaces =
+    selectedTags.length === 0
+      ? races
+      : races.filter((race) =>
+          selectedTags.every(
+            (tag) => race.tags && race.tags.includes(tag.value)
+          )
+        );
+
   return (
     <div className="map-container">
       <MapContainer center={[51.505, -0.09]} zoom={3} className="map">
@@ -90,7 +102,7 @@ const EventMap = ({
           attribution={selectedTile.attribution}
         />
 
-        {races.map((race) => (
+        {filteredRaces.map((race) => (
           <Marker
             key={race.id}
             position={[race.location.lat, race.location.lng]}

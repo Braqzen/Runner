@@ -23,6 +23,8 @@ interface SidebarProps {
   onTileChange: (tile: TileLayerOption) => void;
   onSelectRace: (race: Race) => void;
   map: RefObject<L.Map | null>;
+  selectedTags: TagOption[];
+  onTagsChange: (tags: TagOption[]) => void;
 }
 
 const Sidebar = ({
@@ -31,9 +33,10 @@ const Sidebar = ({
   onTileChange,
   onSelectRace,
   map,
+  selectedTags,
+  onTagsChange,
 }: SidebarProps) => {
   const [races, setRaces] = useState<Race[]>([]);
-  const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
   const [openNotes, setOpenNotes] = useState(false);
   const [notes, setNotes] = useState<string[] | null>(null);
 
@@ -110,7 +113,7 @@ const Sidebar = ({
         <Typography variant="h6" gutterBottom>
           Events
         </Typography>
-        <TagFilter options={uniqueTags} onChange={setSelectedTags} />
+        <TagFilter options={uniqueTags} onChange={onTagsChange} />
         <Divider sx={{ my: 1 }} />
       </Box>
       <Box

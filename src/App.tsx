@@ -3,12 +3,14 @@ import EventMap from "./components/map";
 import Sidebar from "./components/sidebar";
 import { Race } from "./types/race";
 import { TileLayerOption, tileOptions } from "./types/tiles";
+import { TagOption } from "./components/tag";
 
 function App() {
   const [selectedRace, setSelectedRace] = useState<Race | null>(null);
   const [selectedTile, setSelectedTile] = useState<TileLayerOption>(
     tileOptions[0]
   );
+  const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
   const map = useRef<L.Map | null>(null);
 
   return (
@@ -18,6 +20,7 @@ function App() {
         onSelectRace={setSelectedRace}
         selectedTile={selectedTile}
         map={map}
+        selectedTags={selectedTags}
       />
       <Sidebar
         onSelectRace={setSelectedRace}
@@ -25,6 +28,8 @@ function App() {
         selectedTile={selectedTile}
         onTileChange={setSelectedTile}
         map={map}
+        selectedTags={selectedTags}
+        onTagsChange={setSelectedTags}
       />
     </div>
   );
