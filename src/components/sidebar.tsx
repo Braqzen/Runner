@@ -71,7 +71,7 @@ const Sidebar = ({
         gridTemplateRows: "auto 1fr 80px",
       }}
     >
-      <Box sx={{ flex: 1, overflowY: "auto" }}>
+      <Box>
         <Typography variant="h6" gutterBottom>
           Map Theme
         </Typography>
@@ -113,7 +113,17 @@ const Sidebar = ({
         <TagFilter options={uniqueTags} onChange={setSelectedTags} />
         <Divider sx={{ my: 1 }} />
       </Box>
-      <Box sx={{ overflowY: "auto", pr: 1, pt: 1 }}>
+      <Box
+        sx={{
+          overflowY: "auto",
+          pr: 1,
+          pt: 1,
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+          scrollbarWidth: "none",
+        }}
+      >
         <Box component="ul" sx={{ m: 0 }}>
           {filteredRaces.map((race) => (
             <li key={race.id}>
