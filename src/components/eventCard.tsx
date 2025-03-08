@@ -25,7 +25,7 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
           width: "100%",
           textAlign: "inherit",
           "& .MuiTouchRipple-child": {
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            backgroundColor: "rgba(0, 0, 0, 0.80) !important",
           },
           transition: "transform 0.2s ease, box-shadow 0.2s ease",
           "&:hover": {
