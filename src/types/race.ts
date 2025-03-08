@@ -14,6 +14,7 @@
  * @property {string[]} tags - An array of tags used to filter events.
  * @property {string} type - The category race.
  * @property {string[]} notes - Notes for an event.
+ * @property {Array<[number, number]>} route - Coordinates for the route.
  */
 export interface Race {
   id: number;
@@ -29,4 +30,5 @@ export interface Race {
   tags: string[];
   type: string;
   notes: string[];
+  route: Array<[number, number]>;
 }

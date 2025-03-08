@@ -44,6 +44,27 @@ const Initializer = ({ map }: InitializerProps) => {
   return null;
 };
 
+interface RouteProps {
+  race: Race | null;
+}
+
+const RoutePolyline = ({ race }: RouteProps) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (race?.route && race.route.length > 0) {
+      const polyline = L.polyline(race.route, { color: "blue", weight: 4 });
+      polyline.addTo(map);
+
+      return () => {
+        map.removeLayer(polyline);
+      };
+    }
+  }, [map, race]);
+
+  return null;
+};
+
 interface EventMapProps {
   selectedRace: Race | null;
   onSelectRace: (race: Race) => void;
@@ -63,7 +84,12 @@ const EventMap = ({
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
 
   useEffect(() => {
-    setRaces(raceData);
+    // TS is dumb so force the linter to understand that each route is an array of 2 coordinates
+    const data = raceData.map((race) => ({
+      ...race,
+      route: race.route.map((coords) => coords as [number, number]),
+    }));
+    setRaces(data);
   }, []);
 
   useEffect(() => {
@@ -138,6 +164,9 @@ const EventMap = ({
             </Popup>
           </Marker>
         ))}
+        {selectedRace && selectedRace.route.length > 1 && (
+          <RoutePolyline race={selectedRace} />
+        )}
       </MapContainer>
     </div>
   );
