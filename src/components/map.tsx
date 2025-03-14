@@ -82,6 +82,7 @@ const EventMap = ({
 }: EventMapProps) => {
   const [races, setRaces] = useState<Race[]>([]);
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
+  const [showRoute, setShowRoute] = useState(false);
 
   useEffect(() => {
     // TS is dumb so force the linter to understand that each route is an array of 2 coordinates
@@ -99,6 +100,10 @@ const EventMap = ({
         12,
         { animate: true, duration: 2 }
       );
+
+      map.current.once("moveend", () => {
+        setShowRoute(true);
+      });
 
       const marker = markers.current.get(selectedRace.id);
       if (marker) {
@@ -164,7 +169,7 @@ const EventMap = ({
             </Popup>
           </Marker>
         ))}
-        {selectedRace && selectedRace.route.length > 1 && (
+        {showRoute && selectedRace && selectedRace.route.length > 1 && (
           <RoutePolyline race={selectedRace} />
         )}
       </MapContainer>
