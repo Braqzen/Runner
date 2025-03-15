@@ -1,6 +1,5 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Box, Typography } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import raceData from "../../races.json";
@@ -10,6 +9,7 @@ import { TagOption } from "./sidebar/tag";
 import { defaultIcon, selectedIcon } from "./map/marker";
 import { RoutePolyline } from "./map/route";
 import { Initializer } from "./map/initializer";
+import PopupContent from "./map/popup";
 
 interface EventMapProps {
   selectedRace: Race | null;
@@ -96,26 +96,11 @@ const EventMap = ({
             }}
           >
             <Popup>
-              <Box sx={{ "& p": { mb: 0.2, mt: 0 } }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontWeight: "bold", fontSize: "1.3rem", mb: 1 }}
-                >
-                  {race.name}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  <strong>Type:</strong> {race.type}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  <strong>Date:</strong> {race.date}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  <strong>Distance:</strong> {race.distance}
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  <strong>Time:</strong> {race.time}
-                </Typography>
-              </Box>
+              <PopupContent
+                race={race}
+                filteredRaces={filteredRaces}
+                onSelectRace={onSelectRace}
+              />
             </Popup>
           </Marker>
         ))}
