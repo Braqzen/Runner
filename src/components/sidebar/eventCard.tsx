@@ -8,16 +8,25 @@ import {
   ButtonBase,
   Rating,
   Tooltip,
+  darken,
 } from "@mui/material";
 import { Race } from "../../types/race";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 interface EventCardProps {
   race: Race;
   onSelectRace: (race: Race) => void;
   handleNotes: (notes: string[]) => void;
+  isSelected: boolean;
 }
 
-const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
+const EventCard = ({
+  race,
+  onSelectRace,
+  handleNotes,
+  isSelected,
+}: EventCardProps) => {
   return (
     <Box sx={{ mb: 2 }}>
       <ButtonBase
@@ -39,7 +48,7 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
         <Card
           variant="outlined"
           sx={{
-            background: "#fff",
+            background: isSelected ? "rgb(106, 246, 101)" : "#fff",
             borderRadius: 2,
             boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
             cursor: "pointer",
@@ -59,7 +68,7 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
                 variant="h5"
                 sx={{
                   fontWeight: 500,
-                  color: "#333",
+                  color: "#000",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
@@ -94,6 +103,23 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
                       precision={0.1}
                       max={5}
                       size="medium"
+                      icon={
+                        <StarIcon
+                          sx={{
+                            color: "rgb(39, 129, 255)",
+                            stroke: "black",
+                            strokeWidth: 1,
+                          }}
+                        />
+                      }
+                      emptyIcon={
+                        <StarBorderIcon
+                          sx={{
+                            color: "black",
+                            strokeWidth: 1,
+                          }}
+                        />
+                      }
                     />
                   </Box>
                 </Tooltip>
@@ -111,28 +137,28 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
             >
               <Typography
                 variant="body1"
-                color="text.secondary"
+                color="text.primary"
                 sx={{ fontSize: "1.15rem" }}
               >
                 <strong>Type:</strong> {race.type}
               </Typography>
               <Typography
                 variant="body1"
-                color="text.secondary"
+                color="text.primary"
                 sx={{ fontSize: "1.15rem" }}
               >
                 <strong>Date:</strong> {race.date}
               </Typography>
               <Typography
                 variant="body1"
-                color="text.secondary"
+                color="text.primary"
                 sx={{ fontSize: "1.15rem" }}
               >
                 <strong>Distance:</strong> {race.distance}
               </Typography>
               <Typography
                 variant="body1"
-                color="text.secondary"
+                color="text.primary"
                 sx={{ fontSize: "1.15rem" }}
               >
                 <strong>Time:</strong> {race.time}
@@ -144,7 +170,18 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
               <Button
                 variant="outlined"
                 size="small"
-                sx={{ flex: 1, mr: 1 }}
+                sx={{
+                  flex: 1,
+                  mr: 1,
+                  borderColor: "black",
+                  color: "black",
+                  "&:hover": {
+                    backgroundColor: () =>
+                      isSelected
+                        ? darken("rgb(106, 246, 101)", 0.1)
+                        : darken("#fff", 0.1),
+                  },
+                }}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleNotes(race.notes);
@@ -156,7 +193,18 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
               <Button
                 variant="outlined"
                 size="small"
-                sx={{ flex: 1, ml: 1 }}
+                sx={{
+                  flex: 1,
+                  ml: 1,
+                  borderColor: "black",
+                  color: "black",
+                  "&:hover": {
+                    backgroundColor: (theme) =>
+                      isSelected
+                        ? darken("rgb(106, 246, 101)", 0.1)
+                        : darken("#fff", 0.1),
+                  },
+                }}
                 onClick={(e) => {
                   e.stopPropagation();
                   window.open(race.link, "_blank", "noopener");

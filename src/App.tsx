@@ -23,6 +23,7 @@ function App() {
         selectedTags={selectedTags}
       />
       <Sidebar
+        selectedRace={selectedRace}
         onSelectRace={setSelectedRace}
         tileOptions={tileOptions}
         selectedTile={selectedTile}

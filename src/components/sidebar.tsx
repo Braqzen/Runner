@@ -18,6 +18,7 @@ import { TileLayerOption } from "../types/tiles";
 import EventCard from "./sidebar/eventCard";
 
 interface SidebarProps {
+  selectedRace: Race | null;
   tileOptions: TileLayerOption[];
   selectedTile: TileLayerOption;
   onTileChange: (tile: TileLayerOption) => void;
@@ -28,6 +29,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({
+  selectedRace,
   tileOptions,
   selectedTile,
   onTileChange,
@@ -139,6 +141,7 @@ const Sidebar = ({
                 race={race}
                 onSelectRace={onSelectRace}
                 handleNotes={handleNotes}
+                isSelected={selectedRace?.id === race.id}
               />
             </li>
           ))}
