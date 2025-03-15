@@ -149,6 +149,7 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
                   e.stopPropagation();
                   handleNotes(race.notes);
                 }}
+                disabled={race.notes.length == 0}
               >
                 Notes
               </Button>
@@ -160,6 +161,7 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
                   e.stopPropagation();
                   window.open(race.link, "_blank", "noopener");
                 }}
+                disabled={race.link.length == 0}
               >
                 Event Page
               </Button>
