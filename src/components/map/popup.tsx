@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Rating } from "@mui/material";
 import { Race } from "../../types/race";
 
 interface PopupProps {
@@ -31,6 +31,24 @@ const PopupContent = ({ race, filteredRaces, onSelectRace }: PopupProps) => {
       >
         {race.name}
       </Typography>
+
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
+          <strong>Rating:</strong>
+          <Rating
+            value={race.rating}
+            readOnly
+            precision={0.1}
+            size="small"
+            sx={{ ml: 1, mr: 1 }}
+          />
+          {race.rating}/5
+        </Typography>
+      </Box>
       <Typography variant="body1" color="text.secondary">
         <strong>Type:</strong> {race.type}
       </Typography>
