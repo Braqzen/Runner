@@ -1,69 +1,15 @@
 import { RefObject, useEffect, useRef, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Box, Typography } from "@mui/material";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import raceData from "../../races.json";
 import { Race } from "../types/race";
-import defaultMarker from "../assets/marker-icon-blue.png";
-import selectedMarker from "../assets/marker-icon-red.png";
-import shadowMarker from "../assets/marker-shadow.png";
 import { TileLayerOption } from "../types/tiles";
-import { Box, Typography } from "@mui/material";
-import { TagOption } from "./tag";
-
-const defaultIcon = new L.Icon({
-  iconUrl: defaultMarker,
-  shadowUrl: shadowMarker,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-const selectedIcon = new L.Icon({
-  iconUrl: selectedMarker,
-  shadowUrl: shadowMarker,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
-
-interface InitializerProps {
-  map: RefObject<L.Map | null>;
-}
-
-const Initializer = ({ map }: InitializerProps) => {
-  const leafletMap = useMap();
-  useEffect(() => {
-    if (!map.current) {
-      map.current = leafletMap;
-    }
-  }, [leafletMap, map]);
-
-  return null;
-};
-
-interface RouteProps {
-  race: Race | null;
-}
-
-const RoutePolyline = ({ race }: RouteProps) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (race?.route && race.route.length > 0) {
-      const polyline = L.polyline(race.route, { color: "blue", weight: 4 });
-      polyline.addTo(map);
-
-      return () => {
-        map.removeLayer(polyline);
-      };
-    }
-  }, [map, race]);
-
-  return null;
-};
+import { TagOption } from "./sidebar/tag";
+import { defaultIcon, selectedIcon } from "./map/marker";
+import { RoutePolyline } from "./map/route";
+import { Initializer } from "./map/initializer";
 
 interface EventMapProps {
   selectedRace: Race | null;
@@ -121,6 +67,10 @@ const EventMap = ({
           )
         );
 
+  const isFilteredRoute =
+    selectedRace !== null &&
+    filteredRaces.some((race) => race.id === selectedRace.id);
+
   return (
     <div className="map-container">
       <MapContainer center={[51.505, -0.09]} zoom={3} className="map">
@@ -169,9 +119,12 @@ const EventMap = ({
             </Popup>
           </Marker>
         ))}
-        {showRoute && selectedRace && selectedRace.route.length > 1 && (
-          <RoutePolyline race={selectedRace} />
-        )}
+        {showRoute &&
+          isFilteredRoute &&
+          selectedRace &&
+          selectedRace.route.length > 1 && (
+            <RoutePolyline race={selectedRace} />
+          )}
       </MapContainer>
     </div>
   );

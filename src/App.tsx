@@ -3,7 +3,7 @@ import EventMap from "./components/map";
 import Sidebar from "./components/sidebar";
 import { Race } from "./types/race";
 import { TileLayerOption, tileOptions } from "./types/tiles";
-import { TagOption } from "./components/tag";
+import { TagOption } from "./components/sidebar/tag";
 
 function App() {
   const [selectedRace, setSelectedRace] = useState<Race | null>(null);

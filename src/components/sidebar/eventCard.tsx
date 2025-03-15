@@ -7,7 +7,7 @@ import {
   Box,
   ButtonBase,
 } from "@mui/material";
-import { Race } from "../types/race";
+import { Race } from "../../types/race";
 
 interface EventCardProps {
   race: Race;

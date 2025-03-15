@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useState } from "react";
 import raceData from "../../races.json";
 import { Race } from "../types/race";
-import TagFilter, { TagOption } from "./tag";
+import TagFilter, { TagOption } from "./sidebar/tag";
 import {
   Box,
   Dialog,
@@ -15,7 +15,7 @@ import {
   Divider,
 } from "@mui/material";
 import { TileLayerOption } from "../types/tiles";
-import EventCard from "./eventCard";
+import EventCard from "./sidebar/eventCard";
 
 interface SidebarProps {
   tileOptions: TileLayerOption[];
@@ -41,7 +41,12 @@ const Sidebar = ({
   const [notes, setNotes] = useState<string[] | null>(null);
 
   useEffect(() => {
-    setRaces(raceData);
+    // TS is dumb so force the linter to understand that each route is an array of 2 coordinates
+    const data = raceData.map((race) => ({
+      ...race,
+      route: race.route.map((coords) => coords as [number, number]),
+    }));
+    setRaces(data);
   }, []);
 
   const uniqueTags = Array.from(
