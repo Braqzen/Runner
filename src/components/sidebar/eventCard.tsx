@@ -30,6 +30,7 @@ const EventCard = ({
   return (
     <Box sx={{ mb: 2 }}>
       <ButtonBase
+        component="div"
         onClick={() => onSelectRace(race)}
         sx={{
           display: "block",
@@ -77,13 +78,7 @@ const EventCard = ({
               >
                 {race.name}
               </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  ml: 1,
-                }}
-              >
+              <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
                 <Tooltip
                   title={`${race.rating}/5`}
                   followCursor
@@ -186,7 +181,7 @@ const EventCard = ({
                   e.stopPropagation();
                   handleNotes(race.notes);
                 }}
-                disabled={race.notes.length == 0}
+                disabled={race.notes.length === 0}
               >
                 Notes
               </Button>
@@ -199,7 +194,7 @@ const EventCard = ({
                   borderColor: "black",
                   color: "black",
                   "&:hover": {
-                    backgroundColor: (theme) =>
+                    backgroundColor: () =>
                       isSelected
                         ? darken("rgb(106, 246, 101)", 0.1)
                         : darken("#fff", 0.1),
@@ -209,7 +204,7 @@ const EventCard = ({
                   e.stopPropagation();
                   window.open(race.link, "_blank", "noopener");
                 }}
-                disabled={race.link.length == 0}
+                disabled={race.link.length === 0}
               >
                 Event Page
               </Button>
