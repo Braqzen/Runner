@@ -6,6 +6,8 @@ import {
   Button,
   Box,
   ButtonBase,
+  Rating,
+  Tooltip,
 } from "@mui/material";
 import { Race } from "../../types/race";
 
@@ -45,12 +47,59 @@ const EventCard = ({ race, onSelectRace, handleNotes }: EventCardProps) => {
           }}
         >
           <CardContent sx={{ p: 1 }}>
-            <Typography
-              variant="h5"
-              sx={{ fontWeight: 500, color: "#333", mb: 1 }}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                mb: 1,
+              }}
             >
-              {race.name}
-            </Typography>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 500,
+                  color: "#333",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  flexGrow: 1,
+                }}
+              >
+                {race.name}
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  ml: 1,
+                }}
+              >
+                <Tooltip
+                  title={`${race.rating}/5`}
+                  followCursor
+                  leaveDelay={200}
+                  slotProps={{
+                    tooltip: {
+                      sx: {
+                        fontSize: "1.2rem",
+                      },
+                    },
+                  }}
+                >
+                  <Box>
+                    <Rating
+                      value={race.rating}
+                      readOnly
+                      precision={0.1}
+                      max={5}
+                      size="medium"
+                    />
+                  </Box>
+                </Tooltip>
+              </Box>
+            </Box>
+
             <Box
               sx={{
                 display: "grid",
