@@ -43,7 +43,6 @@ const Sidebar = ({
   const [notes, setNotes] = useState<string[] | null>(null);
 
   useEffect(() => {
-    // TS is dumb so force the linter to understand that each route is an array of 2 coordinates
     const data = rawEvents.map((event) => ({
       ...event,
       route: event.route.map((coords) => coords as [number, number]),

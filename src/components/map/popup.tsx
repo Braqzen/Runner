@@ -1,8 +1,6 @@
 import { Box, Typography, Button, darken } from "@mui/material";
 import { Event } from "../../types/event";
 import Rating from "../rating";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 interface PopupProps {
   event: Event;
@@ -11,7 +9,6 @@ interface PopupProps {
 }
 
 const PopupContent = ({ event, filteredEvents, onSelectEvent }: PopupProps) => {
-  // Find the index of the current event within the filtered array.
   const currentIndex = filteredEvents.findIndex((r) => r.id === event.id);
 
   const handlePrev = () => {
