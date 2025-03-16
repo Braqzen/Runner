@@ -1,18 +1,18 @@
 import { Rating as MaterialRating, SxProps, Theme } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { Race } from "../types/race";
+import { Event } from "../types/event";
 
 interface RatingProps {
-  race: Race;
+  event: Event;
   size: "small" | "medium";
   sx?: SxProps<Theme>;
 }
 
-const Rating = ({ race, size, sx }: RatingProps) => {
+const Rating = ({ event, size, sx }: RatingProps) => {
   return (
     <MaterialRating
-      value={race.rating}
+      value={event.rating}
       readOnly
       precision={0.1}
       size={size}

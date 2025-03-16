@@ -9,26 +9,26 @@ import {
   Tooltip,
   darken,
 } from "@mui/material";
-import { Race } from "../../types/race";
+import { Event } from "../../types/event";
 import Rating from "../rating";
 
 interface EventCardProps {
-  race: Race;
-  onSelectRace: (race: Race) => void;
+  event: Event;
+  onSelectEvent: (event: Event) => void;
   handleNotes: (notes: string[]) => void;
   isSelected: boolean;
 }
 
 const EventCard = ({
-  race,
-  onSelectRace,
+  event,
+  onSelectEvent,
   handleNotes,
   isSelected,
 }: EventCardProps) => {
   return (
     <ButtonBase
       component="div"
-      onClick={() => onSelectRace(race)}
+      onClick={() => onSelectEvent(event)}
       sx={{
         mb: 2,
         display: "block",
@@ -71,10 +71,10 @@ const EventCard = ({
                 flexGrow: 1,
               }}
             >
-              {race.name}
+              {event.name}
             </Typography>
             <Tooltip
-              title={`${race.rating}/5`}
+              title={`${event.rating}/5`}
               followCursor
               leaveDelay={200}
               slotProps={{
@@ -82,7 +82,7 @@ const EventCard = ({
               }}
             >
               <Box component="span">
-                <Rating race={race} size="medium" />
+                <Rating event={event} size="medium" />
               </Box>
             </Tooltip>
           </Box>
@@ -97,16 +97,16 @@ const EventCard = ({
             }}
           >
             <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Type:</strong> {race.type}
+              <strong>Type:</strong> {event.type}
             </Typography>
             <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Date:</strong> {race.date}
+              <strong>Date:</strong> {event.date}
             </Typography>
             <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Distance:</strong> {race.distance}
+              <strong>Distance:</strong> {event.distance}
             </Typography>
             <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Time:</strong> {race.time}
+              <strong>Time:</strong> {event.time}
             </Typography>
           </Box>
         </CardContent>
@@ -129,9 +129,9 @@ const EventCard = ({
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                handleNotes(race.notes);
+                handleNotes(event.notes);
               }}
-              disabled={race.notes.length === 0}
+              disabled={event.notes.length === 0}
             >
               Notes
             </Button>
@@ -152,9 +152,9 @@ const EventCard = ({
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                window.open(race.link, "_blank", "noopener");
+                window.open(event.link, "_blank", "noopener");
               }}
-              disabled={race.link.length === 0}
+              disabled={event.link.length === 0}
             >
               Event Page
             </Button>

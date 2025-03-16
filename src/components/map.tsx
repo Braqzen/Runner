@@ -2,8 +2,8 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import raceData from "../../races.json";
-import { Race } from "../types/race";
+import rawEvents from "../../events.json";
+import { Event } from "../types/event";
 import { TileLayerOption } from "../types/tiles";
 import { TagOption } from "./sidebar/tag";
 import { defaultIcon, selectedIcon } from "./map/marker";
@@ -12,37 +12,37 @@ import { Initializer } from "./map/initializer";
 import PopupContent from "./map/popup";
 
 interface EventMapProps {
-  selectedRace: Race | null;
-  onSelectRace: (race: Race) => void;
+  selectedEvent: Event | null;
+  onSelectEvent: (event: Event) => void;
   selectedTile: TileLayerOption;
   map: RefObject<L.Map | null>;
   selectedTags: TagOption[];
 }
 
 const EventMap = ({
-  selectedRace,
-  onSelectRace,
+  selectedEvent,
+  onSelectEvent,
   selectedTile,
   map,
   selectedTags,
 }: EventMapProps) => {
-  const [races, setRaces] = useState<Race[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
   const [showRoute, setShowRoute] = useState(false);
 
   useEffect(() => {
     // TS is dumb so force the linter to understand that each route is an array of 2 coordinates
-    const data = raceData.map((race) => ({
-      ...race,
-      route: race.route.map((coords) => coords as [number, number]),
+    const data = rawEvents.map((event) => ({
+      ...event,
+      route: event.route.map((coords) => coords as [number, number]),
     }));
-    setRaces(data);
+    setEvents(data);
   }, []);
 
   useEffect(() => {
-    if (selectedRace && map.current) {
+    if (selectedEvent && map.current) {
       map.current.flyTo(
-        [selectedRace.location.lat, selectedRace.location.lng],
+        [selectedEvent.location.lat, selectedEvent.location.lng],
         12,
         { animate: true, duration: 2 }
       );
@@ -51,25 +51,25 @@ const EventMap = ({
         setShowRoute(true);
       });
 
-      const marker = markers.current.get(selectedRace.id);
+      const marker = markers.current.get(selectedEvent.id);
       if (marker) {
         marker.openPopup();
       }
     }
-  }, [selectedRace]);
+  }, [selectedEvent]);
 
-  const filteredRaces =
+  const filteredEvents =
     selectedTags.length === 0
-      ? races
-      : races.filter((race) =>
+      ? events
+      : events.filter((event) =>
           selectedTags.every(
-            (tag) => race.tags && race.tags.includes(tag.value)
+            (tag) => event.tags && event.tags.includes(tag.value)
           )
         );
 
   const isFilteredRoute =
-    selectedRace !== null &&
-    filteredRaces.some((race) => race.id === selectedRace.id);
+    selectedEvent !== null &&
+    filteredEvents.some((event) => event.id === selectedEvent.id);
 
   return (
     <div className="map-container">
@@ -83,32 +83,32 @@ const EventMap = ({
           attribution={selectedTile.attribution}
         />
 
-        {filteredRaces.map((race) => (
+        {filteredEvents.map((event) => (
           <Marker
-            key={race.id}
-            position={[race.location.lat, race.location.lng]}
-            icon={selectedRace?.id === race.id ? selectedIcon : defaultIcon}
+            key={event.id}
+            position={[event.location.lat, event.location.lng]}
+            icon={selectedEvent?.id === event.id ? selectedIcon : defaultIcon}
             ref={(ref) => {
-              if (ref) markers.current.set(race.id, ref);
+              if (ref) markers.current.set(event.id, ref);
             }}
             eventHandlers={{
-              click: () => onSelectRace(race),
+              click: () => onSelectEvent(event),
             }}
           >
             <Popup>
               <PopupContent
-                race={race}
-                filteredRaces={filteredRaces}
-                onSelectRace={onSelectRace}
+                event={event}
+                filteredEvents={filteredEvents}
+                onSelectEvent={onSelectEvent}
               />
             </Popup>
           </Marker>
         ))}
         {showRoute &&
           isFilteredRoute &&
-          selectedRace &&
-          selectedRace.route.length > 1 && (
-            <RoutePolyline race={selectedRace} />
+          selectedEvent &&
+          selectedEvent.route.length > 1 && (
+            <RoutePolyline event={selectedEvent} />
           )}
       </MapContainer>
     </div>

@@ -1,28 +1,28 @@
 import { Box, Typography, Button, darken } from "@mui/material";
-import { Race } from "../../types/race";
+import { Event } from "../../types/event";
 import Rating from "../rating";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 interface PopupProps {
-  race: Race;
-  filteredRaces: Race[];
-  onSelectRace: (race: Race) => void;
+  event: Event;
+  filteredEvents: Event[];
+  onSelectEvent: (event: Event) => void;
 }
 
-const PopupContent = ({ race, filteredRaces, onSelectRace }: PopupProps) => {
-  // Find the index of the current race within the filtered array.
-  const currentIndex = filteredRaces.findIndex((r) => r.id === race.id);
+const PopupContent = ({ event, filteredEvents, onSelectEvent }: PopupProps) => {
+  // Find the index of the current event within the filtered array.
+  const currentIndex = filteredEvents.findIndex((r) => r.id === event.id);
 
   const handlePrev = () => {
     if (currentIndex > 0) {
-      onSelectRace(filteredRaces[currentIndex - 1]);
+      onSelectEvent(filteredEvents[currentIndex - 1]);
     }
   };
 
   const handleNext = () => {
-    if (currentIndex < filteredRaces.length - 1) {
-      onSelectRace(filteredRaces[currentIndex + 1]);
+    if (currentIndex < filteredEvents.length - 1) {
+      onSelectEvent(filteredEvents[currentIndex + 1]);
     }
   };
 
@@ -32,27 +32,27 @@ const PopupContent = ({ race, filteredRaces, onSelectRace }: PopupProps) => {
         variant="h6"
         sx={{ fontWeight: "bold", fontSize: "1.3rem", mb: 1 }}
       >
-        {race.name}
+        {event.name}
       </Typography>
 
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Typography sx={{ display: "flex", alignItems: "center" }}>
           <strong>Rating:</strong>
-          <Rating race={race} size="small" sx={{ ml: 1, mr: 1 }} />
-          {race.rating}/5
+          <Rating event={event} size="small" sx={{ ml: 1, mr: 1 }} />
+          {event.rating}/5
         </Typography>
       </Box>
       <Typography>
-        <strong>Type:</strong> {race.type}
+        <strong>Type:</strong> {event.type}
       </Typography>
       <Typography>
-        <strong>Date:</strong> {race.date}
+        <strong>Date:</strong> {event.date}
       </Typography>
       <Typography>
-        <strong>Distance:</strong> {race.distance}
+        <strong>Distance:</strong> {event.distance}
       </Typography>
       <Typography>
-        <strong>Time:</strong> {race.time}
+        <strong>Time:</strong> {event.time}
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
         <Button
@@ -86,7 +86,7 @@ const PopupContent = ({ race, filteredRaces, onSelectRace }: PopupProps) => {
               backgroundColor: darken("#fff", 0.1),
             },
           }}
-          disabled={currentIndex >= filteredRaces.length - 1}
+          disabled={currentIndex >= filteredEvents.length - 1}
           size="small"
         >
           Next

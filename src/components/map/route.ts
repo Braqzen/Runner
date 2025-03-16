@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import { Race } from "../../types/race";
+import { Event } from "../../types/event";
 import { finishIcon, startIcon } from "./marker";
 
 interface RouteProps {
-  race: Race | null;
+  event: Event | null;
 }
 
-export const RoutePolyline = ({ race }: RouteProps) => {
+export const RoutePolyline = ({ event }: RouteProps) => {
   const map = useMap();
   const polylineRef = useRef<L.Polyline | null>(null);
   const startMarkerRef = useRef<L.Marker | null>(null);
@@ -17,22 +17,22 @@ export const RoutePolyline = ({ race }: RouteProps) => {
 
   useEffect(() => {
     const updateLayers = () => {
-      if (race?.route && race.route.length > 0) {
+      if (event?.route && event.route.length > 0) {
         const zoom = map.getZoom();
         if (zoom >= minZoomForRoute) {
           if (!polylineRef.current) {
-            polylineRef.current = L.polyline(race.route, {
+            polylineRef.current = L.polyline(event.route, {
               color: "blue",
               weight: 4,
             });
 
-            startMarkerRef.current = L.marker(race.route[0], {
+            startMarkerRef.current = L.marker(event.route[0], {
               icon: startIcon,
               interactive: false,
             });
 
             finishMarkerRef.current = L.marker(
-              race.route[race.route.length - 1],
+              event.route[event.route.length - 1],
               { icon: finishIcon, interactive: false }
             );
 
@@ -65,7 +65,7 @@ export const RoutePolyline = ({ race }: RouteProps) => {
         finishMarkerRef.current = null;
       }
     };
-  }, [map, race]);
+  }, [map, event]);
 
   return null;
 };

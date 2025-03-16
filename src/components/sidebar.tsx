@@ -11,55 +11,55 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import raceData from "../../races.json";
-import { Race } from "../types/race";
+import rawEvents from "../../events.json";
+import { Event } from "../types/event";
 import { TileLayerOption } from "../types/tiles";
 import EventCard from "./sidebar/eventCard";
 import TagFilter, { TagOption } from "./sidebar/tag";
 
 interface SidebarProps {
-  selectedRace: Race | null;
+  selectedEvent: Event | null;
   tileOptions: TileLayerOption[];
   selectedTile: TileLayerOption;
   onTileChange: (tile: TileLayerOption) => void;
-  onSelectRace: (race: Race) => void;
+  onSelectEvent: (event: Event) => void;
   map: RefObject<L.Map | null>;
   selectedTags: TagOption[];
   onTagsChange: (tags: TagOption[]) => void;
 }
 
 const Sidebar = ({
-  selectedRace,
+  selectedEvent,
   tileOptions,
   selectedTile,
   onTileChange,
-  onSelectRace,
+  onSelectEvent,
   map,
   selectedTags,
   onTagsChange,
 }: SidebarProps) => {
-  const [races, setRaces] = useState<Race[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [openNotes, setOpenNotes] = useState(false);
   const [notes, setNotes] = useState<string[] | null>(null);
 
   useEffect(() => {
     // TS is dumb so force the linter to understand that each route is an array of 2 coordinates
-    const data = raceData.map((race) => ({
-      ...race,
-      route: race.route.map((coords) => coords as [number, number]),
+    const data = rawEvents.map((event) => ({
+      ...event,
+      route: event.route.map((coords) => coords as [number, number]),
     }));
-    setRaces(data);
+    setEvents(data);
   }, []);
 
   const uniqueTags = Array.from(
-    new Set(races.flatMap((race) => race.tags || []))
+    new Set(events.flatMap((event) => event.tags || []))
   ).map((tag) => ({ label: tag, value: tag }));
 
-  const filteredRaces =
+  const filteredEvents =
     selectedTags.length === 0
-      ? races
-      : races.filter((race) =>
-          selectedTags.every((tag) => race.tags.includes(tag.value))
+      ? events
+      : events.filter((event) =>
+          selectedTags.every((tag) => event.tags.includes(tag.value))
         );
 
   const handleNotes = (notes: string[]) => {
@@ -135,13 +135,13 @@ const Sidebar = ({
         }}
       >
         <Box component="ul" sx={{ m: 0 }}>
-          {filteredRaces.map((race) => (
-            <li key={race.id}>
+          {filteredEvents.map((event) => (
+            <li key={event.id}>
               <EventCard
-                race={race}
-                onSelectRace={onSelectRace}
+                event={event}
+                onSelectEvent={onSelectEvent}
                 handleNotes={handleNotes}
-                isSelected={selectedRace?.id === race.id}
+                isSelected={selectedEvent?.id === event.id}
               />
             </li>
           ))}
