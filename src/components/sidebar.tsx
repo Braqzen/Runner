@@ -1,7 +1,4 @@
 import { RefObject, useEffect, useState } from "react";
-import raceData from "../../races.json";
-import { Race } from "../types/race";
-import TagFilter, { TagOption } from "./sidebar/tag";
 import {
   Box,
   Dialog,
@@ -14,8 +11,11 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
+import raceData from "../../races.json";
+import { Race } from "../types/race";
 import { TileLayerOption } from "../types/tiles";
 import EventCard from "./sidebar/eventCard";
+import TagFilter, { TagOption } from "./sidebar/tag";
 
 interface SidebarProps {
   selectedRace: Race | null;
@@ -178,13 +178,14 @@ const Sidebar = ({
           >
             {notes &&
               notes.map((note, idx) => (
-                <Typography
-                  key={idx}
-                  variant="body1"
-                  sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}
-                >
-                  {note}
-                </Typography>
+                <Box key={idx}>
+                  <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
+                    {note}
+                  </Typography>
+                  {idx < notes.length - 1 && (
+                    <Divider sx={{ my: 1, borderColor: "black" }} />
+                  )}
+                </Box>
               ))}
           </Box>
         </DialogContent>
