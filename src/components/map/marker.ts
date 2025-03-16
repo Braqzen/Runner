@@ -1,6 +1,6 @@
 import L from "leaflet";
 import defaultMarker from "../../assets/marker-icon-blue.png";
-import selectedMarker from "../../assets/marker-icon-red.png";
+import selectedMarker from "../../assets/marker-icon-green.png";
 import shadowMarker from "../../assets/marker-shadow.png";
 
 const iconSize: [number, number] = [25, 41];
