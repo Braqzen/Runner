@@ -26,150 +26,142 @@ const EventCard = ({
   isSelected,
 }: EventCardProps) => {
   return (
-    <Box sx={{ mb: 2 }}>
-      <ButtonBase
-        component="div"
-        onClick={() => onSelectRace(race)}
+    <ButtonBase
+      component="div"
+      onClick={() => onSelectRace(race)}
+      sx={{
+        mb: 2,
+        display: "block",
+        "& .MuiTouchRipple-child": {
+          backgroundColor: "rgba(0, 0, 0, 0.80) !important",
+        },
+        transition: "transform 0.2s ease, box-shadow 0.2s ease",
+        "&:hover": {
+          transform: "translateY(-4px)",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+        },
+      }}
+    >
+      <Card
+        variant="outlined"
         sx={{
-          display: "block",
-          width: "100%",
-          textAlign: "inherit",
-          "& .MuiTouchRipple-child": {
-            backgroundColor: "rgba(0, 0, 0, 0.80) !important",
-          },
-          transition: "transform 0.2s ease, box-shadow 0.2s ease",
-          "&:hover": {
-            transform: "translateY(-4px)",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-          },
+          background: isSelected ? "rgb(106, 246, 101)" : "#fff",
+          borderRadius: 2,
+          boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.5)",
+          cursor: "pointer",
+          p: 2,
         }}
       >
-        <Card
-          variant="outlined"
-          sx={{
-            background: isSelected ? "rgb(106, 246, 101)" : "#fff",
-            borderRadius: 2,
-            boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
-            cursor: "pointer",
-            p: 2,
-          }}
-        >
-          <CardContent sx={{ p: 1 }}>
-            <Box
+        <CardContent sx={{ p: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography
+              variant="h5"
               sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                mb: 1,
+                fontWeight: 500,
+                color: "#000",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                flexGrow: 1,
               }}
             >
-              <Typography
-                variant="h5"
-                sx={{
-                  fontWeight: 500,
-                  color: "#000",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  flexGrow: 1,
-                }}
-              >
-                {race.name}
-              </Typography>
-              <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
-                <Tooltip
-                  title={`${race.rating}/5`}
-                  followCursor
-                  leaveDelay={200}
-                  slotProps={{
-                    tooltip: {
-                      sx: {
-                        fontSize: "1.2rem",
-                      },
-                    },
-                  }}
-                >
-                  <Rating race={race} size="medium" />
-                </Tooltip>
+              {race.name}
+            </Typography>
+            <Tooltip
+              title={`${race.rating}/5`}
+              followCursor
+              leaveDelay={200}
+              slotProps={{
+                tooltip: { sx: { fontSize: "1.2rem" } },
+              }}
+            >
+              <Box component="span">
+                <Rating race={race} size="medium" />
               </Box>
-            </Box>
+            </Tooltip>
+          </Box>
 
-            <Box
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              rowGap: 1,
+              columnGap: 0.5,
+              my: 2,
+            }}
+          >
+            <Typography sx={{ fontSize: "1.15rem" }}>
+              <strong>Type:</strong> {race.type}
+            </Typography>
+            <Typography sx={{ fontSize: "1.15rem" }}>
+              <strong>Date:</strong> {race.date}
+            </Typography>
+            <Typography sx={{ fontSize: "1.15rem" }}>
+              <strong>Distance:</strong> {race.distance}
+            </Typography>
+            <Typography sx={{ fontSize: "1.15rem" }}>
+              <strong>Time:</strong> {race.time}
+            </Typography>
+          </Box>
+        </CardContent>
+        <CardActions sx={{ pt: 0 }}>
+          <Box sx={{ display: "flex", width: "100%" }}>
+            <Button
+              variant="outlined"
+              size="small"
               sx={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                rowGap: 1,
-                columnGap: 0.5,
-                my: 2,
+                flex: 1,
+                mr: 1,
+                borderColor: "black",
+                color: "black",
+                "&:hover": {
+                  backgroundColor: () =>
+                    isSelected
+                      ? darken("rgb(106, 246, 101)", 0.1)
+                      : darken("#fff", 0.1),
+                },
               }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNotes(race.notes);
+              }}
+              disabled={race.notes.length === 0}
             >
-              <Typography sx={{ fontSize: "1.15rem" }}>
-                <strong>Type:</strong> {race.type}
-              </Typography>
-              <Typography sx={{ fontSize: "1.15rem" }}>
-                <strong>Date:</strong> {race.date}
-              </Typography>
-              <Typography sx={{ fontSize: "1.15rem" }}>
-                <strong>Distance:</strong> {race.distance}
-              </Typography>
-              <Typography sx={{ fontSize: "1.15rem" }}>
-                <strong>Time:</strong> {race.time}
-              </Typography>
-            </Box>
-          </CardContent>
-          <CardActions sx={{ pt: 0 }}>
-            <Box sx={{ display: "flex", width: "100%" }}>
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  flex: 1,
-                  mr: 1,
-                  borderColor: "black",
-                  color: "black",
-                  "&:hover": {
-                    backgroundColor: () =>
-                      isSelected
-                        ? darken("rgb(106, 246, 101)", 0.1)
-                        : darken("#fff", 0.1),
-                  },
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNotes(race.notes);
-                }}
-                disabled={race.notes.length === 0}
-              >
-                Notes
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                sx={{
-                  flex: 1,
-                  ml: 1,
-                  borderColor: "black",
-                  color: "black",
-                  "&:hover": {
-                    backgroundColor: () =>
-                      isSelected
-                        ? darken("rgb(106, 246, 101)", 0.1)
-                        : darken("#fff", 0.1),
-                  },
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(race.link, "_blank", "noopener");
-                }}
-                disabled={race.link.length === 0}
-              >
-                Event Page
-              </Button>
-            </Box>
-          </CardActions>
-        </Card>
-      </ButtonBase>
-    </Box>
+              Notes
+            </Button>
+            <Button
+              variant="outlined"
+              size="small"
+              sx={{
+                flex: 1,
+                ml: 1,
+                borderColor: "black",
+                color: "black",
+                "&:hover": {
+                  backgroundColor: () =>
+                    isSelected
+                      ? darken("rgb(106, 246, 101)", 0.1)
+                      : darken("#fff", 0.1),
+                },
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(race.link, "_blank", "noopener");
+              }}
+              disabled={race.link.length === 0}
+            >
+              Event Page
+            </Button>
+          </Box>
+        </CardActions>
+      </Card>
+    </ButtonBase>
   );
 };
 
