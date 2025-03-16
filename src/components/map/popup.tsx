@@ -1,5 +1,6 @@
-import { Box, Typography, Button, Rating, darken } from "@mui/material";
+import { Box, Typography, Button, darken } from "@mui/material";
 import { Race } from "../../types/race";
+import Rating from "../rating";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
@@ -35,51 +36,22 @@ const PopupContent = ({ race, filteredRaces, onSelectRace }: PopupProps) => {
       </Typography>
 
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography
-          variant="body1"
-          color="text.primary"
-          sx={{ display: "flex", alignItems: "center" }}
-        >
+        <Typography sx={{ display: "flex", alignItems: "center" }}>
           <strong>Rating:</strong>
-          <Rating
-            value={race.rating}
-            readOnly
-            precision={0.1}
-            size="small"
-            sx={{ ml: 1, mr: 1 }}
-            icon={
-              <StarIcon
-                sx={{
-                  color: "rgb(39, 129, 255)",
-                  stroke: "black",
-                  strokeWidth: 1,
-                  fontSize: "1.3rem",
-                }}
-              />
-            }
-            emptyIcon={
-              <StarBorderIcon
-                sx={{
-                  color: "black",
-                  strokeWidth: 1,
-                  fontSize: "1.3rem",
-                }}
-              />
-            }
-          />
+          <Rating race={race} size="small" sx={{ ml: 1, mr: 1 }} />
           {race.rating}/5
         </Typography>
       </Box>
-      <Typography variant="body1" color="text.primary">
+      <Typography>
         <strong>Type:</strong> {race.type}
       </Typography>
-      <Typography variant="body1" color="text.primary">
+      <Typography>
         <strong>Date:</strong> {race.date}
       </Typography>
-      <Typography variant="body1" color="text.primary">
+      <Typography>
         <strong>Distance:</strong> {race.distance}
       </Typography>
-      <Typography variant="body1" color="text.primary">
+      <Typography>
         <strong>Time:</strong> {race.time}
       </Typography>
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>

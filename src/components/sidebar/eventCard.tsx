@@ -6,13 +6,11 @@ import {
   Button,
   Box,
   ButtonBase,
-  Rating,
   Tooltip,
   darken,
 } from "@mui/material";
 import { Race } from "../../types/race";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import Rating from "../rating";
 
 interface EventCardProps {
   race: Race;
@@ -91,32 +89,7 @@ const EventCard = ({
                     },
                   }}
                 >
-                  <Box>
-                    <Rating
-                      value={race.rating}
-                      readOnly
-                      precision={0.1}
-                      max={5}
-                      size="medium"
-                      icon={
-                        <StarIcon
-                          sx={{
-                            color: "rgb(39, 129, 255)",
-                            stroke: "black",
-                            strokeWidth: 1,
-                          }}
-                        />
-                      }
-                      emptyIcon={
-                        <StarBorderIcon
-                          sx={{
-                            color: "black",
-                            strokeWidth: 1,
-                          }}
-                        />
-                      }
-                    />
-                  </Box>
+                  <Rating race={race} size="medium" />
                 </Tooltip>
               </Box>
             </Box>
@@ -130,32 +103,16 @@ const EventCard = ({
                 my: 2,
               }}
             >
-              <Typography
-                variant="body1"
-                color="text.primary"
-                sx={{ fontSize: "1.15rem" }}
-              >
+              <Typography sx={{ fontSize: "1.15rem" }}>
                 <strong>Type:</strong> {race.type}
               </Typography>
-              <Typography
-                variant="body1"
-                color="text.primary"
-                sx={{ fontSize: "1.15rem" }}
-              >
+              <Typography sx={{ fontSize: "1.15rem" }}>
                 <strong>Date:</strong> {race.date}
               </Typography>
-              <Typography
-                variant="body1"
-                color="text.primary"
-                sx={{ fontSize: "1.15rem" }}
-              >
+              <Typography sx={{ fontSize: "1.15rem" }}>
                 <strong>Distance:</strong> {race.distance}
               </Typography>
-              <Typography
-                variant="body1"
-                color="text.primary"
-                sx={{ fontSize: "1.15rem" }}
-              >
+              <Typography sx={{ fontSize: "1.15rem" }}>
                 <strong>Time:</strong> {race.time}
               </Typography>
             </Box>
