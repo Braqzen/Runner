@@ -15,7 +15,7 @@ import Rating from "../rating";
 interface EventCardProps {
   event: Event;
   onSelectEvent: (event: Event) => void;
-  handleNotes: (notes: string[]) => void;
+  handleNotes: (event: Event) => void;
   isSelected: boolean;
 }
 
@@ -129,7 +129,7 @@ const EventCard = ({
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                handleNotes(event.notes);
+                handleNotes(event);
               }}
               disabled={event.notes.length === 0}
             >

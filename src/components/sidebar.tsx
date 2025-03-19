@@ -1,10 +1,6 @@
 import { RefObject, useEffect, useState } from "react";
 import {
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   Button,
   Autocomplete,
   TextField,
@@ -16,6 +12,7 @@ import { Event } from "../types/event";
 import { TileLayerOption } from "../types/tiles";
 import EventCard from "./sidebar/eventCard";
 import TagFilter, { TagOption } from "./sidebar/tag";
+import NotesDialog from "./sidebar/noteDialogue";
 
 interface SidebarProps {
   selectedEvent: Event | null;
@@ -40,7 +37,7 @@ const Sidebar = ({
 }: SidebarProps) => {
   const [events, setEvents] = useState<Event[]>([]);
   const [openNotes, setOpenNotes] = useState(false);
-  const [notes, setNotes] = useState<string[] | null>(null);
+  const [notes, setNotes] = useState<Event | null>(null);
 
   useEffect(() => {
     const data = rawEvents.map((event) => ({
@@ -61,8 +58,8 @@ const Sidebar = ({
           selectedTags.every((tag) => event.tags.includes(tag.value))
         );
 
-  const handleNotes = (notes: string[]) => {
-    setNotes(notes);
+  const handleNotes = (event: Event) => {
+    setNotes(event);
     setOpenNotes(true);
   };
 
@@ -157,43 +154,13 @@ const Sidebar = ({
         </Button>
       </Box>
 
-      <Dialog
-        open={openNotes}
-        onClose={() => setOpenNotes(false)}
-        slotProps={{
-          transition: {
-            onExited: () => setNotes([]),
-          },
-        }}
-      >
-        <DialogTitle sx={{ fontSize: "1.5rem" }}>Notes</DialogTitle>
-        <DialogContent>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 1,
-            }}
-          >
-            {notes &&
-              notes.map((note, idx) => (
-                <Box key={idx}>
-                  <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
-                    {note}
-                  </Typography>
-                  {idx < notes.length - 1 && (
-                    <Divider sx={{ my: 1, borderColor: "black" }} />
-                  )}
-                </Box>
-              ))}
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenNotes(false)} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
+      {notes && (
+        <NotesDialog
+          open={openNotes}
+          event={notes}
+          onClose={() => setOpenNotes(false)}
+        />
+      )}
     </Box>
   );
 };
