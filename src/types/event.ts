@@ -32,7 +32,13 @@ export interface Event {
   link: string;
   tags: string[];
   type: string;
-  notes: string[];
+  notes: RaceNotes;
   route: Array<[number, number]>;
   rating: number;
+}
+
+interface RaceNotes {
+  pre: string[];
+  during: string[];
+  post: string[];
 }

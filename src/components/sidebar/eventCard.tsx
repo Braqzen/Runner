@@ -131,7 +131,11 @@ const EventCard = ({
                 e.stopPropagation();
                 handleNotes(event);
               }}
-              disabled={event.notes.length === 0}
+              disabled={
+                event.notes.pre.length === 0 &&
+                event.notes.during.length === 0 &&
+                event.notes.post.length === 0
+              }
             >
               Notes
             </Button>

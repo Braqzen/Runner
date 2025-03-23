@@ -11,10 +11,16 @@ import {
   Chip,
 } from "@mui/material";
 
+interface RaceNotes {
+  pre: string[];
+  during: string[];
+  post: string[];
+}
+
 interface Event {
   id: number;
   name: string;
-  notes: string[];
+  notes: RaceNotes;
   tags: string[];
 }
 
@@ -25,7 +31,67 @@ interface DialogProps {
 }
 
 const NotesDialog = ({ open, event, onClose }: DialogProps) => {
-  const [notesExpanded, setNotesExpanded] = useState(false);
+  const [preExpanded, setPreExpanded] = useState(false);
+  const [duringExpanded, setDuringExpanded] = useState(false);
+  const [postExpanded, setPostExpanded] = useState(false);
+
+  const renderSection = (
+    title: string,
+    notes: string[],
+    expanded: boolean,
+    setExpanded: (val: boolean) => void
+  ) => {
+    if (!notes || notes.length === 0) return null;
+    const needsToggle = notes.length > 5;
+
+    return (
+      <Box sx={{ mb: 2 }}>
+        <Typography variant="h5" sx={{ mb: 1, fontWeight: "bold" }}>
+          {title}
+        </Typography>
+        {needsToggle ? (
+          <>
+            <Collapse in={expanded} collapsedSize={200}>
+              <Box
+                sx={{
+                  backgroundColor: "rgba(202, 202, 202, 0.55)",
+                  p: 2,
+                  borderRadius: 2,
+                }}
+              >
+                {notes.map((note, idx) => (
+                  <Box key={idx} sx={{ mb: idx < notes.length - 1 ? 1 : 0 }}>
+                    <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
+                      {note}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            </Collapse>
+            <Button variant="text" onClick={() => setExpanded(!expanded)}>
+              {expanded ? "Show Less" : "Show More"}
+            </Button>
+          </>
+        ) : (
+          <Box
+            sx={{
+              backgroundColor: "rgba(202, 202, 202, 0.55)",
+              p: 2,
+              borderRadius: 2,
+            }}
+          >
+            {notes.map((note, idx) => (
+              <Box key={idx} sx={{ mb: idx < notes.length - 1 ? 1 : 0 }}>
+                <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
+                  {note}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        )}
+      </Box>
+    );
+  };
 
   return (
     <Dialog
@@ -61,37 +127,24 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           mx: "auto",
         }}
       >
-        <Box>
-          <Typography variant="h5" sx={{ mb: 1, fontWeight: "bold" }}>
-            Notes
-          </Typography>
-          <Collapse in={notesExpanded} collapsedSize={200}>
-            <Box
-              sx={{
-                backgroundColor: "rgba(202, 202, 202, 0.55)",
-                p: 2,
-                borderRadius: 2,
-              }}
-            >
-              {event.notes.map((note, idx) => (
-                <Box
-                  key={idx}
-                  sx={{ mb: idx < event.notes.length - 1 ? 1 : 0 }}
-                >
-                  <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
-                    {note}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          </Collapse>
-          <Button
-            variant="text"
-            onClick={() => setNotesExpanded((prev) => !prev)}
-          >
-            {notesExpanded ? "Show Less" : "Show More"}
-          </Button>
-        </Box>
+        {renderSection(
+          "Pre-Race",
+          event.notes.pre,
+          preExpanded,
+          setPreExpanded
+        )}
+        {renderSection(
+          "During Race",
+          event.notes.during,
+          duringExpanded,
+          setDuringExpanded
+        )}
+        {renderSection(
+          "Post-Race",
+          event.notes.post,
+          postExpanded,
+          setPostExpanded
+        )}
 
         <Box>
           <Typography variant="h5" sx={{ mb: 1, fontWeight: "bold" }}>
