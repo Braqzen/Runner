@@ -53,22 +53,35 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
         {event.name}
       </DialogTitle>
       <DialogContent
-        sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2 }}
+        sx={{
+          p: 2,
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          width: "90%",
+          mx: "auto",
+        }}
       >
         <Box>
           <Typography variant="h5" sx={{ mb: 1, fontWeight: "bold" }}>
             Notes
           </Typography>
           <Collapse in={notesExpanded} collapsedSize={200}>
-            <Box>
+            <Box
+              sx={{
+                backgroundColor: "rgba(202, 202, 202, 0.55)",
+                p: 2,
+                borderRadius: 2,
+              }}
+            >
               {event.notes.map((note, idx) => (
-                <Box key={idx}>
+                <Box
+                  key={idx}
+                  sx={{ mb: idx < event.notes.length - 1 ? 1 : 0 }}
+                >
                   <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
                     {note}
                   </Typography>
-                  {idx < event.notes.length - 1 && (
-                    <Divider sx={{ my: 1, borderColor: "black" }} />
-                  )}
                 </Box>
               ))}
             </Box>
