@@ -4,6 +4,7 @@
  * @interface Event
  * @property {number} id - Chronological ID for the event.
  * @property {string} date - The date of the event.
+ * @property {string} start - The time when the event starts.
  * @property {object} location - Approximate geographic location of the event.
  * @property {number} location.lat - Latitude of the event location.
  * @property {number} location.lng - Longitude of the event location.
@@ -20,6 +21,7 @@
 export interface Event {
   id: number;
   date: string;
+  start: string;
   location: {
     lat: number;
     lng: number;
