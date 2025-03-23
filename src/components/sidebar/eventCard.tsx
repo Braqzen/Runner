@@ -97,10 +97,10 @@ const EventCard = ({
             }}
           >
             <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Type:</strong> {event.type}
+              <strong>Date:</strong> {event.date}
             </Typography>
             <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Date:</strong> {event.date}
+              <strong>Start:</strong> {event.start}
             </Typography>
             <Typography sx={{ fontSize: "1.15rem" }}>
               <strong>Distance:</strong> {event.distance}
