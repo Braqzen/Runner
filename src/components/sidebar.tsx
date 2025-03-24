@@ -13,6 +13,7 @@ import { TileLayerOption } from "../types/tiles";
 import EventCard from "./sidebar/eventCard";
 import TagFilter, { TagOption } from "./sidebar/tag";
 import NotesDialog from "./sidebar/noteDialogue";
+import SummaryDialog from "./summary";
 
 interface SidebarProps {
   selectedEvent: Event | null;
@@ -38,6 +39,7 @@ const Sidebar = ({
   const [events, setEvents] = useState<Event[]>([]);
   const [openNotes, setOpenNotes] = useState(false);
   const [notes, setNotes] = useState<Event | null>(null);
+  const [openSummary, setOpenSummary] = useState(false);
 
   useEffect(() => {
     const data = rawEvents.map((event) => ({
@@ -68,6 +70,16 @@ const Sidebar = ({
       map.current.flyTo([51.505, -0.09], 3, { animate: true, duration: 1 });
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "s") {
+        setOpenSummary(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <Box
@@ -161,6 +173,12 @@ const Sidebar = ({
           onClose={() => setOpenNotes(false)}
         />
       )}
+
+      <SummaryDialog
+        open={openSummary}
+        events={filteredEvents}
+        onClose={() => setOpenSummary(false)}
+      />
     </Box>
   );
 };
