@@ -7,11 +7,23 @@ import { TagOption } from "./components/sidebar/tag";
 
 function App() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [selectedTile, setSelectedTile] = useState<TileLayerOption>(
-    tileOptions[0]
-  );
+  const [selectedTile, setSelectedTile] = useState<TileLayerOption>(() => {
+    try {
+      const savedTile = localStorage.getItem("selectedTile");
+      return savedTile
+        ? (JSON.parse(savedTile) as TileLayerOption)
+        : tileOptions[0];
+    } catch (error) {
+      return tileOptions[0];
+    }
+  });
   const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
   const map = useRef<L.Map | null>(null);
+
+  const handleTileChange = (newTile: TileLayerOption) => {
+    setSelectedTile(newTile);
+    localStorage.setItem("selectedTile", JSON.stringify(newTile));
+  };
 
   return (
     <div className="app-container">
@@ -27,7 +39,7 @@ function App() {
         onSelectEvent={setSelectedEvent}
         tileOptions={tileOptions}
         selectedTile={selectedTile}
-        onTileChange={setSelectedTile}
+        onTileChange={handleTileChange}
         map={map}
         selectedTags={selectedTags}
         onTagsChange={setSelectedTags}
