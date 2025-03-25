@@ -102,7 +102,7 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           sx: {
             width: "80vw",
             height: "80vh",
-            maxWidth: "80vw",
+            maxWidth: "1500px",
             maxHeight: "80vh",
           },
         },

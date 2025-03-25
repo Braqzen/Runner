@@ -29,7 +29,7 @@ const SummaryDialog = ({ open, events, onClose }: SummaryDialogProps) => {
           sx: {
             width: "90vw",
             height: "90vh",
-            maxWidth: "90vw",
+            maxWidth: "1500px",
             maxHeight: "90vh",
           },
         },
@@ -49,13 +49,27 @@ const SummaryDialog = ({ open, events, onClose }: SummaryDialogProps) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ width: 250 }}>Name</TableCell>
-                <TableCell sx={{ width: 200 }}>Date</TableCell>
-                <TableCell sx={{ width: 200 }}>Start</TableCell>
-                <TableCell sx={{ width: 200 }}>Type</TableCell>
-                <TableCell sx={{ width: 200 }}>Distance</TableCell>
-                <TableCell sx={{ width: 200 }}>Time</TableCell>
-                <TableCell sx={{ width: 200 }}>Rating</TableCell>
+                <TableCell sx={{ width: 250, fontSize: "1.2rem" }}>
+                  Name
+                </TableCell>
+                <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>
+                  Date
+                </TableCell>
+                <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>
+                  Start
+                </TableCell>
+                <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>
+                  Type
+                </TableCell>
+                <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>
+                  Distance
+                </TableCell>
+                <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>
+                  Time
+                </TableCell>
+                <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>
+                  Rating
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -65,16 +79,21 @@ const SummaryDialog = ({ open, events, onClose }: SummaryDialogProps) => {
                     sx={{
                       whiteSpace: "nowrap",
                       textOverflow: "ellipsis",
+                      fontSize: "1rem",
                     }}
                   >
                     {event.name}
                   </TableCell>
-                  <TableCell>{event.date}</TableCell>
-                  <TableCell>{event.start}</TableCell>
-                  <TableCell>{event.type}</TableCell>
-                  <TableCell>{event.distance}</TableCell>
-                  <TableCell>{event.time}</TableCell>
-                  <TableCell>{event.rating}/5</TableCell>
+                  <TableCell sx={{ fontSize: "1rem" }}>{event.date}</TableCell>
+                  <TableCell sx={{ fontSize: "1rem" }}>{event.start}</TableCell>
+                  <TableCell sx={{ fontSize: "1rem" }}>{event.type}</TableCell>
+                  <TableCell sx={{ fontSize: "1rem" }}>
+                    {event.distance}
+                  </TableCell>
+                  <TableCell sx={{ fontSize: "1rem" }}>{event.time}</TableCell>
+                  <TableCell sx={{ fontSize: "1rem" }}>
+                    {event.rating}/5
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
