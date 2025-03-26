@@ -5,7 +5,7 @@ import L from "leaflet";
 import rawEvents from "../../events.json";
 import { Event } from "../types/event";
 import { TileLayerOption } from "../types/tiles";
-import { TagOption } from "./sidebar/tag";
+import { TagOption } from "./right-sidebar/tag";
 import { defaultIcon, selectedIcon } from "./map/marker";
 import { RoutePolyline } from "./map/route";
 import { Initializer } from "./map/initializer";
