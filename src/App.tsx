@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import EventMap from "./components/map";
-import RightSidebar from "./components/rightSidebar";
 import { Event } from "./types/event";
 import { TileLayerOption, tileOptions } from "./types/tiles";
+import EventMap from "./components/map";
 import { TagOption } from "./components/right-sidebar/tag";
 import LeftSidebar from "./components/leftSidebar";
-import SummaryDialog from "./components/summary";
+import RightSidebar from "./components/rightSidebar";
 import rawEvents from "../events.json";
-import SettingsDialog from "./components/settings";
 
 function App() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -22,10 +20,10 @@ function App() {
       return tileOptions[0];
     }
   });
-  const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
+  const [selectedDateTags, setSelectedDateTags] = useState<TagOption[]>([]);
+  const [selectedRegionTags, setSelectedRegionTags] = useState<TagOption[]>([]);
+  const [selectedTypeTags, setSelectedTypeTags] = useState<TagOption[]>([]);
   const map = useRef<L.Map | null>(null);
-  const [openSummary, setOpenSummary] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
 
   useEffect(() => {
     const data = rawEvents.map((event) => ({
@@ -35,33 +33,27 @@ function App() {
     setEvents(data);
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key.toLowerCase() === "s") {
-        setOpenSummary(true);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  const filteredEvents =
-    selectedTags.length === 0
-      ? events
-      : events.filter((event) =>
-          selectedTags.every((tag) => event.tags.includes(tag.value))
-        );
-
-  const handleTileChange = (newTile: TileLayerOption) => {
-    setSelectedTile(newTile);
-    localStorage.setItem("selectedTile", JSON.stringify(newTile));
-  };
+  const filteredEvents = events.filter((event) => {
+    const dateMatch =
+      selectedDateTags.length === 0 ||
+      selectedDateTags.some((tag) => event.tags.date.includes(tag.value));
+    const regionMatch =
+      selectedRegionTags.length === 0 ||
+      selectedRegionTags.some((tag) => event.tags.region.includes(tag.value));
+    const typeMatch =
+      selectedTypeTags.length === 0 ||
+      selectedTypeTags.some((tag) => event.tags.type.includes(tag.value));
+    return dateMatch && regionMatch && typeMatch;
+  });
 
   return (
     <div className="app-container">
       <LeftSidebar
-        onOpenSummary={() => setOpenSummary(true)}
-        onOpenSettings={() => setOpenSettings(true)}
+        filteredEvents={filteredEvents}
+        map={map}
+        selectedTile={selectedTile}
+        setSelectedTile={setSelectedTile}
+        tileOptions={tileOptions}
       />
 
       <EventMap
@@ -69,7 +61,7 @@ function App() {
         onSelectEvent={setSelectedEvent}
         selectedTile={selectedTile}
         map={map}
-        selectedTags={selectedTags}
+        filteredEvents={filteredEvents}
       />
 
       <RightSidebar
@@ -77,22 +69,9 @@ function App() {
         filteredEvents={filteredEvents}
         selectedEvent={selectedEvent}
         onSelectEvent={setSelectedEvent}
-        map={map}
-        onTagsChange={setSelectedTags}
-      />
-
-      <SummaryDialog
-        open={openSummary}
-        events={filteredEvents}
-        onClose={() => setOpenSummary(false)}
-      />
-
-      <SettingsDialog
-        open={openSettings}
-        selectedTile={selectedTile}
-        tileOptions={tileOptions}
-        onTileChange={handleTileChange}
-        onClose={() => setOpenSettings(false)}
+        onDateChange={setSelectedDateTags}
+        onRegionChange={setSelectedRegionTags}
+        onTypeChange={setSelectedTypeTags}
       />
     </div>
   );

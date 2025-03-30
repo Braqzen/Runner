@@ -8,7 +8,11 @@
       "distance": "42.2km",
       "time": "5h 37m",
       "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html",
-      "tags": ["Marathon", "Portugal", "Lisbon", "2024"],
+      "tags": {
+        "date": ["2024", "Q4"],
+        "region": ["Europe", "Portugal", "Lisbon"],
+        "type": ["Marathon"]
+      },
       "type": "Marathon",
       "notes": {
         "pre": [
@@ -885,7 +889,11 @@
       "distance": "42.2km",
       "time": "4h 31m",
       "link": "https://splitmarathon.com/marathon/?lang=en",
-      "tags": ["Marathon", "Croatia", "Split", "2025"],
+      "tags": {
+        "date": ["2025", "Q1"],
+        "region": ["Europe", "Croatia", "Split"],
+        "type": ["Marathon"]
+      },
       "type": "Marathon",
       "notes": {
         "pre": [
@@ -1375,7 +1383,11 @@
       "distance": "42.2km",
       "time": "4h 24m",
       "link": "https://www.limassolmarathon.com/index.php",
-      "tags": ["Marathon", "Cyprus", "Limassol", "2025"],
+      "tags": {
+        "date": ["2025", "Q1"],
+        "region": ["Europe", "Cyprus", "Limassol"],
+        "type": ["Marathon"]
+      },
       "type": "Marathon",
       "notes": {
         "pre": [
@@ -1745,7 +1757,11 @@
         "distance": "42.2km",
         "time": "Xh Ym",
         "link": "https://www.milanomarathon.it/en/marathon/",
-        "tags": ["Marathon", "Italy", "Milan", "2025"],
+        "tags": {
+          "date": ["2025", "Q2"],
+          "region": ["Europe", "Italy", "Milan"],
+          "type": ["Marathon"]
+        },
         "type": "Marathon",
         "notes": {
           "pre": [

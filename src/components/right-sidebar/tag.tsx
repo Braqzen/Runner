@@ -1,7 +1,7 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-interface TagFilterProps {
+interface Props {
   options: TagOption[];
   onChange: (selected: TagOption[]) => void;
 }
@@ -11,7 +11,7 @@ export interface TagOption {
   value: string;
 }
 
-const TagFilter = ({ options, onChange }: TagFilterProps) => {
+const Filter = ({ options, onChange }: Props) => {
   return (
     <Autocomplete
       multiple
@@ -23,7 +23,6 @@ const TagFilter = ({ options, onChange }: TagFilterProps) => {
         <TextField
           {...params}
           variant="outlined"
-          label="Filter by Tags"
           placeholder="Select tags"
           sx={{
             input: { color: "#fff" },
@@ -51,4 +50,4 @@ const TagFilter = ({ options, onChange }: TagFilterProps) => {
   );
 };
 
-export default TagFilter;
+export default Filter;

@@ -12,9 +12,9 @@
  * @property {string} distance - The distance of the event.
  * @property {string} time - The time taken to finish the event.
  * @property {string} link - URL to event website.
- * @property {string[]} tags - An array of tags used to filter events.
+ * @property {Tags} tags - An array of tags used to filter events.
  * @property {string} type - The category event.
- * @property {string[]} notes - Notes for an event.
+ * @property {RaceNotes} notes - Notes for an event.
  * @property {Array<[number, number]>} route - Coordinates for the route.
  * @property {number} rating - Subjective rating of event.
  */
@@ -30,7 +30,7 @@ export interface Event {
   distance: string;
   time: string;
   link: string;
-  tags: string[];
+  tags: Tags;
   type: string;
   notes: RaceNotes;
   route: Array<[number, number]>;
@@ -41,4 +41,10 @@ interface RaceNotes {
   pre: string[];
   during: string[];
   post: string[];
+}
+
+interface Tags {
+  date: string[];
+  region: string[];
+  type: string[];
 }

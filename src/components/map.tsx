@@ -2,10 +2,8 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import rawEvents from "../../events.json";
 import { Event } from "../types/event";
 import { TileLayerOption } from "../types/tiles";
-import { TagOption } from "./right-sidebar/tag";
 import { defaultIcon, selectedIcon } from "./map/marker";
 import { RoutePolyline } from "./map/route";
 import { Initializer } from "./map/initializer";
@@ -16,7 +14,7 @@ interface EventMapProps {
   onSelectEvent: (event: Event) => void;
   selectedTile: TileLayerOption;
   map: RefObject<L.Map | null>;
-  selectedTags: TagOption[];
+  filteredEvents: Event[];
 }
 
 const EventMap = ({
@@ -24,19 +22,10 @@ const EventMap = ({
   onSelectEvent,
   selectedTile,
   map,
-  selectedTags,
+  filteredEvents,
 }: EventMapProps) => {
-  const [events, setEvents] = useState<Event[]>([]);
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
   const [showRoute, setShowRoute] = useState(false);
-
-  useEffect(() => {
-    const data = rawEvents.map((event) => ({
-      ...event,
-      route: event.route.map((coords) => coords as [number, number]),
-    }));
-    setEvents(data);
-  }, []);
 
   useEffect(() => {
     if (selectedEvent && map.current) {
@@ -56,15 +45,6 @@ const EventMap = ({
       }
     }
   }, [selectedEvent]);
-
-  const filteredEvents =
-    selectedTags.length === 0
-      ? events
-      : events.filter((event) =>
-          selectedTags.every(
-            (tag) => event.tags && event.tags.includes(tag.value)
-          )
-        );
 
   const isFilteredRoute =
     selectedEvent !== null &&

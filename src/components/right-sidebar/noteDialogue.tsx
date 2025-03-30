@@ -17,11 +17,17 @@ interface RaceNotes {
   post: string[];
 }
 
+interface Tags {
+  date: string[];
+  region: string[];
+  type: string[];
+}
+
 interface Event {
   id: number;
   name: string;
   notes: RaceNotes;
-  tags: string[];
+  tags: Tags;
 }
 
 interface DialogProps {
@@ -151,23 +157,25 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
             Tags
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
-            {event.tags.map((tag, idx) => (
-              <Chip
-                key={idx}
-                label={tag}
-                sx={{
-                  fontSize: "1rem",
-                  borderRadius: "20px",
-                  border: "1px solid black",
-                  backgroundColor: "transparent",
-                  transition: "background-color 0.2s, transform 0.2s",
-                  "&:hover": {
-                    backgroundColor: "rgba(17, 255, 0, 0.55)",
-                    transform: "scale(1.1)",
-                  },
-                }}
-              />
-            ))}
+            {[...event.tags.date, ...event.tags.region, ...event.tags.type].map(
+              (tag, idx) => (
+                <Chip
+                  key={idx}
+                  label={tag}
+                  sx={{
+                    fontSize: "1rem",
+                    borderRadius: "20px",
+                    border: "1px solid black",
+                    backgroundColor: "transparent",
+                    transition: "background-color 0.2s, transform 0.2s",
+                    "&:hover": {
+                      backgroundColor: "rgba(17, 255, 0, 0.55)",
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              )
+            )}
           </Box>
         </Box>
       </DialogContent>
