@@ -16,7 +16,7 @@
  * @property {string} type - The category event.
  * @property {RaceNotes} notes - Notes for an event.
  * @property {Array<[number, number]>} route - Coordinates for the route.
- * @property {number} rating - Subjective rating of event.
+ * @property {Ratings} rating - Subjective rating of event.
  */
 export interface Event {
   id: number;
@@ -34,17 +34,26 @@ export interface Event {
   type: string;
   notes: RaceNotes;
   route: Array<[number, number]>;
-  rating: number;
+  rating: Ratings;
 }
 
 interface RaceNotes {
   pre: string[];
   during: string[];
   post: string[];
+  event: string[];
+  takeaways: string[];
 }
 
 interface Tags {
   date: string[];
   region: string[];
   type: string[];
+}
+
+interface Ratings {
+  exertion: number;
+  event_organisation: number;
+  location: number;
+  enjoyment: number;
 }

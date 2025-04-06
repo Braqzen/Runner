@@ -16,16 +16,26 @@
       "type": "Marathon",
       "notes": {
         "pre": [
-          "Health issues, had no training the entire year."
+          "Illness (CFS), had no training the entire year."
         ],
         "during": [
           "Run about 2/3 and walked about 1/3 of the distance.",
           "Low electrolyte intake caused cramping.",
-          "Around 13 gels ~200kcal each and some with caffeine.",
+          "Around 13 gels ~200kcal (~2600kcal) each and some with caffeine.",
           "Barely finished in time."
         ],
         "post": [
           "Feet blistered, barely walking, 1 month to recover just walking."
+        ],
+        "event": [
+          "Lots of running by the coast so exposed to the sun and heat.",
+          "I don't recall but I think the aid stations were decent. I recall water, and maybe gels and soda.",
+          "Don't recall if there was a finishing refreshments bag but they definitely offered ice cream (magnum?)."
+        ],
+        "takeaways": [
+          "Train.",
+          "Take more electrolytes.",
+          "Decrease gels."
         ]
       },
       "route": [
@@ -878,7 +888,12 @@
         [38.708816, -9.136960],
         [38.707860, -9.136601]
       ],
-      "rating": 3.0
+      "ratings": {
+        "exertion": 5.0,
+        "event_organisation": 3.8,
+        "location": 3.5,
+        "enjoyment": 2.5
+      }
     },
     {
       "id": 2,
@@ -902,13 +917,20 @@
         "during": [
           "Fueled every 45m: total 5 gels ~450kcal, 5 electrolyte sticks: sodium ~1200g, 250g potassium.",
           "Some preworkout before and during race.",
-          "Increased electrolytes significantly helped performance but need to increase, increase gels too.",
+          "Increased electrolytes significantly helped performance.",
           "Run almost the entire distance, but slowly with some walking at the end.",
           "Had about 2 oranges, 2 bananas from stations, and water with juice/soda was needed too."
         ],
         "post": [
           "Quick partial recovery, felt ok within 1 week but need more time.",
           "After 2 weeks I could probably attempt another event since no injuries this time but needed < 3 weeks."
+        ],
+        "event": [
+          "Run through the city and some green areas which had a bit of shade and incline.",
+          "Don't recall the finishing refreshment bag but I threw away almost all of it."
+        ],
+        "takeaways": [
+          "Need to increase electrolytes and gels."
         ]
       },
       "route": [
@@ -1372,7 +1394,12 @@
         [43.5080442, 16.4375902],
         [43.5078232, 16.4381120]
       ],
-      "rating": 3.8
+      "ratings": {
+        "exertion": 3.8,
+        "event_organisation": 3.5,
+        "location": 3.2,
+        "enjoyment": 3.6
+      }
     },
     {
       "id": 3,
@@ -1405,10 +1432,20 @@
           "Stopped to walk so many times and yet my time was faster than in Split, Croatia where I felt much better.",
           "All the gels and extra electrolytes helped but calves started to cramp a little after 31km.",
           "Wasted 10 minutes on 2 bathroom breaks so I could have been faster, also 2 minutes waiting after the start of the race.",
-          "Because of the heat I thought I wouldn't finish or have a much worse time, buy sunscreen next time."
+          "Because of the heat I thought I wouldn't finish or have a much worse time."
         ],
         "post": [
           "Feet have some blood blisters but I can walk after the race."
+        ],
+        "event": [
+          "Sunny, cloudless, exposed route mostly in underdeveloped areas.",
+          "Running some of the route by the ocean without much wind so the heat is pretty bad.",
+          "Don't recall the finishing refreshment bag but I threw away most of it."
+        ],
+        "takeaways": [
+          "Buy sunscreen next time.",
+          "Buy an anti-chafe product.",
+          "Don't carb load as much. Overdid it this time."
         ]
       },
       "route": [
@@ -1746,7 +1783,12 @@
         [34.6781735, 33.0518262],
         [34.6733736, 33.0462674]
       ],
-      "rating": 3.2
+      "ratings": {
+        "exertion": 3.5,
+        "event_organisation": 4.0,
+        "location": 2.0,
+        "enjoyment": 3.2
+      }
     },
     {
         "id": 4,
@@ -1755,7 +1797,7 @@
         "location": { "lat": 45.4637225, "lng": 9.188024 },
         "name": "Wizz Air Milano Marathon",
         "distance": "42.2km",
-        "time": "Xh Ym",
+        "time": "4h 52m",
         "link": "https://www.milanomarathon.it/en/marathon/",
         "tags": {
           "date": ["2025", "Q2"],
@@ -1765,10 +1807,44 @@
         "type": "Marathon",
         "notes": {
           "pre": [
+            "For the last 2 weeks I've focused on recovery so I didn't exercise at all (although I could).",
+            "Haven't been sleeping well, taking naps during the day.",
+            "Waking up multiple times per hour the night before event so didn't sleep much but I didn't feel obviously sleep deprived.",
+            "Generally lower energy all the way up to event.",
+            "Walked < 10km day before event. Should have put on sunscreen.",
+            "Didn't overeat/carb load like last time, larger portions than regular meals but much less overall.",
+            "Had preworkout before race and in drink.",
+            "Took sodium ~200g, potassium ~300g before race, added same amount to drink for race.",
+            "Will use sunscreen and anti-chafe, especially on feet.",
+            "Running to event was difficult enough (only 2km) - CFS."
           ],
           "during": [
+            "Fueled every 45m, total 8 gels ~260kcal + 5*120?, 5 electrolyte sticks: sodium ~1200g, 250g potassium.",
+            "Many half cups of isotonic liquid and maybe 1L of water.",
+            "Didn't have the energy because of CFS and the sun was draining despite using sunscreen.",
+            "Very slow running, waddling from side to side with a bunch of walking.",
+            "Because of CFS and the sun I started taking breaks from 18km while usually I last till around 23-24km before I need to walk a bit.",
+            "Severly dehydrated despite drinking a lot. Started mild cramping around that time till the end."
           ],
           "post": [
+            "Feet are a little blistered, not bad, product helped a little.",
+            "Can waddle around slowly. Overall not too bad given the dehydration."
+          ],
+          "event": [
+            "They started at 08:30 but staggered the runners so they made me wait for 24m before starting",
+            "Aid stations were inconsistent and poor. Literally serving what looked like rotting oranges. Skin was molding and the inside was black.",
+            "Served water, isotonic liquids and apples.",
+            "Big city, lots of people in certain areas. Clean city, good vibes.",
+            "Bunch of runners needed first aid, even just before the finish line - heatstroke?",
+            "It was hot and sunny with little shade / protection.",
+            "Best medal so far but finishing bag of refreshments was meh. Only kept the drinks."
+          ],
+          "takeaways": [
+            "Need to purchase breathable, long sleeved, white top for more sun protection.",
+            "May need to increase electrolyte even more especially for sunny climates.",
+            "May need to drink more and risk time on toilet breaks - didn't use it once this time despite drinking a lot.",
+            "May need an additional sugary/sweet drink in case aid stations don't have any.",
+            "Carb load more, could have eaten a bit more. Was a bit hungry the day before. 500g of pasta wasn't enough."
           ]
         },
         "route": [
@@ -2389,6 +2465,11 @@
           [45.463980, 9.188550],
           [45.464230, 9.188560]
         ],
-        "rating": 0.0
+        "ratings": {
+          "exertion": 4.2,
+          "event_organisation": 2.8,
+          "location": 4.0,
+          "enjoyment": 3.8
+        }
       }
 ]
