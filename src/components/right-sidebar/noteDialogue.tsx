@@ -15,6 +15,8 @@ interface RaceNotes {
   pre: string[];
   during: string[];
   post: string[];
+  event: string[];
+  takeaways: string[];
 }
 
 interface Tags {
@@ -40,6 +42,8 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
   const [preExpanded, setPreExpanded] = useState(false);
   const [duringExpanded, setDuringExpanded] = useState(false);
   const [postExpanded, setPostExpanded] = useState(false);
+  const [eventExpanded, setEventExpanded] = useState(false);
+  const [takeawaysExpanded, setTakeawaysExpanded] = useState(false);
 
   const renderSection = (
     title: string,
@@ -150,6 +154,18 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           event.notes.post,
           postExpanded,
           setPostExpanded
+        )}
+        {renderSection(
+          "Event",
+          event.notes.event,
+          eventExpanded,
+          setEventExpanded
+        )}
+        {renderSection(
+          "Takeaways",
+          event.notes.takeaways,
+          takeawaysExpanded,
+          setTakeawaysExpanded
         )}
 
         <Box>

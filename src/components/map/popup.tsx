@@ -36,7 +36,7 @@ const PopupContent = ({ event, filteredEvents, onSelectEvent }: PopupProps) => {
         <Typography sx={{ display: "flex", alignItems: "center" }}>
           <strong>Rating:</strong>
           <Rating event={event} size="small" sx={{ ml: 1, mr: 1 }} />
-          {event.rating}/5
+          {event.ratings.enjoyment}/5
         </Typography>
       </Box>
       <Typography>

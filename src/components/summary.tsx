@@ -92,7 +92,7 @@ const SummaryDialog = ({ open, events, onClose }: SummaryDialogProps) => {
                   </TableCell>
                   <TableCell sx={{ fontSize: "1rem" }}>{event.time}</TableCell>
                   <TableCell sx={{ fontSize: "1rem" }}>
-                    {event.rating}/5
+                    {event.ratings.enjoyment}/5
                   </TableCell>
                 </TableRow>
               ))}

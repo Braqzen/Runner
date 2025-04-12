@@ -74,7 +74,7 @@ const EventCard = ({
               {event.name}
             </Typography>
             <Tooltip
-              title={`${event.rating}/5`}
+              title={`${event.ratings.enjoyment}/5`}
               followCursor
               leaveDelay={200}
               slotProps={{
@@ -134,7 +134,9 @@ const EventCard = ({
               disabled={
                 event.notes.pre.length === 0 &&
                 event.notes.during.length === 0 &&
-                event.notes.post.length === 0
+                event.notes.post.length === 0 &&
+                event.notes.event.length === 0 &&
+                event.notes.takeaways.length === 0
               }
             >
               Notes

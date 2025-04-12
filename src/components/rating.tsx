@@ -12,7 +12,7 @@ interface RatingProps {
 const Rating = ({ event, size, sx }: RatingProps) => {
   return (
     <MaterialRating
-      value={event.rating}
+      value={event.ratings.enjoyment}
       readOnly
       precision={0.1}
       size={size}
