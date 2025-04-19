@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Drawer, Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import EventCard from "../right-sidebar/eventCard";
@@ -23,13 +23,18 @@ const CardsDrawer = ({
   const [openNotes, setOpenNotes] = useState(false);
   const [notes, setNotes] = useState<Event | null>(null);
 
+  const skipNextNotesUpdate = useRef(false);
+
   useEffect(() => {
-    if (openNotes && selectedEvent) {
+    if (openNotes && selectedEvent && !skipNextNotesUpdate.current) {
       setNotes(selectedEvent);
     }
+
+    skipNextNotesUpdate.current = false;
   }, [selectedEvent, openNotes]);
 
   const handleNotes = (event: Event) => {
+    skipNextNotesUpdate.current = true;
     setNotes(event);
     setOpenNotes(true);
   };
