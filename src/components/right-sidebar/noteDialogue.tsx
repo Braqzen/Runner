@@ -7,7 +7,8 @@ import {
   Button,
   Box,
   Typography,
-  Collapse,
+  Tabs,
+  Tab,
   Chip,
 } from "@mui/material";
 
@@ -38,67 +39,55 @@ interface DialogProps {
   onClose: () => void;
 }
 
-const NotesDialog = ({ open, event, onClose }: DialogProps) => {
-  const [preExpanded, setPreExpanded] = useState(false);
-  const [duringExpanded, setDuringExpanded] = useState(false);
-  const [postExpanded, setPostExpanded] = useState(false);
-  const [eventExpanded, setEventExpanded] = useState(false);
-  const [takeawaysExpanded, setTakeawaysExpanded] = useState(false);
+const sectionKeys = ["pre", "during", "post", "event", "takeaways"] as const;
+type SectionKey = (typeof sectionKeys)[number];
 
-  const renderSection = (
-    title: string,
-    notes: string[],
-    expanded: boolean,
-    setExpanded: (val: boolean) => void
-  ) => {
+const sectionLabels: Record<SectionKey, string> = {
+  pre: "Pre-Race",
+  during: "During Race",
+  post: "Post-Race",
+  event: "Event",
+  takeaways: "Takeaways",
+};
+
+const NotesDialog = ({ open, event, onClose }: DialogProps) => {
+  const [selectedTab, setSelectedTab] = useState<SectionKey>("pre");
+
+  const handleTabChange = (_: React.SyntheticEvent, newValue: SectionKey) => {
+    setSelectedTab(newValue);
+  };
+
+  const renderNotes = (notes: string[]) => {
     if (!notes || notes.length === 0) return null;
-    const needsToggle = notes.length > 5;
 
     return (
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="h5" sx={{ mb: 1, fontWeight: "bold" }}>
-          {title}
-        </Typography>
-        {needsToggle ? (
-          <>
-            <Collapse in={expanded} collapsedSize={200}>
-              <Box
-                sx={{
-                  backgroundColor: "rgba(202, 202, 202, 0.55)",
-                  p: 2,
-                  borderRadius: 2,
-                }}
-              >
-                {notes.map((note, idx) => (
-                  <Box key={idx} sx={{ mb: idx < notes.length - 1 ? 1 : 0 }}>
-                    <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
-                      {note}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </Collapse>
-            <Button variant="text" onClick={() => setExpanded(!expanded)}>
-              {expanded ? "Show Less" : "Show More"}
-            </Button>
-          </>
-        ) : (
-          <Box
+      <Box
+        sx={{
+          backgroundColor: "rgba(228, 228, 228, 0.85)",
+          p: 3,
+          borderRadius: 3,
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
+          border: "1px solid rgba(0, 0, 0, 0.2)",
+          transition: "all 0.2s",
+          "&:hover": {
+            boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.20)",
+          },
+        }}
+      >
+        {notes.map((note, idx) => (
+          <Typography
+            key={idx}
             sx={{
-              backgroundColor: "rgba(202, 202, 202, 0.55)",
-              p: 2,
-              borderRadius: 2,
+              fontSize: "1.15rem",
+              lineHeight: 1.7,
+              mb: idx < notes.length - 1 ? 2 : 0,
+              pl: 1,
+              pr: 1,
             }}
           >
-            {notes.map((note, idx) => (
-              <Box key={idx} sx={{ mb: idx < notes.length - 1 ? 1 : 0 }}>
-                <Typography sx={{ fontSize: "1.2rem", lineHeight: 1.5 }}>
-                  {note}
-                </Typography>
-              </Box>
-            ))}
-          </Box>
-        )}
+            {note}
+          </Typography>
+        ))}
       </Box>
     );
   };
@@ -137,39 +126,33 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           mx: "auto",
         }}
       >
-        {renderSection(
-          "Pre-Race",
-          event.notes.pre,
-          preExpanded,
-          setPreExpanded
-        )}
-        {renderSection(
-          "During Race",
-          event.notes.during,
-          duringExpanded,
-          setDuringExpanded
-        )}
-        {renderSection(
-          "Post-Race",
-          event.notes.post,
-          postExpanded,
-          setPostExpanded
-        )}
-        {renderSection(
-          "Event",
-          event.notes.event,
-          eventExpanded,
-          setEventExpanded
-        )}
-        {renderSection(
-          "Takeaways",
-          event.notes.takeaways,
-          takeawaysExpanded,
-          setTakeawaysExpanded
-        )}
+        <Tabs
+          value={selectedTab}
+          onChange={handleTabChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          sx={{
+            borderBottom: 1,
+            borderColor: "divider",
+            "& .MuiTab-root": {
+              textTransform: "none",
+              fontWeight: "bold",
+              fontSize: "1rem",
+              color: "black",
+            },
+          }}
+        >
+          {sectionKeys.map((key) =>
+            event.notes[key].length > 0 ? (
+              <Tab key={key} value={key} label={sectionLabels[key]} />
+            ) : null
+          )}
+        </Tabs>
+
+        {renderNotes(event.notes[selectedTab])}
 
         <Box>
-          <Typography variant="h5" sx={{ mb: 1, fontWeight: "bold" }}>
+          <Typography variant="h5" sx={{ mt: 1, mb: 1, fontWeight: "bold" }}>
             Tags
           </Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
