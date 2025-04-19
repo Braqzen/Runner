@@ -1,9 +1,11 @@
 import { Box, IconButton } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import { RefObject, useEffect, useState } from "react";
 import SummaryDialog from "./summary";
+import ChallengeDialog from "./challenge";
 import SettingsDialog from "./settings";
 import { TileLayerOption } from "../types/tiles";
 import { Event } from "../types/event";
@@ -25,6 +27,7 @@ const LeftSidebar = ({
 }: Props) => {
   const [openSummary, setOpenSummary] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
+  const [openChallenges, setOpenChallenges] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -73,6 +76,15 @@ const LeftSidebar = ({
       <IconButton
         color="inherit"
         size="small"
+        title="Challenges"
+        onClick={() => setOpenChallenges(true)}
+      >
+        <EmojiEventsIcon fontSize="large" />
+      </IconButton>
+
+      <IconButton
+        color="inherit"
+        size="small"
         title="Settings"
         onClick={() => setOpenSettings(true)}
         sx={{
@@ -89,6 +101,11 @@ const LeftSidebar = ({
         open={openSummary}
         events={filteredEvents}
         onClose={() => setOpenSummary(false)}
+      />
+
+      <ChallengeDialog
+        open={openChallenges}
+        onClose={() => setOpenChallenges(false)}
       />
 
       <SettingsDialog
