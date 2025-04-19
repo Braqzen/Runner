@@ -125,6 +125,7 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           fontWeight: "bold",
           textAlign: "center",
           mb: 1,
+          mt: 1,
         }}
       >
         {event.name}
