@@ -2,6 +2,7 @@ import { Box, IconButton } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import EventIcon from "@mui/icons-material/Event";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import { RefObject, useEffect, useState } from "react";
 import SummaryDialog from "./summary";
@@ -9,6 +10,7 @@ import ChallengeDialog from "./challenge";
 import SettingsDialog from "./settings";
 import { TileLayerOption } from "../types/tiles";
 import { Event } from "../types/event";
+import FutureEventsDialog from "./futureEvents";
 
 interface Props {
   filteredEvents: Event[];
@@ -28,6 +30,7 @@ const LeftSidebar = ({
   const [openSummary, setOpenSummary] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openChallenges, setOpenChallenges] = useState(false);
+  const [openEvents, setOpenEvents] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -55,18 +58,12 @@ const LeftSidebar = ({
 
   return (
     <Box className="left-sidebar" sx={{ pt: 3 }}>
-      <IconButton
-        color="inherit"
-        size="small"
-        title="Reset View"
-        onClick={handleResetView}
-      >
+      <IconButton color="inherit" title="Reset View" onClick={handleResetView}>
         <ZoomOutMapIcon fontSize="large" />
       </IconButton>
 
       <IconButton
         color="inherit"
-        size="small"
         title="Summary (s)"
         onClick={() => setOpenSummary(true)}
       >
@@ -75,7 +72,6 @@ const LeftSidebar = ({
 
       <IconButton
         color="inherit"
-        size="small"
         title="Challenges"
         onClick={() => setOpenChallenges(true)}
       >
@@ -84,7 +80,14 @@ const LeftSidebar = ({
 
       <IconButton
         color="inherit"
-        size="small"
+        title="Future Events"
+        onClick={() => setOpenEvents(true)}
+      >
+        <EventIcon fontSize="large" />
+      </IconButton>
+
+      <IconButton
+        color="inherit"
         title="Settings"
         onClick={() => setOpenSettings(true)}
         sx={{
@@ -106,6 +109,11 @@ const LeftSidebar = ({
       <ChallengeDialog
         open={openChallenges}
         onClose={() => setOpenChallenges(false)}
+      />
+
+      <FutureEventsDialog
+        open={openEvents}
+        onClose={() => setOpenEvents(false)}
       />
 
       <SettingsDialog
