@@ -1,6 +1,5 @@
 import { Box, Typography, Button, darken } from "@mui/material";
 import { Event } from "../../types/event";
-import Rating from "../rating";
 
 interface PopupProps {
   event: Event;
@@ -32,17 +31,6 @@ const PopupContent = ({ event, filteredEvents, onSelectEvent }: PopupProps) => {
         {event.name}
       </Typography>
 
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography sx={{ display: "flex", alignItems: "center" }}>
-          <strong>Rating:</strong>
-          <Rating
-            rating={event.ratings.enjoyment}
-            size="small"
-            sx={{ ml: 1, mr: 1 }}
-          />
-          {event.ratings.enjoyment}/5
-        </Typography>
-      </Box>
       <Typography>
         <strong>Type:</strong> {event.type}
       </Typography>
