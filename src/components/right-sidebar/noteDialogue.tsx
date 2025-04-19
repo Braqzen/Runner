@@ -151,7 +151,10 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
             gap: 2,
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", fontSize: "1.3rem" }}
+          >
             Event Information
           </Typography>
 
@@ -159,26 +162,25 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
             sx={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 1,
             }}
           >
-            <Typography>
+            <Typography sx={{ fontSize: "1.1rem" }}>
               <strong>Date:</strong> {event.date}
             </Typography>
-            <Typography>
+            <Typography sx={{ fontSize: "1.1rem" }}>
               <strong>Start Time:</strong> {event.start}
             </Typography>
-            <Typography>
+            <Typography sx={{ fontSize: "1.1rem" }}>
               <strong>Distance:</strong> {event.distance}
             </Typography>
-            <Typography>
+            <Typography sx={{ fontSize: "1.1rem" }}>
               <strong>Time:</strong> {event.time}
             </Typography>
-            <Typography>
+            <Typography sx={{ fontSize: "1.1rem" }}>
               <strong>Type:</strong> {event.type}
             </Typography>
-            <Typography>
-              <strong>Link:</strong>{" "}
+            <Typography sx={{ fontSize: "1.1rem" }}>
+              <strong>Link: </strong>
               <a href={event.link} target="_blank" rel="noopener noreferrer">
                 Website
               </a>
@@ -186,11 +188,7 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           </Box>
 
           <Box sx={{ mt: 2 }}>
-            <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
-              Ratings
-            </Typography>
-
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {[
                 { label: "Exertion", value: event.ratings.exertion },
                 {
@@ -204,7 +202,9 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
                   key={idx}
                   sx={{ display: "flex", flexDirection: "column" }}
                 >
-                  <Typography sx={{ fontWeight: "bold", mb: 0.5 }}>
+                  <Typography
+                    sx={{ fontWeight: "bold", mb: 0.75, fontSize: "1.1rem" }}
+                  >
                     {label}
                   </Typography>
                   <Rating rating={value} size="medium" />
