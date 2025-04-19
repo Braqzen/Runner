@@ -231,6 +231,7 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
             }
           }}
           sx={{
+            mt: 1,
             borderBottom: 1,
             borderColor: "divider",
             "& .MuiTab-root": {
