@@ -195,8 +195,8 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           </Box>
         </Box>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} color="primary">
+      <DialogActions sx={{ justifyContent: "center", p: 2 }}>
+        <Button onClick={onClose} variant="outlined">
           Close
         </Button>
       </DialogActions>

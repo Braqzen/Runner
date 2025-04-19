@@ -85,7 +85,7 @@ const SettingsDialog = ({
         <Divider />
       </DialogContent>
       <DialogActions sx={{ justifyContent: "center", p: 2 }}>
-        <Button onClick={onClose} variant="outlined" color="primary">
+        <Button onClick={onClose} variant="outlined">
           Close
         </Button>
       </DialogActions>

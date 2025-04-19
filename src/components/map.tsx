@@ -28,23 +28,59 @@ const EventMap = ({
   const [showRoute, setShowRoute] = useState(false);
 
   useEffect(() => {
-    if (selectedEvent && map.current) {
-      map.current.flyTo(
-        [selectedEvent.location.lat, selectedEvent.location.lng],
-        12,
-        { animate: true, duration: 2 }
-      );
+    if (!selectedEvent || !map.current) return;
 
-      map.current.once("moveend", () => {
-        setShowRoute(true);
-      });
+    const mapInstance = map.current;
+    const marker = markers.current.get(selectedEvent.id);
 
-      const marker = markers.current.get(selectedEvent.id);
-      if (marker) {
-        marker.openPopup();
-      }
+    if (mapInstance.getZoom() >= 11) {
+      setShowRoute(true);
+    } else {
+      setShowRoute(false);
     }
+
+    const handleZoom = () => {
+      const zoom = mapInstance.getZoom();
+      setShowRoute(zoom >= 11);
+    };
+
+    mapInstance.on("zoomend", handleZoom);
+
+    if (marker) {
+      marker.openPopup();
+    }
+
+    return () => {
+      mapInstance.off("zoomend", handleZoom);
+    };
   }, [selectedEvent]);
+
+  useEffect(() => {
+    if (!selectedEvent) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
+        const index = filteredEvents.findIndex(
+          (event) => event.id === selectedEvent.id
+        );
+        if (index === -1) return;
+
+        if (e.key === "ArrowLeft" && index > 0) {
+          onSelectEvent(filteredEvents[index - 1]);
+        } else if (
+          e.key === "ArrowRight" &&
+          index < filteredEvents.length - 1
+        ) {
+          onSelectEvent(filteredEvents[index + 1]);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedEvent, filteredEvents]);
 
   const isFilteredRoute =
     selectedEvent !== null &&
