@@ -11,6 +11,7 @@ import {
   Tab,
   Chip,
 } from "@mui/material";
+import Rating from "../rating";
 
 interface RaceNotes {
   pre: string[];
@@ -31,6 +32,20 @@ interface Event {
   name: string;
   notes: RaceNotes;
   tags: Tags;
+  date: string;
+  start: string;
+  distance: string;
+  time: string;
+  link: string;
+  type: string;
+  ratings: Ratings;
+}
+
+interface Ratings {
+  exertion: number;
+  event_organisation: number;
+  location: number;
+  enjoyment: number;
 }
 
 interface DialogProps {
@@ -63,15 +78,12 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
     return (
       <Box
         sx={{
-          backgroundColor: "rgba(228, 228, 228, 0.85)",
-          p: 3,
+          backgroundColor: "rgba(245, 245, 245, 0.85)",
+          p: 2,
           borderRadius: 3,
-          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.2)",
-          border: "1px solid rgba(0, 0, 0, 0.2)",
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
+          border: "1px solid rgba(0, 0, 0, 0.1)",
           transition: "all 0.2s",
-          "&:hover": {
-            boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.20)",
-          },
         }}
       >
         {notes.map((note, idx) => (
@@ -112,6 +124,7 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           fontSize: "2.2rem",
           fontWeight: "bold",
           textAlign: "center",
+          mb: 1,
         }}
       >
         {event.name}
@@ -126,6 +139,81 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           mx: "auto",
         }}
       >
+        <Box
+          sx={{
+            backgroundColor: "rgba(245, 245, 245, 0.85)",
+            p: 3,
+            borderRadius: 3,
+            boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
+            border: "1px solid rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Event Information
+          </Typography>
+
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 1,
+            }}
+          >
+            <Typography>
+              <strong>Date:</strong> {event.date}
+            </Typography>
+            <Typography>
+              <strong>Start Time:</strong> {event.start}
+            </Typography>
+            <Typography>
+              <strong>Distance:</strong> {event.distance}
+            </Typography>
+            <Typography>
+              <strong>Time:</strong> {event.time}
+            </Typography>
+            <Typography>
+              <strong>Type:</strong> {event.type}
+            </Typography>
+            <Typography>
+              <strong>Link:</strong>{" "}
+              <a href={event.link} target="_blank" rel="noopener noreferrer">
+                Website
+              </a>
+            </Typography>
+          </Box>
+
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1 }}>
+              Ratings
+            </Typography>
+
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+              {[
+                { label: "Exertion", value: event.ratings.exertion },
+                {
+                  label: "Organisation",
+                  value: event.ratings.event_organisation,
+                },
+                { label: "Location", value: event.ratings.location },
+                { label: "Enjoyment", value: event.ratings.enjoyment },
+              ].map(({ label, value }, idx) => (
+                <Box
+                  key={idx}
+                  sx={{ display: "flex", flexDirection: "column" }}
+                >
+                  <Typography sx={{ fontWeight: "bold", mb: 0.5 }}>
+                    {label}
+                  </Typography>
+                  <Rating rating={value} size="medium" />
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+
         <Tabs
           value={selectedTab}
           onChange={handleTabChange}
@@ -175,12 +263,12 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
                   sx={{
                     fontSize: "1rem",
                     px: 1,
-                    background: "rgba(228, 228, 228, 0.5)",
+                    background: "rgba(245, 245, 245, 0.85)",
                     border: "1px solid rgba(0, 0, 0, 0.5)",
                     boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
                     transition: "all 0.2s ease-in-out",
                     "&:hover": {
-                      background: "rgba(228, 228, 228, 0.75)",
+                      background: "rgb(245, 245, 245)",
                       transform: "translateY(-2px) scale(1.05)",
                       boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
                     },

@@ -82,7 +82,7 @@ const EventCard = ({
               }}
             >
               <Box component="span">
-                <Rating event={event} size="medium" />
+                <Rating rating={event.ratings.enjoyment} size="medium" />
               </Box>
             </Tooltip>
           </Box>
