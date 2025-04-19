@@ -131,6 +131,17 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
           onChange={handleTabChange}
           variant="scrollable"
           scrollButtons="auto"
+          selectionFollowsFocus={false}
+          onKeyDown={(e) => {
+            if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
+              e.stopPropagation();
+            }
+          }}
+          onFocus={(e) => {
+            if (e.target instanceof HTMLElement) {
+              e.target.blur();
+            }
+          }}
           sx={{
             borderBottom: 1,
             borderColor: "divider",
