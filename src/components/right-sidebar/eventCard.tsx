@@ -158,6 +158,7 @@ const EventCard = ({
               }}
               onClick={(e) => {
                 e.stopPropagation();
+                onSelectEvent(event);
                 window.open(event.link, "_blank", "noopener");
               }}
               disabled={event.link.length === 0}
