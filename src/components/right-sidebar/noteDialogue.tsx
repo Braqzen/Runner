@@ -174,13 +174,15 @@ const NotesDialog = ({ open, event, onClose }: DialogProps) => {
                   label={tag}
                   sx={{
                     fontSize: "1rem",
-                    borderRadius: "20px",
-                    border: "1px solid black",
-                    backgroundColor: "transparent",
-                    transition: "background-color 0.2s, transform 0.2s",
+                    px: 1,
+                    background: "rgba(228, 228, 228, 0.5)",
+                    border: "1px solid rgba(0, 0, 0, 0.5)",
+                    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
+                    transition: "all 0.2s ease-in-out",
                     "&:hover": {
-                      backgroundColor: "rgba(17, 255, 0, 0.55)",
-                      transform: "scale(1.1)",
+                      background: "rgba(228, 228, 228, 0.75)",
+                      transform: "translateY(-2px) scale(1.05)",
+                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
                     },
                   }}
                 />
