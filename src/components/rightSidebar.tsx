@@ -15,6 +15,10 @@ interface Props {
   onDateChange: (tags: TagOption[]) => void;
   onRegionChange: (tags: TagOption[]) => void;
   onTypeChange: (tags: TagOption[]) => void;
+  notes: Event | null;
+  setNotes: (event: Event | null) => void;
+  openNotes: boolean;
+  setOpenNotes: (open: boolean) => void;
 }
 
 const RightSidebar = ({
@@ -25,6 +29,10 @@ const RightSidebar = ({
   onDateChange,
   onRegionChange,
   onTypeChange,
+  notes,
+  setNotes,
+  openNotes,
+  setOpenNotes,
 }: Props) => {
   const [openFilterDrawer, setOpenFilterDrawer] = useState(false);
   const [openCardsDrawer, setOpenCardsDrawer] = useState(false);
@@ -77,6 +85,10 @@ const RightSidebar = ({
         filteredEvents={filteredEvents}
         selectedEvent={selectedEvent}
         onSelectEvent={onSelectEvent}
+        notes={notes}
+        setNotes={setNotes}
+        openNotes={openNotes}
+        setOpenNotes={setOpenNotes}
       />
     </>
   );

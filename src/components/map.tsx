@@ -15,6 +15,8 @@ interface EventMapProps {
   selectedTile: TileLayerOption;
   map: RefObject<L.Map | null>;
   filteredEvents: Event[];
+  setNotes: (event: Event | null) => void;
+  setOpenNotes: (open: boolean) => void;
 }
 
 const EventMap = ({
@@ -23,6 +25,8 @@ const EventMap = ({
   selectedTile,
   map,
   filteredEvents,
+  setNotes,
+  setOpenNotes,
 }: EventMapProps) => {
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
   const [showRoute, setShowRoute] = useState(false);
@@ -115,6 +119,8 @@ const EventMap = ({
                 event={event}
                 filteredEvents={filteredEvents}
                 onSelectEvent={onSelectEvent}
+                setNotes={setNotes}
+                setOpenNotes={setOpenNotes}
               />
             </Popup>
           </Marker>

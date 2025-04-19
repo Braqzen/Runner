@@ -5,9 +5,17 @@ interface PopupProps {
   event: Event;
   filteredEvents: Event[];
   onSelectEvent: (event: Event) => void;
+  setNotes: (event: Event | null) => void;
+  setOpenNotes: (open: boolean) => void;
 }
 
-const PopupContent = ({ event, filteredEvents, onSelectEvent }: PopupProps) => {
+const PopupContent = ({
+  event,
+  filteredEvents,
+  onSelectEvent,
+  setNotes,
+  setOpenNotes,
+}: PopupProps) => {
   const currentIndex = filteredEvents.findIndex((r) => r.id === event.id);
 
   const handlePrev = () => {
@@ -22,11 +30,22 @@ const PopupContent = ({ event, filteredEvents, onSelectEvent }: PopupProps) => {
     }
   };
 
+  const handleTitleClick = () => {
+    setNotes(event);
+    setOpenNotes(true);
+  };
+
   return (
     <Box sx={{ "& p": { mb: 0.2, mt: 0 } }}>
       <Typography
         variant="h6"
-        sx={{ fontWeight: "bold", fontSize: "1.3rem", mb: 1 }}
+        onClick={handleTitleClick}
+        sx={{
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+          mb: 1,
+          cursor: "pointer",
+        }}
       >
         {event.name}
       </Typography>

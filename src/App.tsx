@@ -6,6 +6,7 @@ import { TagOption } from "./components/right-sidebar/tag";
 import LeftSidebar from "./components/leftSidebar";
 import RightSidebar from "./components/rightSidebar";
 import rawEvents from "../events.json";
+import NotesDialog from "./components/right-sidebar/noteDialogue";
 
 function App() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -24,6 +25,8 @@ function App() {
   const [selectedRegionTags, setSelectedRegionTags] = useState<TagOption[]>([]);
   const [selectedTypeTags, setSelectedTypeTags] = useState<TagOption[]>([]);
   const map = useRef<L.Map | null>(null);
+  const [notes, setNotes] = useState<Event | null>(null);
+  const [openNotes, setOpenNotes] = useState(false);
 
   useEffect(() => {
     const data = rawEvents.map((event) => ({
@@ -62,6 +65,8 @@ function App() {
         selectedTile={selectedTile}
         map={map}
         filteredEvents={filteredEvents}
+        setNotes={setNotes}
+        setOpenNotes={setOpenNotes}
       />
 
       <RightSidebar
@@ -72,7 +77,19 @@ function App() {
         onDateChange={setSelectedDateTags}
         onRegionChange={setSelectedRegionTags}
         onTypeChange={setSelectedTypeTags}
+        notes={notes}
+        setNotes={setNotes}
+        openNotes={openNotes}
+        setOpenNotes={setOpenNotes}
       />
+
+      {notes && (
+        <NotesDialog
+          open={openNotes}
+          event={notes}
+          onClose={() => setOpenNotes(false)}
+        />
+      )}
     </div>
   );
 }

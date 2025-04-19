@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Drawer, Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import EventCard from "../right-sidebar/eventCard";
@@ -11,6 +11,10 @@ interface CardsDrawerProps {
   filteredEvents: Event[];
   selectedEvent: Event | null;
   onSelectEvent: (event: Event) => void;
+  notes: Event | null;
+  setNotes: (event: Event | null) => void;
+  openNotes: boolean;
+  setOpenNotes: (open: boolean) => void;
 }
 
 const CardsDrawer = ({
@@ -19,10 +23,11 @@ const CardsDrawer = ({
   filteredEvents,
   selectedEvent,
   onSelectEvent,
+  notes,
+  setNotes,
+  openNotes,
+  setOpenNotes,
 }: CardsDrawerProps) => {
-  const [openNotes, setOpenNotes] = useState(false);
-  const [notes, setNotes] = useState<Event | null>(null);
-
   useEffect(() => {
     if (openNotes && selectedEvent) {
       setNotes(selectedEvent);
