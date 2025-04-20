@@ -5,13 +5,14 @@
     { "id": 4, "label": "Marathon < 3h", "completed": false },
     { "id": 5, "label": "50km ultra marathon", "completed": false },
     { "id": 6, "label": "75km ultra marathon", "completed": false },
-    { "id": 7, "label": "100km ultra marathon", "completed": false },
-    { "id": 8, "label": "150km ultra marathon", "completed": false },
-    { "id": 9, "label": "100 mile ultra marathon", "completed": false },
-    { "id": 10, "label": "200km ultra marathon", "completed": false },
-    { "id": 11, "label": "150 mile ultra marathon", "completed": false },
-    { "id": 12, "label": "250km ultra marathon", "completed": false },
-    { "id": 13, "label": "Marathon on every continent (EU ✅, North America, South America, Australia, Asia, Antarctica)", "completed": false },
-    { "id": 14, "label": "World majors (Tokyo, Boston, London, Sydney, Berlin, New York)", "completed": false },
-    { "id": 15, "label": "World marathon challenge (7 marathons, 7 continents, 7 days)", "completed": false }
+    { "id": 7, "label": "50 mile ultra marathon", "completed": false },
+    { "id": 8, "label": "100km ultra marathon", "completed": false },
+    { "id": 9, "label": "150km ultra marathon", "completed": false },
+    { "id": 10, "label": "100 mile ultra marathon", "completed": false },
+    { "id": 11, "label": "200km ultra marathon", "completed": false },
+    { "id": 12, "label": "150 mile ultra marathon", "completed": false },
+    { "id": 13, "label": "250km ultra marathon", "completed": false },
+    { "id": 14, "label": "Marathon on every continent (EU ✅, North America, South America, Australia, Asia, Antarctica)", "completed": false },
+    { "id": 15, "label": "World majors (Tokyo, Boston, London, Sydney, Berlin, New York)", "completed": false },
+    { "id": 16, "label": "World marathon challenge (7 marathons, 7 continents, 7 days)", "completed": false }
 ]
