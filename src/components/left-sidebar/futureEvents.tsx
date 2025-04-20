@@ -13,8 +13,8 @@ import {
   TableBody,
   Link,
 } from "@mui/material";
-import { FutureEvents } from "../types/futureEvents";
-import rawFutureEvents from "../../futureEvents.json";
+import { FutureEvents } from "../../types/futureEvents";
+import rawFutureEvents from "../../../futureEvents.json";
 
 interface Props {
   open: boolean;

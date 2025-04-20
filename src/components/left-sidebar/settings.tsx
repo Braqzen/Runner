@@ -10,7 +10,7 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { TileLayerOption } from "../types/tiles";
+import { TileLayerOption } from "../../types/tiles";
 
 interface SettingsDialogProps {
   open: boolean;

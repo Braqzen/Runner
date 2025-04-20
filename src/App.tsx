@@ -49,6 +49,16 @@ function App() {
     return dateMatch && regionMatch && typeMatch;
   });
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "n" && selectedEvent) {
+        setOpenNotes(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedEvent]);
+
   return (
     <div className="app-container">
       <LeftSidebar

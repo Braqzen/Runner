@@ -1,16 +1,18 @@
+import { RefObject, useEffect, useState } from "react";
 import { Box, IconButton } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import EventIcon from "@mui/icons-material/Event";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
-import { RefObject, useEffect, useState } from "react";
-import SummaryDialog from "./summary";
-import ChallengeDialog from "./challenge";
-import SettingsDialog from "./settings";
+import AlarmIcon from "@mui/icons-material/Alarm";
+import SummaryDialog from "./left-sidebar/summary";
+import ChallengeDialog from "./left-sidebar/challenge";
+import SettingsDialog from "./left-sidebar/settings";
+import FutureEventsDialog from "./left-sidebar/futureEvents";
 import { TileLayerOption } from "../types/tiles";
 import { Event } from "../types/event";
-import FutureEventsDialog from "./futureEvents";
+import Countdown from "./left-sidebar/countdown";
 
 interface Props {
   filteredEvents: Event[];
@@ -31,6 +33,7 @@ const LeftSidebar = ({
   const [openSettings, setOpenSettings] = useState(false);
   const [openChallenges, setOpenChallenges] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
+  const [openCountdown, setOpenCountdown] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -88,6 +91,14 @@ const LeftSidebar = ({
 
       <IconButton
         color="inherit"
+        title="Event Countdown"
+        onClick={() => setOpenCountdown(true)}
+      >
+        <AlarmIcon fontSize="large" />
+      </IconButton>
+
+      <IconButton
+        color="inherit"
         title="Settings"
         onClick={() => setOpenSettings(true)}
         sx={{
@@ -115,6 +126,8 @@ const LeftSidebar = ({
         open={openEvents}
         onClose={() => setOpenEvents(false)}
       />
+
+      <Countdown open={openCountdown} onClose={() => setOpenCountdown(false)} />
 
       <SettingsDialog
         open={openSettings}

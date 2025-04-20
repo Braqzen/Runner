@@ -11,7 +11,7 @@ import {
   TableRow,
   Box,
 } from "@mui/material";
-import { Event } from "../types/event";
+import { Event } from "../../types/event";
 
 interface SummaryDialogProps {
   open: boolean;

@@ -11,8 +11,8 @@ import {
   ListItemText,
   Checkbox,
 } from "@mui/material";
-import { Challenge } from "../types/challenge";
-import rawChallenges from "../../challenges.json";
+import { Challenge } from "../../types/challenge";
+import rawChallenges from "../../../challenges.json";
 
 interface ChallengeDialogProps {
   open: boolean;
