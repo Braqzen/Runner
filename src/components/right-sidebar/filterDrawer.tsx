@@ -40,36 +40,58 @@ const FilterDrawer = ({
         },
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <Typography
-          variant="h6"
-          sx={{ flexGrow: 1, textAlign: "center", color: "#fff" }}
-        >
-          Filters
-        </Typography>
-        <IconButton onClick={onClose} sx={{ color: "#fff" }}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
+      <DrawerHeader onClose={onClose} />
 
       <Box sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 2 }}>
-        <Typography variant="subtitle1" sx={{ color: "#fff" }}>
-          Date
-        </Typography>
-        <Filter options={dateOptions} onChange={onDateChange} />
-
-        <Typography variant="subtitle1" sx={{ color: "#fff" }}>
-          Region
-        </Typography>
-        <Filter options={regionOptions} onChange={onRegionChange} />
-
-        <Typography variant="subtitle1" sx={{ color: "#fff" }}>
-          Type
-        </Typography>
-        <Filter options={typeOptions} onChange={onTypeChange} />
+        <FilterSection
+          title="Date"
+          options={dateOptions}
+          onChange={onDateChange}
+        />
+        <FilterSection
+          title="Region"
+          options={regionOptions}
+          onChange={onRegionChange}
+        />
+        <FilterSection
+          title="Type"
+          options={typeOptions}
+          onChange={onTypeChange}
+        />
       </Box>
     </Drawer>
   );
 };
+
+const DrawerHeader = ({ onClose }: { onClose: () => void }) => (
+  <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+    <Typography
+      variant="h6"
+      sx={{ flexGrow: 1, textAlign: "center", color: "#fff" }}
+    >
+      Filters
+    </Typography>
+    <IconButton onClick={onClose} sx={{ color: "#fff" }}>
+      <CloseIcon />
+    </IconButton>
+  </Box>
+);
+
+const FilterSection = ({
+  title,
+  options,
+  onChange,
+}: {
+  title: string;
+  options: TagOption[];
+  onChange: (selected: TagOption[]) => void;
+}) => (
+  <>
+    <Typography variant="subtitle1" sx={{ color: "#fff" }}>
+      {title}
+    </Typography>
+    <Filter options={options} onChange={onChange} />
+  </>
+);
 
 export default FilterDrawer;

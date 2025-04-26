@@ -12,7 +12,7 @@ import {
 import { Event } from "../../types/event";
 import Rating from "../rating";
 
-interface EventCardProps {
+interface Props {
   event: Event;
   onSelectEvent: (event: Event) => void;
   handleNotes: (event: Event) => void;
@@ -24,7 +24,14 @@ const EventCard = ({
   onSelectEvent,
   handleNotes,
   isSelected,
-}: EventCardProps) => {
+}: Props) => {
+  const hasNotes =
+    event.notes.pre.length > 0 ||
+    event.notes.during.length > 0 ||
+    event.notes.post.length > 0 ||
+    event.notes.event.length > 0 ||
+    event.notes.takeaways.length > 0;
+
   return (
     <ButtonBase
       component="div"
@@ -53,123 +60,146 @@ const EventCard = ({
         }}
       >
         <CardContent sx={{ p: 1 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: 500,
-                color: "#000",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                flexGrow: 1,
-              }}
-            >
-              {event.name}
-            </Typography>
-            <Tooltip
-              title={`${event.ratings.enjoyment}/5`}
-              followCursor
-              leaveDelay={200}
-              slotProps={{
-                tooltip: { sx: { fontSize: "1.2rem" } },
-              }}
-            >
-              <Box component="span">
-                <Rating rating={event.ratings.enjoyment} size="medium" />
-              </Box>
-            </Tooltip>
-          </Box>
-
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              rowGap: 1,
-              columnGap: 0.5,
-              my: 2,
-            }}
-          >
-            <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Date:</strong> {event.date}
-            </Typography>
-            <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Start:</strong> {event.start}
-            </Typography>
-            <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Distance:</strong> {event.distance}
-            </Typography>
-            <Typography sx={{ fontSize: "1.15rem" }}>
-              <strong>Time:</strong> {event.time}
-            </Typography>
-          </Box>
+          <EventHeader event={event} />
+          <EventDetails event={event} />
         </CardContent>
         <CardActions sx={{ pt: 0 }}>
-          <Box sx={{ display: "flex", width: "100%" }}>
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{
-                flex: 1,
-                mr: 1,
-                borderColor: "black",
-                color: "black",
-                "&:hover": {
-                  backgroundColor: () =>
-                    isSelected
-                      ? darken("rgb(106, 246, 101)", 0.1)
-                      : darken("#fff", 0.1),
-                },
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleNotes(event);
-              }}
-              disabled={
-                event.notes.pre.length === 0 &&
-                event.notes.during.length === 0 &&
-                event.notes.post.length === 0 &&
-                event.notes.event.length === 0 &&
-                event.notes.takeaways.length === 0
-              }
-            >
-              Notes
-            </Button>
-            <Button
-              variant="outlined"
-              size="small"
-              sx={{
-                flex: 1,
-                ml: 1,
-                borderColor: "black",
-                color: "black",
-                "&:hover": {
-                  backgroundColor: () =>
-                    isSelected
-                      ? darken("rgb(106, 246, 101)", 0.1)
-                      : darken("#fff", 0.1),
-                },
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                onSelectEvent(event);
-                window.open(event.link, "_blank", "noopener");
-              }}
-              disabled={event.link.length === 0}
-            >
-              Event Page
-            </Button>
-          </Box>
+          <ActionButtons
+            event={event}
+            handleNotes={handleNotes}
+            onSelectEvent={onSelectEvent}
+            isSelected={isSelected}
+            hasNotes={hasNotes}
+          />
         </CardActions>
       </Card>
     </ButtonBase>
   );
 };
+
+const EventHeader = ({ event }: { event: Event }) => (
+  <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    }}
+  >
+    <Typography
+      variant="h5"
+      sx={{
+        fontWeight: 500,
+        color: "#000",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        flexGrow: 1,
+      }}
+    >
+      {event.name}
+    </Typography>
+    <Tooltip
+      title={`${event.ratings.enjoyment}/5`}
+      followCursor
+      leaveDelay={200}
+      slotProps={{
+        tooltip: { sx: { fontSize: "1.2rem" } },
+      }}
+    >
+      <Box component="span">
+        <Rating rating={event.ratings.enjoyment} size="medium" />
+      </Box>
+    </Tooltip>
+  </Box>
+);
+
+const EventDetails = ({ event }: { event: Event }) => (
+  <Box
+    sx={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      rowGap: 1,
+      columnGap: 0.5,
+      my: 2,
+    }}
+  >
+    <Typography sx={{ fontSize: "1.15rem" }}>
+      <strong>Date:</strong> {event.date}
+    </Typography>
+    <Typography sx={{ fontSize: "1.15rem" }}>
+      <strong>Start:</strong> {event.start}
+    </Typography>
+    <Typography sx={{ fontSize: "1.15rem" }}>
+      <strong>Distance:</strong> {event.distance}
+    </Typography>
+    <Typography sx={{ fontSize: "1.15rem" }}>
+      <strong>Time:</strong> {event.time}
+    </Typography>
+  </Box>
+);
+
+const ActionButtons = ({
+  event,
+  handleNotes,
+  onSelectEvent,
+  isSelected,
+  hasNotes,
+}: {
+  event: Event;
+  handleNotes: (event: Event) => void;
+  onSelectEvent: (event: Event) => void;
+  isSelected: boolean;
+  hasNotes: boolean;
+}) => (
+  <Box sx={{ display: "flex", width: "100%" }}>
+    <Button
+      variant="outlined"
+      size="small"
+      sx={{
+        flex: 1,
+        mr: 1,
+        borderColor: "black",
+        color: "black",
+        "&:hover": {
+          backgroundColor: () =>
+            isSelected
+              ? darken("rgb(106, 246, 101)", 0.1)
+              : darken("#fff", 0.1),
+        },
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleNotes(event);
+      }}
+      disabled={!hasNotes}
+    >
+      Notes
+    </Button>
+    <Button
+      variant="outlined"
+      size="small"
+      sx={{
+        flex: 1,
+        ml: 1,
+        borderColor: "black",
+        color: "black",
+        "&:hover": {
+          backgroundColor: () =>
+            isSelected
+              ? darken("rgb(106, 246, 101)", 0.1)
+              : darken("#fff", 0.1),
+        },
+      }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelectEvent(event);
+        window.open(event.link, "_blank", "noopener");
+      }}
+      disabled={!event.link}
+    >
+      Event Page
+    </Button>
+  </Box>
+);
 
 export default EventCard;

@@ -5,7 +5,7 @@ import EventCard from "../right-sidebar/eventCard";
 import NotesDialog from "../right-sidebar/noteDialogue";
 import { Event } from "../../types/event";
 
-interface CardsDrawerProps {
+interface Props {
   open: boolean;
   onClose: () => void;
   filteredEvents: Event[];
@@ -27,12 +27,12 @@ const CardsDrawer = ({
   setNotes,
   openNotes,
   setOpenNotes,
-}: CardsDrawerProps) => {
+}: Props) => {
   useEffect(() => {
     if (openNotes && selectedEvent) {
       setNotes(selectedEvent);
     }
-  }, [selectedEvent, openNotes]);
+  }, [selectedEvent, openNotes, setNotes]);
 
   const handleNotes = (event: Event) => {
     onSelectEvent(event);
@@ -56,40 +56,13 @@ const CardsDrawer = ({
           },
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          <Typography
-            variant="h6"
-            sx={{ flexGrow: 1, textAlign: "center", color: "#fff" }}
-          >
-            Events
-          </Typography>
-          <IconButton onClick={onClose} sx={{ color: "#fff" }}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-
-        <Box
-          sx={{
-            overflowY: "auto",
-            pr: 1,
-            pt: 1,
-            "&::-webkit-scrollbar": { display: "none" },
-            scrollbarWidth: "none",
-          }}
-        >
-          <Box component="ul" sx={{ m: 0, padding: 0, listStyle: "none" }}>
-            {filteredEvents.map((event) => (
-              <li key={event.id}>
-                <EventCard
-                  event={event}
-                  onSelectEvent={onSelectEvent}
-                  handleNotes={handleNotes}
-                  isSelected={selectedEvent?.id === event.id}
-                />
-              </li>
-            ))}
-          </Box>
-        </Box>
+        <DrawerHeader onClose={onClose} />
+        <EventList
+          filteredEvents={filteredEvents}
+          onSelectEvent={onSelectEvent}
+          handleNotes={handleNotes}
+          selectedEvent={selectedEvent}
+        />
       </Drawer>
       {notes && (
         <NotesDialog
@@ -101,5 +74,54 @@ const CardsDrawer = ({
     </>
   );
 };
+
+const DrawerHeader = ({ onClose }: { onClose: () => void }) => (
+  <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+    <Typography
+      variant="h6"
+      sx={{ flexGrow: 1, textAlign: "center", color: "#fff" }}
+    >
+      Events
+    </Typography>
+    <IconButton onClick={onClose} sx={{ color: "#fff" }}>
+      <CloseIcon />
+    </IconButton>
+  </Box>
+);
+
+const EventList = ({
+  filteredEvents,
+  onSelectEvent,
+  handleNotes,
+  selectedEvent,
+}: {
+  filteredEvents: Event[];
+  onSelectEvent: (event: Event) => void;
+  handleNotes: (event: Event) => void;
+  selectedEvent: Event | null;
+}) => (
+  <Box
+    sx={{
+      overflowY: "auto",
+      pr: 1,
+      pt: 1,
+      "&::-webkit-scrollbar": { display: "none" },
+      scrollbarWidth: "none",
+    }}
+  >
+    <Box component="ul" sx={{ m: 0, padding: 0, listStyle: "none" }}>
+      {filteredEvents.map((event) => (
+        <li key={event.id}>
+          <EventCard
+            event={event}
+            onSelectEvent={onSelectEvent}
+            handleNotes={handleNotes}
+            isSelected={selectedEvent?.id === event.id}
+          />
+        </li>
+      ))}
+    </Box>
+  </Box>
+);
 
 export default CardsDrawer;
