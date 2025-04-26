@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import { Challenge } from "../../types/challenge";
-import rawChallenges from "../../../challenges.json";
+import rawChallenges from "../../../data/challenges.json";
 import Dialog from "../dialog";
 
 interface Props {

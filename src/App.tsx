@@ -5,7 +5,7 @@ import EventMap from "./components/map";
 import { TagOption } from "./components/right-sidebar/tag";
 import LeftSidebar from "./components/leftSidebar";
 import RightSidebar from "./components/rightSidebar";
-import rawEvents from "../events.json";
+import rawEvents from "../data/events.json";
 import NotesDialog from "./components/right-sidebar/noteDialogue";
 
 function App() {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Box, Typography, Link } from "@mui/material";
 import { FutureEvents } from "../../types/futureEvents";
-import rawFutureEvents from "../../../futureEvents.json";
+import rawFutureEvents from "../../../data/futureEvents.json";
 import Dialog from "../dialog";
 
 interface Props {
