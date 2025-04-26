@@ -1,9 +1,4 @@
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
   Autocomplete,
   TextField,
   Box,
@@ -11,8 +6,9 @@ import {
   Divider,
 } from "@mui/material";
 import { TileLayerOption } from "../../types/tiles";
+import Dialog from "../dialog";
 
-interface SettingsDialogProps {
+interface Props {
   open: boolean;
   selectedTile: TileLayerOption;
   tileOptions: TileLayerOption[];
@@ -26,33 +22,18 @@ const SettingsDialog = ({
   tileOptions,
   onTileChange,
   onClose,
-}: SettingsDialogProps) => {
+}: Props) => {
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      slotProps={{
-        paper: {
-          sx: {
-            width: "80vw",
-            height: "80vh",
-            maxWidth: "1500px",
-            maxHeight: "80vh",
-          },
-        },
-      }}
-    >
-      <DialogTitle
+    <Dialog open={open} onClose={onClose} title="Settings">
+      <Box
         sx={{
-          fontSize: "2.2rem",
-          fontWeight: "bold",
-          textAlign: "center",
+          mb: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        Settings
-      </DialogTitle>
-      <DialogContent sx={{ p: 2, width: "80%", mx: "auto" }}>
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ width: "90%", textAlign: "left" }}>
           <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
             Map Theme
           </Typography>
@@ -82,13 +63,8 @@ const SettingsDialog = ({
             )}
           />
         </Box>
-        <Divider />
-      </DialogContent>
-      <DialogActions sx={{ justifyContent: "center", p: 2 }}>
-        <Button onClick={onClose} variant="outlined">
-          Close
-        </Button>
-      </DialogActions>
+        <Divider sx={{ width: "90%", mt: 2 }} />
+      </Box>
     </Dialog>
   );
 };

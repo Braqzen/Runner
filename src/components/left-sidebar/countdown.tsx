@@ -1,16 +1,8 @@
-import { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Box,
-  Typography,
-  Link,
-} from "@mui/material";
+import { useEffect, useMemo, useState } from "react";
+import { Box, Typography, Link } from "@mui/material";
 import { FutureEvents } from "../../types/futureEvents";
 import rawFutureEvents from "../../../futureEvents.json";
+import Dialog from "../dialog";
 
 interface Props {
   open: boolean;
@@ -27,7 +19,7 @@ const Countdown = ({ open, onClose }: Props) => {
     setFutureEvents(rawFutureEvents);
   }, []);
 
-  const event = getNextEvent(futureEvents);
+  const event = useMemo(() => getNextEvent(futureEvents), [futureEvents]);
 
   useEffect(() => {
     if (!event) return;
@@ -42,113 +34,91 @@ const Countdown = ({ open, onClose }: Props) => {
   }, [event]);
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      slotProps={{
-        paper: {
-          sx: {
-            width: "90vw",
-            height: "90vh",
-            maxWidth: "1500px",
-            maxHeight: "90vh",
-          },
-        },
-      }}
-    >
-      <DialogTitle
-        sx={{
-          fontSize: "2.2rem",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Next Event
-      </DialogTitle>
-      <DialogContent sx={{ p: 2 }}>
-        <Box sx={{ width: "100%", overflowX: "auto" }}>
-          {event ? (
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                gap: 2,
-                mt: 3,
-              }}
-            >
-              <Typography variant="h4" fontWeight="bold">
-                {event.name}
-              </Typography>
-              <Typography variant="subtitle1" color="text.secondary">
-                {event.location}
-              </Typography>
-              <Typography variant="body1">{event.date}</Typography>
-              {event.link && (
-                <Link
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener"
-                  underline="hover"
-                >
-                  Website
-                </Link>
-              )}
-
-              {timeLeft && (
-                <Box
-                  sx={{
-                    mt: 4,
-                    mb: 1,
-                    display: "flex",
-                    gap: 3,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {[
-                    { label: "Days", value: timeLeft.days },
-                    { label: "Hours", value: timeLeft.hours },
-                    { label: "Minutes", value: timeLeft.minutes },
-                    { label: "Seconds", value: timeLeft.seconds },
-                  ].map((item) => (
-                    <Box
-                      key={item.label}
-                      sx={{
-                        minWidth: 80,
-                        textAlign: "center",
-                        backgroundColor: "#f5f5f5",
-                        borderRadius: 2,
-                        p: 2,
-                        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-                      }}
-                    >
-                      <Typography fontSize="1.8rem" fontWeight="bold">
-                        {item.value}
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        {item.label}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Box>
-              )}
-            </Box>
-          ) : (
-            <Typography variant="h6" textAlign="center" mt={2}>
-              No upcoming events.
-            </Typography>
-          )}
-        </Box>
-      </DialogContent>
-      <DialogActions sx={{ justifyContent: "center", p: 2 }}>
-        <Button onClick={onClose} variant="outlined">
-          Close
-        </Button>
-      </DialogActions>
+    <Dialog open={open} onClose={onClose} title="Next Event">
+      {event ? (
+        <EventDetails event={event} timeLeft={timeLeft} />
+      ) : (
+        <Typography variant="h6" textAlign="center" mt={2}>
+          No upcoming events.
+        </Typography>
+      )}
     </Dialog>
   );
 };
+
+interface EventProps {
+  event: FutureEvents & { parsedDate: Date };
+  timeLeft: ReturnType<typeof getTimeLeft> | null;
+}
+
+const EventDetails = ({ event, timeLeft }: EventProps) => (
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textAlign: "center",
+      gap: 2,
+      mt: 3,
+    }}
+  >
+    <Typography variant="h4" fontWeight="bold">
+      {event.name}
+    </Typography>
+    <Typography variant="subtitle1" color="text.secondary">
+      {event.location}
+    </Typography>
+    <Typography>{event.date}</Typography>
+    {event.link && (
+      <Link href={event.link} target="_blank" rel="noopener" underline="hover">
+        Website
+      </Link>
+    )}
+    {timeLeft && <CountdownDisplay timeLeft={timeLeft} />}
+  </Box>
+);
+
+interface CountdownDisplayProps {
+  timeLeft: ReturnType<typeof getTimeLeft>;
+}
+
+const CountdownDisplay = ({ timeLeft }: CountdownDisplayProps) => (
+  <Box
+    sx={{
+      mt: 4,
+      mb: 1,
+      display: "flex",
+      gap: 3,
+      flexWrap: "wrap",
+    }}
+  >
+    {[
+      { label: "Days", value: timeLeft.days },
+      { label: "Hours", value: timeLeft.hours },
+      { label: "Minutes", value: timeLeft.minutes },
+      { label: "Seconds", value: timeLeft.seconds },
+    ].map((item) => (
+      <Box
+        key={item.label}
+        sx={{
+          minWidth: 80,
+          textAlign: "center",
+          backgroundColor: "#f5f5f5",
+          borderRadius: 2,
+          p: 2,
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+        }}
+      >
+        <Typography fontSize="1.8rem" fontWeight="bold">
+          {item.value}
+        </Typography>
+        <Typography variant="caption" color="text.secondary">
+          {item.label}
+        </Typography>
+      </Box>
+    ))}
+  </Box>
+);
 
 const getTimeLeft = (event: Date) => {
   const now = new Date();

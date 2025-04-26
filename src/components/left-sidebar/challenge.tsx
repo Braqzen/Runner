@@ -1,74 +1,58 @@
 import { useEffect, useState } from "react";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Box,
   List,
   ListItem,
   ListItemText,
   Checkbox,
+  CircularProgress,
+  Box,
 } from "@mui/material";
 import { Challenge } from "../../types/challenge";
 import rawChallenges from "../../../challenges.json";
+import Dialog from "../dialog";
 
-interface ChallengeDialogProps {
+interface Props {
   open: boolean;
   onClose: () => void;
 }
 
-const ChallengeDialog = ({ open, onClose }: ChallengeDialogProps) => {
+const ChallengeDialog = ({ open, onClose }: Props) => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setChallenges(rawChallenges);
+    setLoading(false);
   }, []);
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      slotProps={{
-        paper: {
-          sx: {
-            width: "90vw",
-            height: "90vh",
-            maxWidth: "1500px",
-            maxHeight: "90vh",
-          },
-        },
-      }}
-    >
-      <DialogTitle
-        sx={{
-          fontSize: "2.2rem",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        Challenges
-      </DialogTitle>
-      <DialogContent sx={{ p: 2 }}>
-        <Box sx={{ width: "100%", overflowX: "auto" }}>
-          <List>
-            {challenges.map((challenge) => (
-              <ListItem key={challenge.id} divider>
-                <ListItemText primary={challenge.label} />
-                <Checkbox checked={challenge.completed} disabled />
-              </ListItem>
-            ))}
-          </List>
+    <Dialog open={open} onClose={onClose} title="Challenges">
+      {loading ? (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          sx={{ overflow: "hidden" }}
+        >
+          <CircularProgress />
         </Box>
-      </DialogContent>
-      <DialogActions sx={{ justifyContent: "center", p: 2 }}>
-        <Button onClick={onClose} variant="outlined">
-          Close
-        </Button>
-      </DialogActions>
+      ) : (
+        <ChallengeList challenges={challenges} />
+      )}
     </Dialog>
   );
 };
+
+const ChallengeList = ({ challenges }: { challenges: Challenge[] }) => (
+  <List>
+    {challenges.map((challenge) => (
+      <ListItem key={challenge.id} divider>
+        <ListItemText primary={challenge.label} />
+        <Checkbox checked={challenge.completed} disabled />
+      </ListItem>
+    ))}
+  </List>
+);
 
 export default ChallengeDialog;
