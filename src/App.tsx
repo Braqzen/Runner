@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Event } from "./types/Event";
 import { TileLayerOption, tileOptions } from "./types/Tiles";
 import EventMap from "./components/Map";
@@ -36,18 +36,20 @@ function App() {
     setEvents(data);
   }, []);
 
-  const filteredEvents = events.filter((event) => {
-    const dateMatch =
-      selectedDateTags.length === 0 ||
-      selectedDateTags.some((tag) => event.tags.date.includes(tag.value));
-    const regionMatch =
-      selectedRegionTags.length === 0 ||
-      selectedRegionTags.some((tag) => event.tags.region.includes(tag.value));
-    const typeMatch =
-      selectedTypeTags.length === 0 ||
-      selectedTypeTags.some((tag) => event.tags.type.includes(tag.value));
-    return dateMatch && regionMatch && typeMatch;
-  });
+  const filteredEvents = useMemo(() => {
+    return events.filter((event) => {
+      const dateMatch =
+        selectedDateTags.length === 0 ||
+        selectedDateTags.some((tag) => event.tags.date.includes(tag.value));
+      const regionMatch =
+        selectedRegionTags.length === 0 ||
+        selectedRegionTags.some((tag) => event.tags.region.includes(tag.value));
+      const typeMatch =
+        selectedTypeTags.length === 0 ||
+        selectedTypeTags.some((tag) => event.tags.type.includes(tag.value));
+      return dateMatch && regionMatch && typeMatch;
+    });
+  }, [events, selectedDateTags, selectedRegionTags, selectedTypeTags]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
