@@ -4,11 +4,11 @@ import L from "leaflet";
 import { Event } from "../../types/Event";
 import { finishIcon, startIcon } from "./Marker";
 
-interface RouteProps {
+interface Props {
   event: Event | null;
 }
 
-export const RoutePolyline = ({ event }: RouteProps) => {
+export const RoutePolyline = ({ event }: Props) => {
   const map = useMap();
   const polylineRef = useRef<L.Polyline | null>(null);
   const startMarkerRef = useRef<L.Marker | null>(null);

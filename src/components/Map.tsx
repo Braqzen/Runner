@@ -9,7 +9,7 @@ import { RoutePolyline } from "./map/Route";
 import { Initializer } from "./map/Initializer";
 import PopupContent from "./map/Popup";
 
-interface EventMapProps {
+interface Props {
   selectedEvent: Event | null;
   onSelectEvent: (event: Event) => void;
   selectedTile: TileLayerOption;
@@ -27,9 +27,10 @@ const EventMap = ({
   filteredEvents,
   setNotes,
   setOpenNotes,
-}: EventMapProps) => {
+}: Props) => {
   const markers = useRef<Map<number, L.Marker | null>>(new Map());
   const [showRoute, setShowRoute] = useState(false);
+  const minZoomForRoute = 11;
 
   useEffect(() => {
     if (!selectedEvent || !map.current) return;
@@ -37,7 +38,7 @@ const EventMap = ({
     const mapInstance = map.current;
     const marker = markers.current.get(selectedEvent.id);
 
-    if (mapInstance.getZoom() >= 11) {
+    if (mapInstance.getZoom() >= minZoomForRoute) {
       setShowRoute(true);
     } else {
       setShowRoute(false);
@@ -45,7 +46,7 @@ const EventMap = ({
 
     const handleZoom = () => {
       const zoom = mapInstance.getZoom();
-      setShowRoute(zoom >= 11);
+      setShowRoute(zoom >= minZoomForRoute);
     };
 
     mapInstance.on("zoomend", handleZoom);
@@ -84,7 +85,7 @@ const EventMap = ({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedEvent, filteredEvents]);
+  }, [selectedEvent, filteredEvents, onSelectEvent]);
 
   const isFilteredRoute =
     selectedEvent !== null &&

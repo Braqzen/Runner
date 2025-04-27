@@ -1,7 +1,7 @@
 import { Box, Typography, Button, darken } from "@mui/material";
 import { Event } from "../../types/Event";
 
-interface PopupProps {
+interface Props {
   event: Event;
   filteredEvents: Event[];
   onSelectEvent: (event: Event) => void;
@@ -15,7 +15,7 @@ const PopupContent = ({
   onSelectEvent,
   setNotes,
   setOpenNotes,
-}: PopupProps) => {
+}: Props) => {
   const currentIndex = filteredEvents.findIndex((r) => r.id === event.id);
 
   const handlePrev = () => {
@@ -62,20 +62,14 @@ const PopupContent = ({
       <Typography>
         <strong>Time:</strong> {event.time}
       </Typography>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+
+      <Box
+        sx={{ display: "flex", justifyContent: "space-between", mt: 2, gap: 1 }}
+      >
         <Button
           onClick={handlePrev}
           variant="outlined"
-          sx={{
-            flex: 1,
-            mr: 0.5,
-            fontSize: "0.75rem",
-            borderColor: "black",
-            color: "black",
-            "&:hover": {
-              backgroundColor: darken("#fff", 0.1),
-            },
-          }}
+          sx={buttonStyle}
           disabled={currentIndex <= 0}
           size="small"
         >
@@ -84,16 +78,7 @@ const PopupContent = ({
         <Button
           onClick={handleNext}
           variant="outlined"
-          sx={{
-            flex: 1,
-            ml: 0.5,
-            fontSize: "0.75rem",
-            borderColor: "black",
-            color: "black",
-            "&:hover": {
-              backgroundColor: darken("#fff", 0.1),
-            },
-          }}
+          sx={buttonStyle}
           disabled={currentIndex >= filteredEvents.length - 1}
           size="small"
         >
@@ -102,6 +87,16 @@ const PopupContent = ({
       </Box>
     </Box>
   );
+};
+
+const buttonStyle = {
+  flex: 1,
+  fontSize: "0.75rem",
+  borderColor: "black",
+  color: "black",
+  "&:hover": {
+    backgroundColor: darken("#fff", 0.1),
+  },
 };
 
 export default PopupContent;
