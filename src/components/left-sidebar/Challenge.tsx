@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-  List,
-  ListItem,
-  ListItemText,
-  Checkbox,
   CircularProgress,
   Box,
+  Typography,
+  Card,
+  CardContent,
+  Checkbox,
 } from "@mui/material";
 import { Challenge } from "../../types/Challenge";
 import rawChallenges from "../../../data/challenges.json";
@@ -38,21 +38,36 @@ const ChallengeDialog = ({ open, onClose }: Props) => {
           <CircularProgress />
         </Box>
       ) : (
-        <ChallengeList challenges={challenges} />
+        <Challenges challenges={challenges} />
       )}
     </Dialog>
   );
 };
 
-const ChallengeList = ({ challenges }: { challenges: Challenge[] }) => (
-  <List>
-    {challenges.map((challenge) => (
-      <ListItem key={challenge.id} divider>
-        <ListItemText primary={challenge.label} />
+const Challenges = ({ challenges }: { challenges: Challenge[] }) => (
+  <Box sx={{ padding: 2 }}>
+    {challenges.map((challenge, id) => (
+      <Card
+        key={id}
+        variant="outlined"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          p: 1,
+          boxShadow: 3,
+          mb: 1,
+        }}
+      >
+        <CardContent sx={{ flexGrow: 1, py: "0 !important" }}>
+          <Typography sx={{ fontWeight: "medium" }}>
+            {challenge.label}
+          </Typography>
+        </CardContent>
+
         <Checkbox checked={challenge.completed} disabled />
-      </ListItem>
+      </Card>
     ))}
-  </List>
+  </Box>
 );
 
 export default ChallengeDialog;
