@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Box, Typography, Link } from "@mui/material";
-import { FutureEvents } from "../../types/FutureEvents";
-import rawFutureEvents from "../../../data/futureEvents.json";
+import { FutureEvent, FutureEvents } from "../../types/FutureEvents";
+import rawFutureEvents from "../../../data/future-events.json";
 import Dialog from "../common/Dialog";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Countdown = ({ open, onClose }: Props) => {
-  const [futureEvents, setFutureEvents] = useState<FutureEvents[]>([]);
+  const [futureEvents, setFutureEvents] = useState<FutureEvents | null>(null);
   const [timeLeft, setTimeLeft] = useState<ReturnType<
     typeof getTimeLeft
   > | null>(null);
@@ -19,7 +19,15 @@ const Countdown = ({ open, onClose }: Props) => {
     setFutureEvents(rawFutureEvents);
   }, []);
 
-  const event = useMemo(() => getNextEvent(futureEvents), [futureEvents]);
+  const events = useMemo(() => {
+    if (!futureEvents) return [];
+    return [
+      ...futureEvents.registered.marathon,
+      ...futureEvents.registered["ultra-marathon"],
+    ];
+  }, [futureEvents]);
+
+  const event = useMemo(() => getNextEvent(events), [events]);
 
   useEffect(() => {
     if (!event) return;
@@ -47,7 +55,7 @@ const Countdown = ({ open, onClose }: Props) => {
 };
 
 interface EventProps {
-  event: FutureEvents & { parsedDate: Date };
+  event: FutureEvent & { parsedDate: Date };
   timeLeft: ReturnType<typeof getTimeLeft> | null;
 }
 
@@ -148,8 +156,8 @@ const parseDate = (dateStr: string): Date | null => {
 };
 
 export const getNextEvent = (
-  events: FutureEvents[]
-): (FutureEvents & { parsedDate: Date }) | null => {
+  events: FutureEvent[]
+): (FutureEvent & { parsedDate: Date }) | null => {
   const today = new Date();
 
   const validEvents = events
@@ -157,7 +165,7 @@ export const getNextEvent = (
       const parsedDate = parseDate(event.date);
       return parsedDate ? { ...event, parsedDate } : null;
     })
-    .filter((e): e is FutureEvents & { parsedDate: Date } => !!e)
+    .filter((e): e is FutureEvent & { parsedDate: Date } => !!e)
     .filter((e) => e.parsedDate >= today)
     .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime());
 
