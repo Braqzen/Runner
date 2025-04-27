@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, Button } from "@mui/material";
 import { FutureEvent, FutureEvents } from "../../types/FutureEvents";
 import rawFutureEvents from "../../../data/future-events.json";
 import Dialog from "../common/Dialog";
@@ -14,37 +14,75 @@ const Countdown = ({ open, onClose }: Props) => {
   const [timeLeft, setTimeLeft] = useState<ReturnType<
     typeof getTimeLeft
   > | null>(null);
+  const [eventIndex, setEventIndex] = useState(0);
 
   useEffect(() => {
     setFutureEvents(rawFutureEvents);
   }, []);
 
-  const events = useMemo(() => {
+  const registeredEvents = useMemo(() => {
     if (!futureEvents) return [];
-    return [
+    const registeredEvents = [
       ...futureEvents.registered.marathon,
       ...futureEvents.registered["ultra-marathon"],
     ];
+    return getEvents(registeredEvents);
   }, [futureEvents]);
 
-  const event = useMemo(() => getNextEvent(events), [events]);
+  const currentEvent = useMemo(() => {
+    if (registeredEvents.length === 0) return null;
+    return registeredEvents[eventIndex];
+  }, [registeredEvents, eventIndex]);
 
   useEffect(() => {
-    if (!event) return;
+    if (!currentEvent) {
+      setTimeLeft(null);
+      return;
+    }
 
     const updateCountdown = () => {
-      setTimeLeft(getTimeLeft(event.parsedDate));
+      setTimeLeft(getTimeLeft(currentEvent.parsedDate));
     };
 
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [event]);
+  }, [currentEvent]);
+
+  const handlePrevious = () => {
+    setEventIndex((prevIndex) => Math.max(0, prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setEventIndex((prevIndex) =>
+      Math.min(registeredEvents.length - 1, prevIndex + 1)
+    );
+  };
 
   return (
-    <Dialog open={open} onClose={onClose} title="Next Event">
-      {event ? (
-        <EventDetails event={event} timeLeft={timeLeft} />
+    <Dialog open={open} onClose={onClose} title="Event Countdown">
+      {currentEvent ? (
+        <>
+          <EventDetails event={currentEvent} timeLeft={timeLeft} />
+          <Box
+            sx={{ display: "flex", justifyContent: "center", mt: 5, gap: 2 }}
+          >
+            <Button
+              variant="outlined"
+              onClick={handlePrevious}
+              disabled={eventIndex === 0}
+            >
+              Previous
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={handleNext}
+              disabled={eventIndex === registeredEvents.length - 1}
+            >
+              Next
+            </Button>
+          </Box>
+        </>
       ) : (
         <Typography variant="h6" textAlign="center" mt={2}>
           No upcoming events.
@@ -155,9 +193,9 @@ const parseDate = (dateStr: string): Date | null => {
   return isNaN(parsed.getTime()) ? null : parsed;
 };
 
-export const getNextEvent = (
+export const getEvents = (
   events: FutureEvent[]
-): (FutureEvent & { parsedDate: Date }) | null => {
+): (FutureEvent & { parsedDate: Date })[] => {
   const today = new Date();
 
   const validEvents = events
@@ -169,7 +207,7 @@ export const getNextEvent = (
     .filter((e) => e.parsedDate >= today)
     .sort((a, b) => a.parsedDate.getTime() - b.parsedDate.getTime());
 
-  return validEvents.length > 0 ? validEvents[0] : null;
+  return validEvents;
 };
 
 export default Countdown;
