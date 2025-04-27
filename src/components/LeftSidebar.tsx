@@ -46,7 +46,7 @@ const LeftSidebar = ({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [map]);
 
   const handleResetView = () => {
     if (map.current) {

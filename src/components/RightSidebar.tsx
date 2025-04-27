@@ -37,17 +37,9 @@ const RightSidebar = ({
   const [openFilterDrawer, setOpenFilterDrawer] = useState(false);
   const [openCardsDrawer, setOpenCardsDrawer] = useState(false);
 
-  const dateOptions: TagOption[] = Array.from(
-    new Set(events.flatMap((event) => event.tags.date))
-  ).map((date) => ({ label: date, value: date }));
-
-  const regionOptions: TagOption[] = Array.from(
-    new Set(events.flatMap((event) => event.tags.region))
-  ).map((region) => ({ label: region, value: region }));
-
-  const typeOptions: TagOption[] = Array.from(
-    new Set(events.flatMap((event) => event.tags.type))
-  ).map((type) => ({ label: type, value: type }));
+  const dateOptions = generateOptions(events, "date");
+  const regionOptions = generateOptions(events, "region");
+  const typeOptions = generateOptions(events, "type");
 
   return (
     <>
@@ -93,5 +85,13 @@ const RightSidebar = ({
     </>
   );
 };
+
+const generateOptions = (events: Event[], key: keyof Event["tags"]) =>
+  Array.from(new Set(events.flatMap((event) => event.tags[key]))).map(
+    (label) => ({
+      label,
+      value: label,
+    })
+  );
 
 export default RightSidebar;
