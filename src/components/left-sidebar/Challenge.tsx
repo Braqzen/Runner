@@ -7,9 +7,9 @@ import {
   CircularProgress,
   Box,
 } from "@mui/material";
-import { Challenge } from "../../types/challenge";
+import { Challenge } from "../../types/Challenge";
 import rawChallenges from "../../../data/challenges.json";
-import Dialog from "../dialog";
+import Dialog from "../common/Dialog";
 
 interface Props {
   open: boolean;

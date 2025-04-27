@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Box, IconButton } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { Event } from "../types/event";
-import { TagOption } from "./right-sidebar/tag";
-import FilterDrawer from "./right-sidebar/filterDrawer";
-import CardsDrawer from "./right-sidebar/cardDrawer";
+import { Event } from "../types/Event";
+import { TagOption } from "./right-sidebar/Tag";
+import FilterDrawer from "./right-sidebar/FilterDrawer";
+import CardsDrawer from "./right-sidebar/CardDrawer";
 
 interface Props {
   events: Event[];

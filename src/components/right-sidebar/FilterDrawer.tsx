@@ -1,7 +1,7 @@
 import { Drawer, Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import Filter from "../right-sidebar/tag";
-import { TagOption } from "../right-sidebar/tag";
+import Filter from "./Tag";
+import { TagOption } from "./Tag";
 
 interface Props {
   open: boolean;

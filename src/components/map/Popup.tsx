@@ -1,5 +1,5 @@
 import { Box, Typography, Button, darken } from "@mui/material";
-import { Event } from "../../types/event";
+import { Event } from "../../types/Event";
 
 interface PopupProps {
   event: Event;

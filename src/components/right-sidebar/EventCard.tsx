@@ -9,8 +9,8 @@ import {
   Tooltip,
   darken,
 } from "@mui/material";
-import { Event } from "../../types/event";
-import Rating from "../rating";
+import { Event } from "../../types/Event";
+import Rating from "../common/Rating";
 
 interface Props {
   event: Event;

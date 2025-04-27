@@ -5,8 +5,8 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { Event } from "../../types/event";
-import Dialog from "../dialog";
+import { Event } from "../../types/Event";
+import Dialog from "../common/Dialog";
 
 interface Props {
   open: boolean;

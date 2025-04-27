@@ -6,13 +6,13 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import EventIcon from "@mui/icons-material/Event";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import AlarmIcon from "@mui/icons-material/Alarm";
-import SummaryDialog from "./left-sidebar/summary";
-import ChallengeDialog from "./left-sidebar/challenge";
-import SettingsDialog from "./left-sidebar/settings";
-import FutureEventsDialog from "./left-sidebar/futureEvents";
-import { TileLayerOption } from "../types/tiles";
-import { Event } from "../types/event";
-import Countdown from "./left-sidebar/countdown";
+import SummaryDialog from "./left-sidebar/Summary";
+import ChallengeDialog from "./left-sidebar/Challenge";
+import SettingsDialog from "./left-sidebar/Settings";
+import FutureEventsDialog from "./left-sidebar/FutureEvent";
+import { TileLayerOption } from "../types/Tiles";
+import { Event } from "../types/Event";
+import Countdown from "./left-sidebar/Countdown";
 
 interface Props {
   filteredEvents: Event[];

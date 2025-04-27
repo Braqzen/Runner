@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Drawer, Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import EventCard from "../right-sidebar/eventCard";
-import NotesDialog from "../right-sidebar/noteDialogue";
-import { Event } from "../../types/event";
+import EventCard from "./EventCard";
+import NotesDialog from "./NoteDialog";
+import { Event } from "../../types/Event";
 
 interface Props {
   open: boolean;

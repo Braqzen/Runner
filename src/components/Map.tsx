@@ -2,12 +2,12 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { Event } from "../types/event";
-import { TileLayerOption } from "../types/tiles";
-import { defaultIcon, selectedIcon } from "./map/marker";
-import { RoutePolyline } from "./map/route";
-import { Initializer } from "./map/initializer";
-import PopupContent from "./map/popup";
+import { Event } from "../types/Event";
+import { TileLayerOption } from "../types/Tiles";
+import { defaultIcon, selectedIcon } from "./map/Marker";
+import { RoutePolyline } from "./map/Route";
+import { Initializer } from "./map/Initializer";
+import PopupContent from "./map/Popup";
 
 interface EventMapProps {
   selectedEvent: Event | null;

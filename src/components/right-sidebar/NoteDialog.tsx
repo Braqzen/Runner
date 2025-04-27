@@ -11,8 +11,8 @@ import {
   Tab,
   Chip,
 } from "@mui/material";
-import Rating from "../rating";
-import { Event } from "../../types/event";
+import Rating from "../common/Rating";
+import { Event } from "../../types/Event";
 
 const sectionKeys = ["pre", "during", "post", "event", "takeaways"] as const;
 type SectionKey = (typeof sectionKeys)[number];

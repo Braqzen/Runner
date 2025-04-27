@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Event } from "./types/event";
-import { TileLayerOption, tileOptions } from "./types/tiles";
-import EventMap from "./components/map";
-import { TagOption } from "./components/right-sidebar/tag";
-import LeftSidebar from "./components/leftSidebar";
-import RightSidebar from "./components/rightSidebar";
+import { Event } from "./types/Event";
+import { TileLayerOption, tileOptions } from "./types/Tiles";
+import EventMap from "./components/Map";
+import { TagOption } from "./components/right-sidebar/Tag";
+import LeftSidebar from "./components/LeftSidebar";
+import RightSidebar from "./components/RightSidebar";
 import rawEvents from "../data/events.json";
-import NotesDialog from "./components/right-sidebar/noteDialogue";
+import NotesDialog from "./components/right-sidebar/NoteDialog";
 
 function App() {
   const [events, setEvents] = useState<Event[]>([]);

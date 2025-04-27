@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import { Event } from "../../types/event";
-import { finishIcon, startIcon } from "./marker";
+import { Event } from "../../types/Event";
+import { finishIcon, startIcon } from "./Marker";
 
 interface RouteProps {
   event: Event | null;

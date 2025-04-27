@@ -5,8 +5,8 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { TileLayerOption } from "../../types/tiles";
-import Dialog from "../dialog";
+import { TileLayerOption } from "../../types/Tiles";
+import Dialog from "../common/Dialog";
 
 interface Props {
   open: boolean;
