@@ -57,7 +57,7 @@ const PopupContent = ({
         <strong>Date:</strong> {event.date}
       </Typography>
       <Typography>
-        <strong>Distance:</strong> {event.distance}
+        <strong>Distance:</strong> {event.distance}km
       </Typography>
       <Typography>
         <strong>Time:</strong> {event.time}

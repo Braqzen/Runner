@@ -5,8 +5,8 @@
       "start": "07:00",
       "location": { "lat": 38.7441843, "lng": -9.2423072 },
       "name": "EDP Lisbon Marathon",
-      "distance": "42.2km",
-      "time": "5h 37m",
+      "distance": "42.2",
+      "time": "05:37",
       "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html",
       "tags": {
         "date": ["2024", "Q4"],
@@ -901,8 +901,8 @@
       "start": "09:00",
       "location": { "lat": 43.514712, "lng": 16.443480 },
       "name": "Split Marathon",
-      "distance": "42.2km",
-      "time": "4h 31m",
+      "distance": "42.2",
+      "time": "04:31",
       "link": "https://splitmarathon.com/marathon/?lang=en",
       "tags": {
         "date": ["2025", "Q1"],
@@ -1407,8 +1407,8 @@
       "start": "07:00",
       "location": { "lat": 34.6917726, "lng": 32.9868246 },
       "name": "OPAP Limassol Marathon",
-      "distance": "42.2km",
-      "time": "4h 24m",
+      "distance": "42.2",
+      "time": "04:24",
       "link": "https://www.limassolmarathon.com/index.php",
       "tags": {
         "date": ["2025", "Q1"],
@@ -1796,8 +1796,8 @@
         "start": "08:30",
         "location": { "lat": 45.4637225, "lng": 9.188024 },
         "name": "Wizz Air Milano Marathon",
-        "distance": "42.2km",
-        "time": "4h 52m",
+        "distance": "42.2",
+        "time": "04:52",
         "link": "https://www.milanomarathon.it/en/marathon/",
         "tags": {
           "date": ["2025", "Q2"],

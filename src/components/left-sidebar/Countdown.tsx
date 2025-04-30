@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { Box, Typography, Link, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Link,
+  IconButton,
+  Card,
+  CardContent,
+} from "@mui/material"; // Import Card, CardContent
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { FutureEvent, FutureEvents } from "../../types/FutureEvents";
 import rawFutureEvents from "../../../data/future-events.json";
 import Dialog from "../common/Dialog";
@@ -62,27 +71,54 @@ const Countdown = ({ open, onClose }: Props) => {
   return (
     <Dialog open={open} onClose={onClose} title="Event Countdown">
       {currentEvent ? (
-        <>
-          <EventDetails event={currentEvent} timeLeft={timeLeft} />
-          <Box
-            sx={{ display: "flex", justifyContent: "center", mt: 5, gap: 2 }}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <IconButton
+            onClick={handlePrevious}
+            disabled={eventIndex === 0}
+            size="large"
+            sx={{ height: "100%" }}
           >
-            <Button
-              variant="outlined"
-              onClick={handlePrevious}
-              disabled={eventIndex === 0}
-            >
-              Previous
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={handleNext}
-              disabled={eventIndex === registeredEvents.length - 1}
-            >
-              Next
-            </Button>
-          </Box>
-        </>
+            <ArrowBackIosIcon fontSize="large" />
+          </IconButton>
+
+          <Card
+            variant="outlined"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              gap: 3,
+              flexGrow: 1,
+              p: 3,
+              mt: 2,
+              boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.4)",
+            }}
+          >
+            <CardContent sx={{ p: "0 !important" }}>
+              <EventDetails event={currentEvent} />
+            </CardContent>
+
+            {timeLeft && <CountdownDisplay timeLeft={timeLeft} />}
+          </Card>
+
+          <IconButton
+            onClick={handleNext}
+            disabled={eventIndex === registeredEvents.length - 1}
+            size="large"
+            sx={{ height: "100%" }}
+          >
+            <ArrowForwardIosIcon fontSize="large" />
+          </IconButton>
+        </Box>
       ) : (
         <Typography variant="h6" textAlign="center" mt={2}>
           No upcoming events.
@@ -92,35 +128,51 @@ const Countdown = ({ open, onClose }: Props) => {
   );
 };
 
-interface EventProps {
+interface EventDetailsProps {
   event: FutureEvent & { parsedDate: Date };
-  timeLeft: ReturnType<typeof getTimeLeft> | null;
 }
 
-const EventDetails = ({ event, timeLeft }: EventProps) => (
+const EventDetails = ({ event }: EventDetailsProps) => (
   <Box
     sx={{
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       textAlign: "center",
-      gap: 2,
-      mt: 3,
     }}
   >
-    <Typography variant="h4" fontWeight="bold">
+    {" "}
+    {/* Container for title and details row */}
+    {/* Title at the top */}
+    <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
       {event.name}
     </Typography>
-    <Typography variant="subtitle1" color="text.secondary">
-      {event.location}
-    </Typography>
-    <Typography>{event.date}</Typography>
-    {event.link && (
-      <Link href={event.link} target="_blank" rel="noopener" underline="hover">
-        Website
-      </Link>
-    )}
-    {timeLeft && <CountdownDisplay timeLeft={timeLeft} />}
+    {/* Horizontal row for other details */}
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        mt: 2,
+      }}
+    >
+      <Typography variant="subtitle1" color="text.secondary">
+        {event.location}
+      </Typography>
+      <Typography variant="body1">{event.date}</Typography>
+      {event.link && (
+        <Link
+          href={event.link}
+          target="_blank"
+          rel="noopener"
+          underline="hover"
+        >
+          Website
+        </Link>
+      )}
+    </Box>
   </Box>
 );
 
@@ -152,7 +204,7 @@ const CountdownDisplay = ({ timeLeft }: CountdownDisplayProps) => (
           backgroundColor: "#f5f5f5",
           borderRadius: 2,
           p: 2,
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+          boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.4)",
         }}
       >
         <Typography fontSize="1.8rem" fontWeight="bold">

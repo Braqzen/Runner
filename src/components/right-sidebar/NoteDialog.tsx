@@ -183,7 +183,7 @@ const EventInformation = ({ event }: { event: Event }) => (
         <strong>Start Time:</strong> {event.start}
       </Typography>
       <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Distance:</strong> {event.distance}
+        <strong>Distance:</strong> {event.distance}km
       </Typography>
       <Typography sx={{ fontSize: "1.1rem" }}>
         <strong>Time:</strong> {event.time}
