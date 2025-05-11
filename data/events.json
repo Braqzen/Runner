@@ -2199,7 +2199,7 @@
     "location": { "lat": 42.7487541, "lng": 10.2130912 },
     "name": "Maratona dell'Isola d'Elba",
     "distance": "42.2",
-    "time": "00:00",
+    "time": "04:43",
     "link": "https://www.maratonadellisoladelba.it/",
     "tags": {
       "date": ["2025", "Q2"],
@@ -2216,14 +2216,40 @@
         "Had some time to train so I run a few 10 milers and some high intensity intervals, hoping it helps."
       ],
       "during": [
-        "Fueled every 30m, total 8 gels ~?kcal, 5 electrolyte sticks: sodium ~1200g, 250g potassium."
+        "Carb loaded a bit too much with simple sugars so I only consumed 5+1 gels.",
+        "Felt like I may vomit because of the carbs for most of the run.",
+        "Started fueling from 30m intervals and pushed it up to an hour or more to not vomit.",
+        "No cramps at all, 5 electrolyte sticks: sodium ~1200g, 250g potassium.",
+        "Almost completely exposed to the sun the entire time but the sunscreen and long sleeve helped significantly.",
+        "I didn't notice when it started but I should have been drinking more. Towards the latter half I was borderline dehydrated and at one point I run out of water and could have gotten heatstroke.",
+        "I saw the elevation before but had no real life reference. From the beginning it was basically a mountain run on a road. I practically gave up on a faster time at the start and just wanted to finish. After that massive climb there were many inclines and declines so I walked up and tried to run down / straight most of the time. I trained for flat, not mountains.",
+        "Went the wrong way once, almost got lost. Only lost a few minutes.",
+        "Some parts were very easy and others were difficult and really sucked.",
+        "First time using new watch and it gave me some trouble early on which really frustrated me but now I know what it does and how to use it there.",
+        "Finished pretty strong, barely any stops for the last few miles after I got some water.",
+        "No issues with the bulky chip."
       ],
-      "post": [],
+      "post": [
+        "Training definitely helped. I ache but don't feel exhausted. Didn't need to sit down right after but if it wasn't so hot and sunny and there was a place to sit I may have done so.",
+        "I don't think I've got any friction burns this time because of the cream. I was dehydrated which is when I've noticed it started to rub a bit but pretty good, just needed to stay hydrated.",
+        "Feet are a little beaten up and there's minor swelling but no blisters, that's a first."
+      ],
       "event": [
         "On an island, by the coast, completely exposed to the sun.",
-        "Small marathon so the chip is a thick box on the bib unlike the usual small thin line."
+        "Big mountain and lots of elevation change on road.",
+        "Small marathon so the chip is a thick box on the bib unlike the usual small thin line.",
+        "I don't recall seeing a single toilet on the route, perhaps I've missed it.",
+        "Roads were mostly closed but some cars drive by.",
+        "Small island where you run on a road by the coast so not many people except the runners or aid stations, even when running through towns.",
+        "Markings and aid stations were fine, mostly had liquids but towards the end some had fruits.",
+        "There were seemingly no zones at the start. People just crammed themselves in the small road, anywhere, at the start.",
+        "The island is a pain to get to. Flights, trains, ferries and taxis.It could take 7h to get to the start from Florence."
       ],
-      "takeaways": []
+      "takeaways": [
+        "Simple sugars are fine but even if you feel fine you may not feel ok when running, especially when fueling. Give yourself more time to slowly carb load over a few days with heavier meals.",
+        "Improved perception for thirst by touching the palms but need to drink more when the sun is cooking you. Liquids were better but still not enough. If it wasn't for the sugar bomb and potentially vomitting increasing water would have helped a lot.",
+        "Drank every 15-30m plus aid stations but need more liquids with easy access to drink a little and more often."
+      ]
     },
     "route": [
       [42.743435, 10.235046],
@@ -8864,10 +8890,10 @@
       [42.744683, 10.234069]
     ],
     "ratings": {
-      "exertion": 0.0,
-      "event_organisation": 0.0,
-      "location": 0.0,
-      "enjoyment": 0.0
+      "exertion": 2.0,
+      "event_organisation": 2.5,
+      "location": 3.5,
+      "enjoyment": 4.2
     }
   }
 ]
