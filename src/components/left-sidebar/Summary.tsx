@@ -1,15 +1,14 @@
 import { useMemo, useState } from "react";
 import {
   Box,
-  Card,
-  CardContent,
-  Tab,
+  Divider,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   Tabs,
+  Tab,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -24,6 +23,8 @@ interface Props {
 }
 
 const SummaryDialog = ({ open, events, onClose }: Props) => {
+  const [tab, setTab] = useState(0);
+
   const {
     marathonCount,
     ultraMarathonCount,
@@ -96,22 +97,44 @@ const SummaryDialog = ({ open, events, onClose }: Props) => {
     };
   }, [events]);
 
+  const handleTabChange = (_: React.SyntheticEvent, newTab: number) => {
+    setTab(newTab);
+  };
+
   return (
     <Dialog open={open} onClose={onClose} title="Summary">
-      <Summary
-        marathonCount={marathonCount}
-        ultraMarathonCount={ultraMarathonCount}
-        marathonHighlights={marathonHighlights}
-        ultraMarathonHighlights={ultraMarathonHighlights}
-        totalMarathonDistance={totalMarathonDistance}
-        totalUltraMarathonDistance={totalUltraMarathonDistance}
-      />
-      <EventTable events={events} />
+      <Tabs
+        value={tab}
+        onChange={handleTabChange}
+        variant="fullWidth"
+        sx={{ borderBottom: 1, borderColor: "divider" }}
+      >
+        <Tab label="Event List" />
+        <Tab label="Overview" />
+        <Tab label="Ratings" />
+      </Tabs>
+
+      <Box sx={{ p: 2 }}>
+        {tab === 0 && <EventTable events={events} />}
+
+        {tab === 1 && (
+          <SummaryContent
+            marathonCount={marathonCount}
+            ultraMarathonCount={ultraMarathonCount}
+            marathonHighlights={marathonHighlights}
+            ultraMarathonHighlights={ultraMarathonHighlights}
+            totalMarathonDistance={totalMarathonDistance}
+            totalUltraMarathonDistance={totalUltraMarathonDistance}
+          />
+        )}
+
+        {tab === 2 && <EventRatingsTable events={events} />}
+      </Box>
     </Dialog>
   );
 };
 
-interface SummaryCardProps {
+interface SummaryContentProps {
   marathonCount: number;
   ultraMarathonCount: number;
   marathonHighlights: {
@@ -130,170 +153,211 @@ interface SummaryCardProps {
   totalUltraMarathonDistance: number;
 }
 
-const Summary = ({
+const SummaryContent = ({
   marathonCount,
   ultraMarathonCount,
   marathonHighlights,
   ultraMarathonHighlights,
   totalMarathonDistance,
   totalUltraMarathonDistance,
-}: SummaryCardProps) => {
-  const [tab, setTab] = useState<"marathon" | "ultra-marathon">("marathon");
-  const handleTabChange = (
-    _: React.SyntheticEvent,
-    newTab: "marathon" | "ultra-marathon"
-  ) => {
-    setTab(newTab);
-  };
-
-  const currentCounts =
-    tab === "marathon"
-      ? { count: marathonCount, distance: totalMarathonDistance }
-      : { count: ultraMarathonCount, distance: totalUltraMarathonDistance };
-  const currentHighlights =
-    tab === "marathon" ? marathonHighlights : ultraMarathonHighlights;
-
-  return (
-    <Card
-      variant="outlined"
+}: SummaryContentProps) => (
+  <Box>
+    <Box
       sx={{
-        mb: 3,
-        backgroundColor: "rgba(245, 245, 245, 0.85)",
-        p: 2,
-        borderRadius: 3,
-        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
-        border: "1px solid rgba(0, 0, 0, 0.1)",
-        display: "flex",
-        flexDirection: "column",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        mb: 5,
+        mt: 3,
+        textAlign: "center",
       }}
     >
-      <CardContent sx={{ p: "0 !important", textAlign: "center" }}>
-        <Typography
-          variant="h6"
-          fontWeight="bold"
-          sx={{ mb: 1, fontSize: "1.3rem" }}
-        >
-          Filtered Events
+      <Box>
+        <Typography sx={{ fontSize: "1.2rem" }}>
+          <strong>Marathons:</strong> {marathonCount}
         </Typography>
+        <Typography sx={{ fontSize: "1.2rem" }}>
+          <strong>Distance: </strong>
+          {marathonCount > 0 ? `${totalMarathonDistance} km` : "N/A"}
+        </Typography>
+      </Box>
+      <Box>
+        <Typography sx={{ fontSize: "1.2rem" }}>
+          <strong>Ultra Marathons:</strong> {ultraMarathonCount}
+        </Typography>
+        <Typography sx={{ fontSize: "1.2rem" }}>
+          <strong>Distance: </strong>
+          {ultraMarathonCount > 0 ? `${totalUltraMarathonDistance} km` : "N/A"}
+        </Typography>
+      </Box>
+    </Box>
 
-        <Tabs
-          value={tab}
-          onChange={handleTabChange}
-          centered
-          variant="fullWidth"
-          sx={{ mb: 2, borderBottom: 1, borderColor: "divider" }}
-        >
-          <Tab label="Marathons" value="marathon" />
-          <Tab label="Ultra Marathons" value="ultra-marathon" />
-        </Tabs>
+    <Divider sx={{ my: 2 }} />
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 5,
-            flexWrap: "wrap",
-            mb: 4,
-          }}
-        >
-          <Typography sx={{ fontSize: "1.1rem" }}>
-            <strong>Count:</strong> {currentCounts.count}
-          </Typography>
-          <Typography sx={{ fontSize: "1.1rem" }}>
-            <strong>Distance:</strong>
-            {currentCounts.count > 0
-              ? `${currentCounts.distance.toFixed(2)} km`
-              : "N/A"}
-          </Typography>
-        </Box>
-
-        <Box>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontSize: "1rem" }}>Rating</TableCell>
-                <TableCell align="center" sx={{ fontSize: "1rem" }}>
-                  Highest
+    <Box sx={{ textAlign: "left", mb: 3 }}>
+      <Typography fontWeight="bold" sx={{ fontSize: "1.2rem", mt: 3, mb: 2 }}>
+        Marathon Highlights
+      </Typography>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{ fontSize: "1rem" }}>Rating</TableCell>
+            <TableCell sx={{ fontSize: "1rem" }} align="center">
+              Highest
+            </TableCell>
+            <TableCell sx={{ fontSize: "1rem" }} align="center">
+              Lowest
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {Object.entries(marathonHighlights).map(
+            ([ratingKey, { highest, lowest }]) => (
+              <TableRow key={ratingKey}>
+                <TableCell component="th" scope="row" sx={{ fontSize: "1rem" }}>
+                  <strong>{ratingKey.replace("_", " ")}</strong>
                 </TableCell>
-                <TableCell align="center" sx={{ fontSize: "1rem" }}>
-                  Lowest
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {Object.entries(currentHighlights).map(
-                ([ratingKey, { highest, lowest }]) => (
-                  <TableRow key={ratingKey}>
-                    <TableCell>
-                      <strong>{ratingKey.replace("_", " ")}</strong>
-                    </TableCell>
-
-                    <TableCell align="center">
-                      {highest ? (
+                <TableCell align="center">
+                  {highest ? (
+                    <Box>
+                      <Typography>{highest.name}</Typography>
+                      <Tooltip
+                        title={`${
+                          highest.ratings[ratingKey as keyof Event["ratings"]]
+                        }/5`}
+                        followCursor
+                      >
                         <Box>
-                          <Typography>{highest.name}</Typography>
-                          <Tooltip
-                            title={`${
+                          <Rating
+                            rating={
                               highest.ratings[
                                 ratingKey as keyof Event["ratings"]
                               ]
-                            }/5`}
-                            followCursor
-                          >
-                            <Box>
-                              <Rating
-                                rating={
-                                  highest.ratings[
-                                    ratingKey as keyof Event["ratings"]
-                                  ]
-                                }
-                                size="small"
-                              />
-                            </Box>
-                          </Tooltip>
+                            }
+                            size="small"
+                          />
                         </Box>
-                      ) : (
-                        "N/A"
-                      )}
-                    </TableCell>
-                    <TableCell align="center">
-                      {lowest ? (
+                      </Tooltip>
+                    </Box>
+                  ) : (
+                    "N/A"
+                  )}
+                </TableCell>
+                <TableCell align="center">
+                  {lowest ? (
+                    <Box>
+                      <Typography>{lowest.name}</Typography>
+                      <Tooltip
+                        title={`${
+                          lowest.ratings[ratingKey as keyof Event["ratings"]]
+                        }/5`}
+                        followCursor
+                      >
                         <Box>
-                          <Typography>{lowest.name}</Typography>
-                          <Tooltip
-                            title={`${
+                          <Rating
+                            rating={
                               lowest.ratings[
                                 ratingKey as keyof Event["ratings"]
                               ]
-                            }/5`}
-                            followCursor
-                          >
-                            <Box>
-                              <Rating
-                                rating={
-                                  lowest.ratings[
-                                    ratingKey as keyof Event["ratings"]
-                                  ]
-                                }
-                                size="small"
-                              />
-                            </Box>
-                          </Tooltip>
+                            }
+                            size="small"
+                          />
                         </Box>
-                      ) : (
-                        "N/A"
-                      )}
-                    </TableCell>
-                  </TableRow>
-                )
-              )}
-            </TableBody>
-          </Table>
-        </Box>
-      </CardContent>
-    </Card>
-  );
-};
+                      </Tooltip>
+                    </Box>
+                  ) : (
+                    "N/A"
+                  )}
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      </Table>
+    </Box>
+
+    <Box sx={{ textAlign: "left" }}>
+      <Typography fontWeight="bold" sx={{ fontSize: "1.2rem", mb: 2 }}>
+        Ultra Marathon Highlights
+      </Typography>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell sx={{ fontSize: "1rem" }}>Rating</TableCell>
+            <TableCell sx={{ fontSize: "1rem" }} align="center">
+              Highest
+            </TableCell>
+            <TableCell sx={{ fontSize: "1rem" }} align="center">
+              Lowest
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {Object.entries(ultraMarathonHighlights).map(
+            ([ratingKey, { highest, lowest }]) => (
+              <TableRow key={ratingKey}>
+                <TableCell component="th" scope="row" sx={{ fontSize: "1rem" }}>
+                  <strong>{ratingKey.replace("_", " ")}</strong>
+                </TableCell>
+                <TableCell align="center">
+                  {highest ? (
+                    <Box>
+                      <Typography>{highest.name}</Typography>
+                      <Tooltip
+                        title={`${
+                          highest.ratings[ratingKey as keyof Event["ratings"]]
+                        }/5`}
+                        followCursor
+                      >
+                        <Box>
+                          <Rating
+                            rating={
+                              highest.ratings[
+                                ratingKey as keyof Event["ratings"]
+                              ]
+                            }
+                            size="small"
+                          />
+                        </Box>
+                      </Tooltip>
+                    </Box>
+                  ) : (
+                    "N/A"
+                  )}
+                </TableCell>
+                <TableCell align="center">
+                  {lowest ? (
+                    <Box>
+                      <Typography>{lowest.name}</Typography>
+                      <Tooltip
+                        title={`${
+                          lowest.ratings[ratingKey as keyof Event["ratings"]]
+                        }/5`}
+                        followCursor
+                      >
+                        <Box>
+                          <Rating
+                            rating={
+                              lowest.ratings[
+                                ratingKey as keyof Event["ratings"]
+                              ]
+                            }
+                            size="small"
+                          />
+                        </Box>
+                      </Tooltip>
+                    </Box>
+                  ) : (
+                    "N/A"
+                  )}
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      </Table>
+    </Box>
+  </Box>
+);
 
 const EventTable = ({ events }: { events: Event[] }) => (
   <Table>
@@ -338,6 +402,73 @@ const EventTableRow = ({ event }: { event: Event }) => (
     <TableCell sx={{ fontSize: "1rem" }}>{event.time}</TableCell>
     <TableCell sx={{ fontSize: "1rem" }}>{event.ratings.enjoyment}/5</TableCell>
   </TableRow>
+);
+
+const EventRatingsTable = ({ events }: { events: Event[] }) => (
+  <Table size="small" sx={{ mt: 2 }}>
+    <TableHead>
+      <TableRow>
+        <TableCell sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+          Event Name
+        </TableCell>
+        <TableCell align="center" sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+          Enjoyment
+        </TableCell>
+        <TableCell align="center" sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+          Exertion
+        </TableCell>
+        <TableCell align="center" sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+          Organisation
+        </TableCell>
+        <TableCell align="center" sx={{ fontSize: "1rem", fontWeight: "bold" }}>
+          Location
+        </TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {events.map((event) => (
+        <TableRow key={event.id}>
+          <TableCell component="th" scope="row">
+            {event.name}
+          </TableCell>
+          <TableCell align="center">
+            <Tooltip title={`${event.ratings.enjoyment}/5`} followCursor>
+              <Box>
+                <Rating rating={event.ratings.enjoyment} size="small" />
+              </Box>
+            </Tooltip>
+          </TableCell>
+          <TableCell align="center">
+            <Tooltip title={`${event.ratings.exertion}/5`} followCursor>
+              <Box>
+                <Rating rating={event.ratings.exertion} size="small" />
+              </Box>
+            </Tooltip>
+          </TableCell>
+          <TableCell align="center">
+            <Tooltip
+              title={`${event.ratings.event_organisation}/5`}
+              followCursor
+            >
+              <Box>
+                <Rating
+                  rating={event.ratings.event_organisation}
+                  size="small"
+                />
+              </Box>
+            </Tooltip>
+          </TableCell>
+          <TableCell align="center">
+            <Tooltip title={`${event.ratings.location}/5`} followCursor>
+              <Box>
+                <Rating rating={event.ratings.location} size="small" />
+              </Box>
+            </Tooltip>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
 );
 
 export default SummaryDialog;
