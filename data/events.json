@@ -2231,8 +2231,8 @@
       ],
       "post": [
         "Training definitely helped. I ache but don't feel exhausted. Didn't need to sit down right after but if it wasn't so hot and sunny and there was a place to sit I may have done so.",
-        "I don't think I've got any friction burns this time because of the cream. I was dehydrated which is when I've noticed it started to rub a bit but pretty good, just needed to stay hydrated.",
-        "Feet are a little beaten up and there's minor swelling but no blisters, that's a first."
+        "Almost no friction burns this time because of the cream. I was dehydrated which is when I've noticed it started to rub a bit but pretty good, just needed to stay hydrated.",
+        "Feet are a little beaten up and there's minor swelling. Minor blood blisters under some toenails. A few days later I cut the nails and a blister by accident which got infected and I needed to take antibiotics for 1 week."
       ],
       "event": [
         "On an island, by the coast, completely exposed to the sun.",
@@ -8895,6 +8895,38 @@
       "event_organisation": 2.5,
       "location": 3.5,
       "enjoyment": 4.2
+    }
+  },
+  {
+    "id": 6,
+    "date": "2025-05-31",
+    "start": "12:00",
+    "location": { "lat": 59.324733, "lng": 18.071206 },
+    "name": "adidas Stockholm Marathon",
+    "distance": "42.2",
+    "time": "00:00",
+    "link": "https://www.stockholmmarathon.se/eng/",
+    "tags": {
+      "date": ["2025", "Q2"],
+      "region": ["Europe", "Sweden", "Stockholm"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "Not much time to train plus I was travelling so only did a handful or runs since the last event."
+      ],
+      "during": [],
+      "post": [],
+      "event": [],
+      "takeaways": []
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 0.0,
+      "event_organisation": 0.0,
+      "location": 0.0,
+      "enjoyment": 0.0
     }
   }
 ]
