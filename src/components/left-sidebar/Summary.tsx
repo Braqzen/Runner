@@ -37,7 +37,7 @@ const SummaryDialog = ({ open, events, onClose }: Props) => {
       (event) => event.type.toLowerCase() === "marathon"
     );
     const ultras = events.filter(
-      (event) => event.type.toLowerCase() === "ultra-marathon"
+      (event) => event.type.toLowerCase() === "ultra marathon"
     );
 
     const marathonCount = marathons.length;
