@@ -18831,5 +18831,62 @@
       "location": 4.0,
       "enjoyment": 4.8
     }
+  },
+  {
+    "id": 8,
+    "date": "2025-08-23",
+    "start": "08:40",
+    "location": { "lat": 64.133522, "lng": -21.8936414 },
+    "name": "Islandsbanki Reykjavik Marathon",
+    "distance": "42.2",
+    "time": "03:44",
+    "link": "https://www.rmi.is/en",
+    "tags": {
+      "date": ["2025", "Q3"],
+      "region": ["Europe", "Iceland", "Reykjavík"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "Run 100 miles in 1 week as a challange and been training for pace more than distance closer to the event.",
+        "It's been hot so it's been difficult to run even in the gym at the treadmill.",
+        "It's windy and coldish in Iceland so after travelling I crashed and slept well for the first time in as far as I remember.",
+        "Pre-race sleep was back to meh as usual.",
+        "Stomach was a bit off and I felt slightly above average, I didn't feel like I really had the energy to run hard."
+      ],
+      "during": [
+        "A bit cold but really windy. It was difficult to run against the wind at times it was so strong.",
+        "Took 6 40g carb gels and felt fine. Was a bit hungry before and at the start despite stuffing myself with carbs before.",
+        "Since it was windy and cool I didn't drink much but I was aware of it so I kept trying to take sips of electrolytes to prevent fatigue and cramps.",
+        "Maintained a decent pace up to around mile 20 where I slightly slowed because of cramp worries and muscle fatigue (need to run more).",
+        "Usually I start to drop off around 14-16 miles so gels and training helped.",
+        "If it wasn't for the borderline cramping I would have pushed a bit harder, my heart rate was surprisingly low for most of it so I could have pushed more."
+      ],
+      "post": [
+        "Generally fine, bit tired, knees a bit questionable but seem fine.",
+        "Walked a bunch of miles after getting food and shopping a bit so I'm ok.",
+        "I wasn't really clothed appropriately especially towards the end when it started to rain a bit so I was cold and I'm anticipating a cold and decreased everything over the next few weeks but we'll see."
+      ],
+      "event": [
+        "Poor organisation. Despite knowning when we should start it was a clusterfuck with a mistimed start. Doesn't really matter since what matters is when your bib tracker crosses the start and end lines, still annoying.",
+        "Barely any distance markers but they did have a bunch of boards and volunteers to point the way.",
+        "Medal is pretty and there was no refreshments bag at the end but they had a bunch of tables with so many treats and drinks which was really nice.",
+        "The marathon itself is only slightly longer than the actual distance and it's meh, nothing spectacular to look at.",
+        "When it started raining all the supporters vanished at the end which was amusing and disgusting. I'm trying not to die and you're all warm and terrified of the rain?"
+      ],
+      "takeaways": [
+        "Iceland is expensive. Do not go shopping here or eat out.",
+        "Really surprised at stomach taking that many carbs on top of all the carb loading. I did slow towards the end so maybe I could squeeze in 1 more gel but really it was mostly cramp management so need more electrolytes and maybe liquids (although I did need to urinate so maybe not liquid).",
+        "Salt pills crumble and make a bit of a mess, maybe bring extra or different product."
+      ]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 1.8,
+      "event_organisation": 2.5,
+      "location": 2.5,
+      "enjoyment": 3.2
+    }
   }
 ]
