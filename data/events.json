@@ -886,7 +886,8 @@
       "exertion": 5.0,
       "event_organisation": 3.8,
       "location": 3.5,
-      "enjoyment": 2.5
+      "enjoyment": 2.5,
+      "travel": 3.0
     }
   },
   {
@@ -1390,7 +1391,8 @@
       "exertion": 3.8,
       "event_organisation": 3.5,
       "location": 3.2,
-      "enjoyment": 3.6
+      "enjoyment": 3.6,
+      "travel": 3.0
     }
   },
   {
@@ -1777,7 +1779,8 @@
       "exertion": 3.5,
       "event_organisation": 4.0,
       "location": 2.0,
-      "enjoyment": 3.2
+      "enjoyment": 3.2,
+      "travel": 1.3
     }
   },
   {
@@ -2189,7 +2192,8 @@
       "exertion": 4.2,
       "event_organisation": 2.8,
       "location": 4.0,
-      "enjoyment": 3.8
+      "enjoyment": 3.8,
+      "travel": 3.5
     }
   },
   {
@@ -8894,7 +8898,8 @@
       "exertion": 2.0,
       "event_organisation": 2.5,
       "location": 3.5,
-      "enjoyment": 4.2
+      "enjoyment": 4.2,
+      "travel": 0.5
     }
   },
   {
@@ -12647,7 +12652,8 @@
       "exertion": 3.7,
       "event_organisation": 4.0,
       "location": 4.5,
-      "enjoyment": 4.2
+      "enjoyment": 4.2,
+      "travel": 4.0
     }
   },
   {
@@ -18829,7 +18835,8 @@
       "exertion": 3.0,
       "event_organisation": 4.0,
       "location": 4.0,
-      "enjoyment": 4.8
+      "enjoyment": 4.8,
+      "travel": 2.0
     }
   },
   {
@@ -18886,7 +18893,61 @@
       "exertion": 1.8,
       "event_organisation": 2.5,
       "location": 2.5,
-      "enjoyment": 3.2
+      "enjoyment": 3.2,
+      "travel": 2.5
+    }
+  },
+  {
+    "id": 9,
+    "date": "2025-09-06",
+    "start": "08:30",
+    "location": { "lat": 46.6845585, "lng": 7.8533601 },
+    "name": "Jungfrau-Marathon",
+    "distance": "42.2",
+    "time": "05:56",
+    "link": "https://www.jungfrau-marathon.ch/en/marathon.html",
+    "tags": {
+      "date": ["2025", "Q3"],
+      "region": ["Europe", "Switzerland", "Interlaken"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "Not many workouts since Iceland, mostly recovering.",
+        "Did not get sick at all but despite not feeling particularly weakened I was not sufficiently recovered to run the event."
+      ],
+      "during": [
+        "From the start my legs felt overworked and heart rate shot right up.",
+        "Body was disregulated. Started at a faster Iceland pace and felt natural except the legs and heart, quickly slowed after that.",
+        "Bit of contrasting weather, clear skies weren't hot but running in shaded woodlands dropped the temp drastically. Running in sweaty clothes with cold winds is unpleasant.",
+        "Hills were very difficult in some sections, lots of walking there.",
+        "Fueling was fine but was cramping at times and ended up walking a lot of the event because muscle fibers in legs were overworked. I was not ready since the PB in Iceland."
+      ],
+      "post": [
+        "Waddling along, not so much tired but seriously overworked, fortunately did not get injured."
+      ],
+      "event": [
+        "Beautiful area, from the start to villages to the mountains",
+        "Very well marked, stationed and organised.",
+        "They gave coupons for travel to and from the location plus the BIB supposedly had free local transport. The coupons saved me ~ 150 CHF.",
+        "BIB pickup came with a large delicious swiss milk chocolate bar.",
+        "Medal is small and not very interesting.",
+        "No refreshments bag at the end but they gave out isotonic bottles and people could get beer for some reason.",
+        "Free and prioritised gondola ride down the mountain."
+      ],
+      "takeaways": [
+        "2 weeks is not enough of recovery after setting a significant PB in another event",
+        "I must run more consistently to adapt otherwise I will keep cramping and feeling overworked -> slow down."
+      ]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 4.2,
+      "event_organisation": 4.8,
+      "location": 4.2,
+      "enjoyment": 4.0,
+      "travel": 2.5
     }
   }
 ]
