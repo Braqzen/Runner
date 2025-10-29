@@ -18949,5 +18949,59 @@
       "enjoyment": 4.0,
       "travel": 2.5
     }
+  },
+  {
+    "id": 10,
+    "date": "2025-10-26",
+    "start": "09:50",
+    "location": { "lat": 45.4046658, "lng": 12.2225298 },
+    "name": "Wizz Air Venicemarathon",
+    "distance": "42.2",
+    "time": "03:35",
+    "link": "https://www.venicemarathon.it/en",
+    "tags": {
+      "date": ["2025", "Q4"],
+      "region": ["Europe", "Italy", "Venice"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "Lots of running before and took a week break, felt like I haven't recovered enough.",
+        "Ate more than normal but wasn't properly carb loading. Should have ate a lot more carbs.",
+        "Wanted to PB so was nervous and a bit excited for the first time in forever.",
+        "Stomach wasn't ideal but had no issues during the event."
+      ],
+      "during": [
+        "Running faster than usual marathon pace so given insufficient carb loading and recovery even the half way point was more difficult than normal.",
+        "Last 10 miles were a grind, especially the last few when I slowed down.",
+        "Averaged ~120g of carbs/gels per hour which is significantly more than I've taken.",
+        "Literally couldn't keep taking gels towards the end, had to run holding half a gel and finish it a bit later.",
+        "Didn't take in enough water so minor cramping in left knee.",
+        "Venice islands were a bit flooded, ankle deep which wasn't pleasant."
+      ],
+      "post": [
+        "Walking was difficult. No blisters or foot issues. Quads and upper thighs are still sore 3 days later.",
+        "Wasn't really hungry or thirsty which is a bit weird but given the number of gels it's understandable.",
+        "Some friction burn around groin."
+      ],
+      "event": [
+        "Busses to start line was an hour earlier than it should be so everyone waited for 90 minutes outside in a field with cool weather, wearing bin bags etc. to stay warm.",
+        "Nothing to look at except the last couple miles when you're on the Venice islands.",
+        "Stations used water bottles which is great because you can take it and fill up your bottles with electrolytes as you run.",
+        "Start zones were weird, slower pacers started way to far into the middle creating walls and somehow my zone was behind them when I was much faster."
+      ],
+      "takeaways": [
+        "Running more helped but needed more time/gadgets to recover."
+      ]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 3.8,
+      "event_organisation": 3.0,
+      "location": 2.0,
+      "enjoyment": 2.0,
+      "travel": 3.5
+    }
   }
 ]

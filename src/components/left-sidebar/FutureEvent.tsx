@@ -61,6 +61,19 @@ const FutureEventsDialog = ({ open, onClose }: Props) => {
             <TableCell>
               <strong>Name</strong>
             </TableCell>
+            {category == "ultra-marathon" ? (
+              <>
+                <TableCell>
+                  <strong>Distance (km)</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Time (h)</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Gain (m)</strong>
+                </TableCell>
+              </>
+            ) : null}
             <TableCell>
               <strong>Link</strong>
             </TableCell>
@@ -72,6 +85,13 @@ const FutureEventsDialog = ({ open, onClose }: Props) => {
               <TableCell>{event.date}</TableCell>
               <TableCell>{event.location}</TableCell>
               <TableCell>{event.name}</TableCell>
+              {category == "ultra-marathon" ? (
+                <>
+                  <TableCell>{event.distance}</TableCell>
+                  <TableCell>{event.time}</TableCell>
+                  <TableCell>{event.gain}</TableCell>
+                </>
+              ) : null}
               <TableCell>
                 <Link href={event.link} target="_blank" rel="noopener">
                   Website

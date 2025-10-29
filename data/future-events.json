@@ -2,12 +2,6 @@
   "registered": {
     "marathon": [
       {
-        "date": "26/10/25",
-        "location": "Venice, Italy",
-        "name": "Wizz Air Venicemarathon",
-        "link": "https://www.venicemarathon.it/en"
-      },
-      {
         "date": "09/11/25",
         "location": "Nice, France",
         "name": "French Riviera Marathon Nice-Cannes",
@@ -26,14 +20,7 @@
         "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/"
       }
     ],
-    "ultra-marathon": [
-      {
-        "date": "27/09/25",
-        "location": "Verbania, Italy",
-        "name": "Ultra Trail Lake Maggiore",
-        "link": "https://utlm.it/en/"
-      }
-    ]
+    "ultra-marathon": []
   },
   "deferred": {
     "marathon": [
@@ -74,6 +61,50 @@
         "location": "Valais, Switzerland",
         "name": "SwissPeaks Marathon",
         "link": "https://swisspeaks.ch/marathon/?lang=en"
+      },
+      {
+        "date": "27/09/25",
+        "location": "Verbania, Italy",
+        "name": "Ultra Trail Lake Maggiore",
+        "link": "https://utlm.it/en/",
+        "distance": "57",
+        "time": "16"
+      },
+      {
+        "date": "04/01/26",
+        "location": "Trieste, Italy",
+        "name": "S1 TransKarst Ultra",
+        "link": "https://www.s1trail.com/en/s1-trail/",
+        "distance": "57",
+        "time": "12",
+        "gain": "1800"
+      },
+      {
+        "date": "10/01/26",
+        "location": "Sever do Vouga, Portugal",
+        "name": "Vouga Trail",
+        "link": "https://stopandgo.net/events/vouga-trail-2026",
+        "distance": "55",
+        "time": "12",
+        "gain": "2700"
+      },
+      {
+        "date": "10/01/26",
+        "location": "Trbovlje, Slovenia",
+        "name": "Knap Trail T`Douga",
+        "link": "https://www.knaptrail.si/en/routes/t-douga/",
+        "distance": "51",
+        "time": "12",
+        "gain": "2620"
+      },
+      {
+        "date": "23/01/26",
+        "location": "Alcoy, Spain",
+        "name": "IV UltraMediterrània",
+        "link": "https://ultramediterrania.com/",
+        "distance": "55",
+        "time": "13",
+        "gain": "2900"
       }
     ]
   }
