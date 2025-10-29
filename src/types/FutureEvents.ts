@@ -7,9 +7,9 @@ export type FutureEvent = {
   date: string;
   location: string;
   name: string;
-  distance: string | null;
-  time: string | null;
-  gain: string | null;
+  distance?: string | null;
+  time?: string | null;
+  gain?: string | null;
   link: string;
 };
 
