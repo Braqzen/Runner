@@ -2,12 +2,6 @@
   "registered": {
     "marathon": [
       {
-        "date": "09/11/25",
-        "location": "Nice, France",
-        "name": "French Riviera Marathon Nice-Cannes",
-        "link": "https://www.marathon06.com/2025/AN/"
-      },
-      {
         "date": "30/11/25",
         "location": "Firenze, Italy",
         "name": "Florence Marathon",
@@ -20,7 +14,53 @@
         "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/"
       }
     ],
-    "ultra-marathon": []
+    "ultra-marathon": [
+      {
+        "date": "04/01/26",
+        "location": "Trieste, Italy",
+        "name": "S1 TransKarst Ultra",
+        "link": "https://www.s1trail.com/en/s1-trail/",
+        "distance": "57",
+        "time": "12",
+        "gain": "1800"
+      },
+      {
+        "date": "23/01/26",
+        "location": "Alcoy, Spain",
+        "name": "IV UltraMediterrània",
+        "link": "https://ultramediterrania.com/",
+        "distance": "55",
+        "time": "13",
+        "gain": "2900"
+      },
+      {
+        "date": "14/02/26",
+        "location": "Marbella, Spain",
+        "name": "Sierra Blanca - Destroyer",
+        "link": "https://en.cxmsierrablanca.com/destroyer",
+        "distance": "43",
+        "time": "10",
+        "gain": "2800"
+      },
+      {
+        "date": "08/03/26",
+        "location": "Galatzó, Spain",
+        "name": "Galatzó Trail",
+        "link": "https://galatzotrail.com/en/",
+        "distance": "43",
+        "time": "9.5",
+        "gain": "4470"
+      },
+      {
+        "date": "28/03/26",
+        "location": "Amarante, Portugal",
+        "name": "Ultra Trail Marão",
+        "link": "https://utmarao.pt/",
+        "distance": "62.5",
+        "time": "17",
+        "gain": "4060"
+      }
+    ]
   },
   "deferred": {
     "marathon": [
@@ -71,15 +111,6 @@
         "time": "16"
       },
       {
-        "date": "04/01/26",
-        "location": "Trieste, Italy",
-        "name": "S1 TransKarst Ultra",
-        "link": "https://www.s1trail.com/en/s1-trail/",
-        "distance": "57",
-        "time": "12",
-        "gain": "1800"
-      },
-      {
         "date": "10/01/26",
         "location": "Sever do Vouga, Portugal",
         "name": "Vouga Trail",
@@ -96,15 +127,6 @@
         "distance": "51",
         "time": "12",
         "gain": "2620"
-      },
-      {
-        "date": "23/01/26",
-        "location": "Alcoy, Spain",
-        "name": "IV UltraMediterrània",
-        "link": "https://ultramediterrania.com/",
-        "distance": "55",
-        "time": "13",
-        "gain": "2900"
       }
     ]
   }

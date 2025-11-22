@@ -19003,5 +19003,61 @@
       "enjoyment": 2.0,
       "travel": 3.5
     }
+  },
+  {
+    "id": 11,
+    "date": "2025-11-09",
+    "start": "08:30",
+    "location": { "lat": 43.7032499, "lng": 7.2116127 },
+    "name": "French Riviera Marathon Nice-Cannes",
+    "distance": "42.2",
+    "time": "04:27",
+    "link": "https://www.marathon06.com/2025/AN/",
+    "tags": {
+      "date": ["2025", "Q4"],
+      "region": ["Europe", "France", "Nice"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "No training for 2 weeks since Venice except 1 sloppy boxing session.",
+        "In the second week I started to feel a little recovered.",
+        "Been comfort eating too so got a bit fatter.",
+        "Carb loaded on potatoes only and some confectionaries.",
+        "Day of run I felt pretty good.",
+        "Felt bloated and hoped it would pass."
+      ],
+      "during": [
+        "Had to cross over ropes to get to starting locations, strained left leg and hoped it wouldn't be a problem.",
+        "Started fine for a few miles but limp got worse and limp/run for maybe 20 miles, significantly slower than desired.",
+        "Was extremely bloated and had to make a bathroom stop. Was considering making many stops after that because of extreme bloating, felt pregnant.",
+        "It started cold and wet and got sunnier than I thought but not terrible with sunscreen.",
+        "Struggled taking gels likely because of bloating and for the last hour or more I had to stop taking them.",
+        "Was trying to go slow enough to not cause an injury from the very visible limp and to not excrete in any way.",
+        "No cramps at all and walked a bit here and there since I was expecting a slower event than Venice but not this slow. Just enjoyed the vibes instead."
+      ],
+      "post": [
+        "Moving pretty well right after the finish line and onward.",
+        "Not recovered by fastest recovery ever, same day felt like I could start running a bit."
+      ],
+      "event": [
+        "Except that stupid rope we had to step over and the couple hundred meters to find the medal it was well organised.",
+        "They didn't give water bottles and instead cups of liquids like usual which is not good because you have to slow down to drink or fill up, can't fill up own bottles when needed.",
+        "Pretty views by the oceans and massive and colorful medal, may be the prettiest of all this year."
+      ],
+      "takeaways": [
+        "2 weeks recovery after a tough PB is not enough. Needed at least 2 more weeks to just start training again.",
+        "First few miles had decent pace so without bloating, leg, and 2 weeks of no training I think I could have had a chance to PB again especially given my recovery time."
+      ]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 3.5,
+      "event_organisation": 4.0,
+      "location": 4.0,
+      "enjoyment": 4.0,
+      "travel": 4.0
+    }
   }
 ]
