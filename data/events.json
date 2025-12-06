@@ -19059,5 +19059,50 @@
       "enjoyment": 4.0,
       "travel": 4.0
     }
+  },
+  {
+    "id": 12,
+    "date": "2025-11-30",
+    "start": "08:30",
+    "location": { "lat": 43.7800127, "lng": 11.1997686 },
+    "name": "Florence Marathon",
+    "distance": "42.2",
+    "time": "03:52",
+    "link": "https://www.firenzemarathon.it/en/marathon/",
+    "tags": {
+      "date": ["2025", "Q4"],
+      "region": ["Europe", "Firenze", "Italy"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "Only a few training sessions since Nice because of travel.",
+        "Ate a little more than normal but this time mainly lasagna and a bit of pizza.",
+        "Zero digestion issues, amazing, usually I feel bloated and need to use the bathroom but felt light and empty-ish this time.",
+        "Zero degree weather, bit cold but when you're surrounded by people you feel the body heat and it's fine."
+      ],
+      "during": [
+        "Wasn't expecting much given travel but another 10 miles on pace and then started to slow down because of lack of training.",
+        "Had to zone out and focus on running most of the time because of lack of training - felt more difficult than I'd like but fine overall."
+      ],
+      "post": [
+        "No issues until getting up after a restaurant meal post run and suddenly leg felt injured in the same place that I pulled in Nice. After a while it went away.",
+        "Could walk and run a bit later in the day, run 10 miles slightly under marathon pace 2 days later which ended up being too much and exhausting for a few days.",
+        "Malaise and naps for the next week."
+      ],
+      "event": [
+        "Everything was just fine. Nothing to really look at. Prettiest medal of the year."
+      ],
+      "takeaways": ["Need to train more."]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 3.5,
+      "event_organisation": 4.0,
+      "location": 3.0,
+      "enjoyment": 3.0,
+      "travel": 4.0
+    }
   }
 ]

@@ -2,12 +2,6 @@
   "registered": {
     "marathon": [
       {
-        "date": "30/11/25",
-        "location": "Firenze, Italy",
-        "name": "Florence Marathon",
-        "link": "https://www.firenzemarathon.it/en/marathon/"
-      },
-      {
         "date": "14/12/25",
         "location": "Málaga, Spain",
         "name": "GENERALI Málaga Marathon",
@@ -59,6 +53,15 @@
         "distance": "62.5",
         "time": "17",
         "gain": "4060"
+      },
+      {
+        "date": "25/04/26",
+        "location": "Ajdovščina, Slovenia",
+        "name": "Ultra Trail Vipava Valley",
+        "link": "https://ultratrail.si/",
+        "distance": "64",
+        "time": "16",
+        "gain": "2400"
       }
     ]
   },
