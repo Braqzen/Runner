@@ -7,6 +7,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TableSortLabel,
   Tabs,
   Tab,
   Tooltip,
@@ -359,18 +360,75 @@ const SummaryContent = ({
   </Box>
 );
 
-const EventTable = ({ events }: { events: Event[] }) => (
-  <Table>
-    <EventTableHead />
-    <TableBody>
-      {events.map((event) => (
-        <EventTableRow key={event.id} event={event} />
-      ))}
-    </TableBody>
-  </Table>
-);
+const EventTable = ({ events }: { events: Event[] }) => {
+  const [timeSort, setTimeSort] = useState<"asc" | "desc" | null>(null);
 
-const EventTableHead = () => (
+  const parseDurationToSeconds = (value: string): number | null => {
+    if (!value) return null;
+    const trimmed = value.trim();
+    const parts = trimmed.split(":").map((p) => p.trim());
+    if (parts.length !== 2 && parts.length !== 3) return null;
+    if (parts.some((p) => p === "" || Number.isNaN(Number(p)))) return null;
+
+    if (parts.length === 2) {
+      const [hours, minutes] = parts.map(Number);
+      if (minutes >= 60) return null;
+      return hours * 3600 + minutes * 60;
+    }
+
+    const [h, m, s] = parts.map(Number);
+    if (m >= 60 || s >= 60) return null;
+    return h * 3600 + m * 60 + s;
+  };
+
+  const sortedEvents = useMemo(() => {
+    if (!timeSort) return events;
+    const withIndex = events.map((e, idx) => ({ e, idx }));
+    withIndex.sort((a, b) => {
+      const ta = parseDurationToSeconds(a.e.time);
+      const tb = parseDurationToSeconds(b.e.time);
+      const aHas = ta !== null;
+      const bHas = tb !== null;
+      if (aHas && bHas) {
+        const cmp = ta - tb;
+        return timeSort === "asc" ? cmp : -cmp;
+      }
+      if (aHas !== bHas) {
+        return aHas ? -1 : 1; // push unknown times to the end
+      }
+      return a.idx - b.idx; // stable
+    });
+    return withIndex.map((x) => x.e);
+  }, [events, timeSort]);
+
+  const handleTimeSortClick = () => {
+    setTimeSort((prev) =>
+      prev === "asc" ? "desc" : prev === "desc" ? null : "asc"
+    );
+  };
+
+  return (
+    <Table>
+      <EventTableHead
+        timeSort={timeSort}
+        onTimeSortClick={handleTimeSortClick}
+      />
+      <TableBody>
+        {sortedEvents.map((event) => (
+          <EventTableRow key={event.id} event={event} />
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+
+const EventTableHead = ({
+  timeSort,
+  onTimeSortClick,
+}: {
+  timeSort: "asc" | "desc" | null;
+  onTimeSortClick: () => void;
+}) => (
   <TableHead>
     <TableRow>
       <TableCell sx={{ width: 250, fontSize: "1.2rem" }}>Name</TableCell>
@@ -378,7 +436,18 @@ const EventTableHead = () => (
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Start</TableCell>
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Type</TableCell>
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Distance</TableCell>
-      <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Time</TableCell>
+      <TableCell
+        sx={{ width: 200, fontSize: "1.2rem" }}
+        sortDirection={timeSort || false}
+      >
+        <TableSortLabel
+          active={Boolean(timeSort)}
+          direction={timeSort ?? "asc"}
+          onClick={onTimeSortClick}
+        >
+          Time
+        </TableSortLabel>
+      </TableCell>
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Rating</TableCell>
     </TableRow>
   </TableHead>

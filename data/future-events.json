@@ -1,13 +1,6 @@
 {
   "registered": {
-    "marathon": [
-      {
-        "date": "14/12/25",
-        "location": "Málaga, Spain",
-        "name": "GENERALI Málaga Marathon",
-        "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/"
-      }
-    ],
+    "marathon": [],
     "ultra-marathon": [
       {
         "date": "04/01/26",

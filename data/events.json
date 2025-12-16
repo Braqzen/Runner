@@ -19104,5 +19104,48 @@
       "enjoyment": 3.0,
       "travel": 4.0
     }
+  },
+  {
+    "id": 13,
+    "date": "2025-12-14",
+    "start": "08:30",
+    "location": { "lat": 36.7182837, "lng": -4.4904662 },
+    "name": "GENERALI Málaga Marathon",
+    "distance": "42.2",
+    "time": "04:17",
+    "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/",
+    "tags": {
+      "date": ["2025", "Q4"],
+      "region": ["Europe", "Málaga", "Spain"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "pre": [
+        "Messed up meds a few weeks ago still having an impact.",
+        "Only a few training sessions since the Florence.",
+        "Woke up depleted, empty without energy expecting a bad run."
+      ],
+      "during": [
+        "From first mile was already 1m slower per mile and it only got worse."
+      ],
+      "post": [
+        "Walking fine after a small break, aching a bit day after but everything is fine."
+      ],
+      "event": [
+        "Decent organisation, mainly using bottles of water instead of cups.",
+        "Expo was a pain, small with thousands of people cramped.",
+        "Medal is a bit smaller than usual and it has some stupid fish design but it spins in the middle. May break one day."
+      ],
+      "takeaways": ["Need to train more."]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 0.0,
+      "event_organisation": 0.0,
+      "location": 0.0,
+      "enjoyment": 0.0,
+      "travel": 0.0
+    }
   }
 ]
