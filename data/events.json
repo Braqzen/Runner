@@ -19071,7 +19071,7 @@
     "link": "https://www.firenzemarathon.it/en/marathon/",
     "tags": {
       "date": ["2025", "Q4"],
-      "region": ["Europe", "Firenze", "Italy"],
+      "region": ["Europe", "Italy", "Firenze"],
       "type": ["Marathon"]
     },
     "type": "Marathon",
@@ -19116,7 +19116,7 @@
     "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/",
     "tags": {
       "date": ["2025", "Q4"],
-      "region": ["Europe", "Málaga", "Spain"],
+      "region": ["Europe", "Spain", "Málaga"],
       "type": ["Marathon"]
     },
     "type": "Marathon",

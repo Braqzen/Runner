@@ -432,6 +432,7 @@ const EventTableHead = ({
   <TableHead>
     <TableRow>
       <TableCell sx={{ width: 250, fontSize: "1.2rem" }}>Name</TableCell>
+      <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Location</TableCell>
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Date</TableCell>
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Start</TableCell>
       <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Type</TableCell>
@@ -448,7 +449,6 @@ const EventTableHead = ({
           Time
         </TableSortLabel>
       </TableCell>
-      <TableCell sx={{ width: 200, fontSize: "1.2rem" }}>Rating</TableCell>
     </TableRow>
   </TableHead>
 );
@@ -464,12 +464,14 @@ const EventTableRow = ({ event }: { event: Event }) => (
     >
       {event.name}
     </TableCell>
+    <TableCell sx={{ fontSize: "1rem" }}>
+      {event.tags.region[1] || "N/A"}
+    </TableCell>
     <TableCell sx={{ fontSize: "1rem" }}>{event.date}</TableCell>
     <TableCell sx={{ fontSize: "1rem" }}>{event.start}</TableCell>
     <TableCell sx={{ fontSize: "1rem" }}>{event.type}</TableCell>
     <TableCell sx={{ fontSize: "1rem" }}>{event.distance}km</TableCell>
     <TableCell sx={{ fontSize: "1rem" }}>{event.time}</TableCell>
-    <TableCell sx={{ fontSize: "1rem" }}>{event.ratings.enjoyment}/5</TableCell>
   </TableRow>
 );
 
