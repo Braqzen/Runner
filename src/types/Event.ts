@@ -10,6 +10,7 @@
  * @property {number} location.lng - Longitude of the event location.
  * @property {string} name - The name of the event.
  * @property {string} distance - The distance of the event.
+ * @property {string} ascent - The ascent of the event.
  * @property {string} time - The time taken to finish the event.
  * @property {string} link - URL to event website.
  * @property {Tags} tags - An array of tags used to filter events.
@@ -28,6 +29,7 @@ export interface Event {
   };
   name: string;
   distance: string;
+  ascent: string;
   time: string;
   link: string;
   tags: Tags;

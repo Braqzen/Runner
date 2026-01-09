@@ -3,22 +3,13 @@
     "marathon": [],
     "ultra-marathon": [
       {
-        "date": "04/01/26",
-        "location": "Trieste, Italy",
-        "name": "S1 TransKarst Ultra",
-        "link": "https://www.s1trail.com/en/s1-trail/",
-        "distance": "57",
-        "time": "12",
-        "gain": "1800"
-      },
-      {
         "date": "23/01/26",
         "location": "Alcoy, Spain",
         "name": "IV UltraMediterrània",
         "link": "https://ultramediterrania.com/",
-        "distance": "55",
+        "distance": "51",
         "time": "13",
-        "gain": "2900"
+        "gain": "2300"
       },
       {
         "date": "14/02/26",

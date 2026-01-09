@@ -2,7 +2,7 @@
   { "label": "Marathon < 4h", "completed": true },
   { "label": "Marathon < 3.5h", "completed": false },
   { "label": "Marathon < 3h", "completed": false },
-  { "label": "50km ultra marathon", "completed": false },
+  { "label": "50km ultra marathon", "completed": true },
   { "label": "75km ultra marathon", "completed": false },
   { "label": "50 mile ultra marathon", "completed": false },
   { "label": "100km ultra marathon", "completed": false },

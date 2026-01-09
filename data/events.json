@@ -19147,5 +19147,59 @@
       "enjoyment": 0.0,
       "travel": 0.0
     }
+  },
+  {
+    "id": 14,
+    "date": "2026-01-04",
+    "start": "07:00",
+    "location": { "lat": 45.7632561, "lng": 13.6373864 },
+    "name": "S1 TransKarst Ultra",
+    "distance": "62",
+    "ascent": "2000",
+    "time": "13:09",
+    "link": "https://www.s1trail.com/en/s1-trail/",
+    "tags": {
+      "date": ["2026", "Q1"],
+      "region": ["Europe", "Italy", "Trieste"],
+      "type": ["Ultra Marathon"]
+    },
+    "type": "Ultra Marathon",
+    "notes": {
+      "pre": [
+        "Disrupted sleep like usual before events but didn't really feel it.",
+        "Sinus issues before during and after the event."
+      ],
+      "during": [
+        "Freezing with strong winds, keep moving or within minutes - seconds of stillness you'll start to shake/shiver aggressively (lack of fuel).",
+        "Guessing first 10-15 miles were okay and mostly running but after that I struggled to fuel because of bloating and stomach issues.",
+        "Rest of the race was trying not to defecate on myself, or in the woods (had to twice), and keep moving.",
+        "Lack of fuel and stomach issues resulted in hiking/walking like 20 miles, basically rest of event.",
+        "Wasn't paying attention and went off course many times, at the end it turned out I did an extra 3km and 100m of vert by accident.."
+      ],
+      "post": [
+        "Dangerously shivering after leaving cafe at night and walking back.",
+        "No issues otherwise, recovery keeps improving."
+      ],
+      "event": [
+        "Highly technical at times, gotta be careful, otherwise can run most of it except the steep mountains.",
+        "Lots of liquids and mini snacks but not many aid stations specifically like 10 miles between each toilet..",
+        "Most of the time you're in the wilderness away from civilization by many miles, don't die.",
+        "Probably best to stay in hotel right next to start but groceries and train station are awkward in the village - can stay in city instead but need shuttle to event.",
+        "Race was altered from 55km to 59km and they added 4h. With stomach issues, unaltered, I would have DNF'd on time checkpoints."
+      ],
+      "takeaways": [
+        "Do not eat protein bars during and reduce protein days before event to clear out intestines, stick to gels / simple carbs when running and pasta/potatoes.",
+        "Gotta try bringing meds for stomach just in case because I will DNF at some point.",
+        "Friction cream was surprisingly good for like 10 miles at a time but likely because of weather, need to try other products."
+      ]
+    },
+    "route": [],
+    "ratings": {
+      "exertion": 0.0,
+      "event_organisation": 0.0,
+      "location": 0.0,
+      "enjoyment": 0.0,
+      "travel": 0.0
+    }
   }
 ]
