@@ -29,7 +29,7 @@ export interface Event {
   };
   name: string;
   distance: string;
-  ascent: string;
+  ascent?: string;
   time: string;
   link: string;
   tags: Tags;
