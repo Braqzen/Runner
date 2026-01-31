@@ -33,7 +33,7 @@ function App() {
       ...event,
       route: event.route.map((coords) => coords as [number, number]),
     }));
-    setEvents(data);
+    setEvents(data as Event[]);
   }, []);
 
   const filteredEvents = useMemo(() => {
