@@ -6,11 +6,10 @@ import {
   Button,
   Box,
   ButtonBase,
-  Tooltip,
   darken,
+  Chip,
 } from "@mui/material";
 import { Event } from "../../types/Event";
-import Rating from "../common/Rating";
 
 interface Props {
   event: Event;
@@ -26,9 +25,7 @@ const EventCard = ({
   isSelected,
 }: Props) => {
   const hasNotes =
-    event.notes.pre.length > 0 ||
-    event.notes.during.length > 0 ||
-    event.notes.post.length > 0 ||
+    event.notes.race.length > 0 ||
     event.notes.event.length > 0 ||
     event.notes.takeaways.length > 0;
 
@@ -77,41 +74,40 @@ const EventCard = ({
   );
 };
 
-const EventHeader = ({ event }: { event: Event }) => (
-  <Box
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-    }}
-  >
-    <Typography
-      variant="h5"
-      sx={{
-        fontWeight: 500,
-        color: "#000",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap",
-        flexGrow: 1,
-      }}
-    >
-      {event.name}
-    </Typography>
-    <Tooltip
-      title={`${event.ratings.enjoyment}/5`}
-      followCursor
-      leaveDelay={200}
-      slotProps={{
-        tooltip: { sx: { fontSize: "1.2rem" } },
-      }}
-    >
-      <Box component="span">
-        <Rating rating={event.ratings.enjoyment} size="medium" />
-      </Box>
-    </Tooltip>
-  </Box>
-);
+const EventHeader = ({ event }: { event: Event }) => {
+  const isCancelled = event.status === "cancelled";
+
+  return (
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
+      <Typography
+        variant="h5"
+        sx={{
+          fontWeight: 500,
+          color: "#000",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          flex: 1,
+        }}
+      >
+        {event.name}
+      </Typography>
+      {isCancelled && (
+        <Chip
+          label="Cancelled"
+          size="small"
+          sx={{
+            backgroundColor: "#ff9800",
+            color: "white",
+            fontWeight: 600,
+            fontSize: "0.7rem",
+            height: 22,
+          }}
+        />
+      )}
+    </Box>
+  );
+};
 
 const EventDetails = ({ event }: { event: Event }) => (
   <Box

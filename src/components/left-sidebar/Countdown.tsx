@@ -1,12 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  Box,
-  Typography,
-  Link,
-  IconButton,
-  Card,
-  CardContent,
-} from "@mui/material"; // Import Card, CardContent
+import { Box, Typography, Link, IconButton } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { FutureEvent, FutureEvents } from "../../types/FutureEvents";
@@ -64,60 +57,101 @@ const Countdown = ({ open, onClose }: Props) => {
 
   const handleNext = () => {
     setEventIndex((prevIndex) =>
-      Math.min(registeredEvents.length - 1, prevIndex + 1)
+      Math.min(registeredEvents.length - 1, prevIndex + 1),
     );
   };
+
+  const eventCount = registeredEvents.length;
 
   return (
     <Dialog open={open} onClose={onClose} title="Event Countdown">
       {currentEvent ? (
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
             width: "100%",
             height: "100%",
+            boxSizing: "border-box",
+            overflowX: "hidden",
+            px: { xs: 1, sm: 2 },
+            py: { xs: 1, sm: 2 },
           }}
         >
-          <IconButton
-            onClick={handlePrevious}
-            disabled={eventIndex === 0}
-            size="large"
-            sx={{ height: "100%" }}
-          >
-            <ArrowBackIosIcon fontSize="large" />
-          </IconButton>
-
-          <Card
-            variant="outlined"
+          <Box
             sx={{
+              width: "100%",
+              height: "100%",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              gap: 3,
-              flexGrow: 1,
-              p: 3,
-              mt: 2,
-              boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.4)",
+              alignItems: "stretch",
+              gap: 4,
+              boxSizing: "border-box",
             }}
           >
-            <CardContent sx={{ p: "0 !important" }}>
-              <EventDetails event={currentEvent} />
-            </CardContent>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "auto minmax(0, 1fr) auto",
+                alignItems: "center",
+                columnGap: 1,
+                mb: 1,
+              }}
+            >
+              <IconButton
+                onClick={handlePrevious}
+                disabled={eventIndex === 0}
+                size="medium"
+              >
+                <ArrowBackIosIcon fontSize="small" />
+              </IconButton>
 
-            {timeLeft && <CountdownDisplay timeLeft={timeLeft} />}
-          </Card>
+              <Box sx={{ textAlign: "center" }}>
+                <Typography
+                  variant="overline"
+                  sx={{
+                    display: "block",
+                    letterSpacing: "0.18em",
+                    color: "text.secondary",
+                    fontWeight: 700,
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Event {eventIndex + 1} of {eventCount}
+                </Typography>
+                <Typography
+                  variant="h4"
+                  fontWeight={650}
+                  sx={{
+                    textAlign: "center",
+                    lineHeight: 1.15,
+                    overflowWrap: "anywhere",
+                    wordBreak: "break-word",
+                    m: 0,
+                    mt: 5,
+                  }}
+                >
+                  {currentEvent.name}
+                </Typography>
+              </Box>
 
-          <IconButton
-            onClick={handleNext}
-            disabled={eventIndex === registeredEvents.length - 1}
-            size="large"
-            sx={{ height: "100%" }}
-          >
-            <ArrowForwardIosIcon fontSize="large" />
-          </IconButton>
+              <IconButton
+                onClick={handleNext}
+                disabled={eventIndex === registeredEvents.length - 1}
+                size="medium"
+              >
+                <ArrowForwardIosIcon fontSize="small" />
+              </IconButton>
+            </Box>
+
+            {timeLeft && (
+              <Box sx={{ mt: 1 }}>
+                <CountdownDisplay timeLeft={timeLeft} />
+              </Box>
+            )}
+
+            <Box sx={{ mt: 1 }}>
+              <EventInfo event={currentEvent} />
+            </Box>
+          </Box>
         </Box>
       ) : (
         <Typography variant="h6" textAlign="center" mt={2}>
@@ -128,51 +162,52 @@ const Countdown = ({ open, onClose }: Props) => {
   );
 };
 
-interface EventDetailsProps {
+interface EventInfoProps {
   event: FutureEvent & { parsedDate: Date };
 }
 
-const EventDetails = ({ event }: EventDetailsProps) => (
+const EventInfo = ({ event }: EventInfoProps) => (
   <Box
     sx={{
       display: "flex",
-      flexDirection: "column",
+      flexDirection: { xs: "column", sm: "row" },
       alignItems: "center",
+      justifyContent: "center",
+      gap: { xs: 0.75, sm: 2 },
       textAlign: "center",
+      width: "100%",
+      boxSizing: "border-box",
+      pb: 1,
     }}
   >
-    {" "}
-    {/* Container for title and details row */}
-    {/* Title at the top */}
-    <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
-      {event.name}
-    </Typography>
-    {/* Horizontal row for other details */}
-    <Box
+    <Typography
       sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        mt: 2,
+        color: "text.secondary",
+        fontSize: "1.15rem",
+        overflowWrap: "anywhere",
+        wordBreak: "break-word",
       }}
     >
-      <Typography variant="subtitle1" color="text.secondary">
-        {event.location}
-      </Typography>
-      <Typography variant="body1">{event.date}</Typography>
-      {event.link && (
-        <Link
-          href={event.link}
-          target="_blank"
-          rel="noopener"
-          underline="hover"
-        >
-          Website
-        </Link>
-      )}
-    </Box>
+      {event.location} • {event.date}
+    </Typography>
+    {event.link && (
+      <Link
+        href={event.link}
+        target="_blank"
+        rel="noopener"
+        sx={{
+          color: "#1976d2",
+          fontWeight: 600,
+          textDecoration: "none",
+          borderBottom: "1px solid rgba(25, 118, 210, 0.35)",
+          "&:hover": {
+            borderBottomColor: "rgba(25, 118, 210, 0.8)",
+          },
+        }}
+      >
+        Event website
+      </Link>
+    )}
   </Box>
 );
 
@@ -180,43 +215,96 @@ interface CountdownDisplayProps {
   timeLeft: ReturnType<typeof getTimeLeft>;
 }
 
-const CountdownDisplay = ({ timeLeft }: CountdownDisplayProps) => (
+const CountdownUnit = ({ label, value }: { label: string; value: number }) => (
   <Box
     sx={{
-      mt: 4,
-      mb: 1,
-      display: "flex",
-      gap: 3,
-      flexWrap: "wrap",
+      width: "90%",
+      borderRadius: 3,
+      backgroundColor: "background.paper",
+      border: "1px solid",
+      borderColor: "divider",
+      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.06)",
+      px: { xs: 0, sm: 0 },
+      py: { xs: 0, sm: 3 },
+      boxSizing: "border-box",
+      textAlign: "center",
+      overflow: "hidden",
     }}
   >
-    {[
-      { label: "Days", value: timeLeft.days },
-      { label: "Hours", value: timeLeft.hours },
-      { label: "Minutes", value: timeLeft.minutes },
-      { label: "Seconds", value: timeLeft.seconds },
-    ].map((item) => (
-      <Box
-        key={item.label}
-        sx={{
-          minWidth: 80,
-          textAlign: "center",
-          backgroundColor: "#f5f5f5",
-          borderRadius: 2,
-          p: 2,
-          boxShadow: "0px 3px 8px rgba(0, 0, 0, 0.4)",
-        }}
-      >
-        <Typography fontSize="1.8rem" fontWeight="bold">
-          {item.value}
-        </Typography>
-        <Typography variant="caption" color="text.secondary">
-          {item.label}
-        </Typography>
-      </Box>
-    ))}
+    <Typography
+      sx={{
+        fontFamily:
+          "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        fontVariantNumeric: "tabular-nums",
+        fontSize: "clamp(2.0rem, 4vw, 3.1rem)",
+        fontWeight: 600,
+        letterSpacing: "0.02em",
+        lineHeight: 1,
+        color: "text.primary",
+      }}
+    >
+      {String(value).padStart(2, "0")}
+    </Typography>
+
+    <Typography
+      sx={{
+        mt: 1,
+        fontSize: "0.68rem",
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: "0.18em",
+        color: "text.secondary",
+      }}
+    >
+      {label}
+    </Typography>
   </Box>
 );
+
+const CountdownDisplay = ({ timeLeft }: CountdownDisplayProps) => {
+  const items = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Minutes", value: timeLeft.minutes },
+    { label: "Seconds", value: timeLeft.seconds },
+  ];
+
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: 980,
+          mx: "auto",
+        }}
+      >
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(2, minmax(0, 1fr))",
+              sm: "repeat(4, minmax(0, 1fr))",
+            },
+            gap: { xs: 1.75, sm: 2 },
+          }}
+        >
+          {items.map((item) => (
+            <CountdownUnit
+              key={item.label}
+              label={item.label}
+              value={item.value}
+            />
+          ))}
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
 const getTimeLeft = (event: Date) => {
   const now = new Date();
@@ -240,13 +328,13 @@ const parseDate = (dateStr: string): Date | null => {
   const parsed = new Date(
     parseInt(year) + 2000,
     parseInt(month) - 1,
-    parseInt(day)
+    parseInt(day),
   );
   return isNaN(parsed.getTime()) ? null : parsed;
 };
 
 export const getEvents = (
-  events: FutureEvent[]
+  events: FutureEvent[],
 ): (FutureEvent & { parsedDate: Date })[] => {
   const today = new Date();
 

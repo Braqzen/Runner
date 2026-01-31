@@ -11,16 +11,13 @@ import {
   Tab,
   Chip,
 } from "@mui/material";
-import Rating from "../common/Rating";
 import { Event } from "../../types/Event";
 
-const sectionKeys = ["pre", "during", "post", "event", "takeaways"] as const;
+const sectionKeys = ["race", "event", "takeaways"] as const;
 type SectionKey = (typeof sectionKeys)[number];
 
 const sectionLabels: Record<SectionKey, string> = {
-  pre: "Pre-Race",
-  during: "During Race",
-  post: "Post-Race",
+  race: "Race",
   event: "Event",
   takeaways: "Takeaways",
 };
@@ -32,7 +29,7 @@ interface Props {
 }
 
 const NotesDialog = ({ open, event, onClose }: Props) => {
-  const [selectedTab, setSelectedTab] = useState<SectionKey>("pre");
+  const [selectedTab, setSelectedTab] = useState<SectionKey>("race");
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: SectionKey) => {
     setSelectedTab(newValue);
@@ -138,7 +135,7 @@ const NotesDialog = ({ open, event, onClose }: Props) => {
           {sectionKeys.map((key) =>
             event.notes[key].length > 0 ? (
               <Tab key={key} value={key} label={sectionLabels[key]} />
-            ) : null
+            ) : null,
           )}
         </Tabs>
         {renderNotes(event.notes[selectedTab])}
@@ -153,76 +150,84 @@ const NotesDialog = ({ open, event, onClose }: Props) => {
   );
 };
 
-const EventInformation = ({ event }: { event: Event }) => (
-  <Box
-    sx={{
-      backgroundColor: "rgba(245, 245, 245, 0.85)",
-      p: 3,
-      borderRadius: 3,
-      boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
-      border: "1px solid rgba(0, 0, 0, 0.1)",
-      display: "flex",
-      flexDirection: "column",
-      gap: 2,
-    }}
-  >
-    <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: "1.3rem" }}>
-      Event Information
-    </Typography>
+const EventInformation = ({ event }: { event: Event }) => {
+  const isCancelled = event.status === "cancelled";
 
+  return (
     <Box
       sx={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        backgroundColor: "rgba(245, 245, 245, 0.85)",
+        p: 3,
+        borderRadius: 3,
+        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.15)",
+        border: "1px solid rgba(0, 0, 0, 0.1)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
       }}
     >
-      <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Date:</strong> {event.date}
-      </Typography>
-      <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Start Time:</strong> {event.start}
-      </Typography>
-      <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Distance:</strong> {event.distance}km
-      </Typography>
-      <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Time:</strong> {event.time}
-      </Typography>
-      <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Type:</strong> {event.type}
-      </Typography>
-      <Typography sx={{ fontSize: "1.1rem" }}>
-        <strong>Link: </strong>
-        <a href={event.link} target="_blank" rel="noopener noreferrer">
-          Website
-        </a>
-      </Typography>
-    </Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{ fontWeight: "bold", fontSize: "1.3rem" }}
+        >
+          Event Information
+        </Typography>
+        {isCancelled && (
+          <Chip
+            label="Cancelled"
+            sx={{
+              backgroundColor: "#ff9800",
+              color: "white",
+              fontWeight: 600,
+              fontSize: "0.85rem",
+            }}
+          />
+        )}
+      </Box>
 
-    <Box sx={{ mt: 2 }}>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-        {[
-          { label: "Exertion", value: event.ratings.exertion },
-          {
-            label: "Organisation",
-            value: event.ratings.event_organisation,
-          },
-          { label: "Location", value: event.ratings.location },
-          { label: "Enjoyment", value: event.ratings.enjoyment },
-        ].map(({ label, value }, idx) => (
-          <Box key={idx} sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography
-              sx={{ fontWeight: "bold", mb: 0.75, fontSize: "1.1rem" }}
-            >
-              {label}
-            </Typography>
-            <Rating rating={value} size="medium" />
-          </Box>
-        ))}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        }}
+      >
+        <Typography sx={{ fontSize: "1.1rem" }}>
+          <strong>Date:</strong> {event.date}
+        </Typography>
+        <Typography sx={{ fontSize: "1.1rem" }}>
+          <strong>Start Time:</strong> {event.start}
+        </Typography>
+        <Typography sx={{ fontSize: "1.1rem" }}>
+          <strong>Distance:</strong> {event.distance}km
+        </Typography>
+        {event.ascent && (
+          <Typography sx={{ fontSize: "1.1rem" }}>
+            <strong>Ascent:</strong> {event.ascent}m
+          </Typography>
+        )}
+        <Typography sx={{ fontSize: "1.1rem" }}>
+          <strong>Time:</strong> {event.time}
+        </Typography>
+        <Typography sx={{ fontSize: "1.1rem" }}>
+          <strong>Type:</strong> {event.type}
+        </Typography>
+        <Typography sx={{ fontSize: "1.1rem" }}>
+          <strong>Link: </strong>
+          <a href={event.link} target="_blank" rel="noopener noreferrer">
+            Website
+          </a>
+        </Typography>
       </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 const EventTags = ({ tags }: { tags: any }) => (
   <Box>

@@ -15,14 +15,12 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": ["Illness (CFS), had no training the entire year."],
-      "during": [
+      "race": [
+        "Illness (CFS), had no training the entire year.",
         "Run about 2/3 and walked about 1/3 of the distance.",
         "Low electrolyte intake caused cramping.",
         "Around 13 gels ~200kcal (~2600kcal) each and some with caffeine.",
-        "Barely finished in time."
-      ],
-      "post": [
+        "Barely finished in time.",
         "Feet blistered, barely walking, 1 month to recover just walking."
       ],
       "event": [
@@ -881,14 +879,7 @@
       [38.708633, -9.137753],
       [38.708816, -9.13696],
       [38.70786, -9.136601]
-    ],
-    "ratings": {
-      "exertion": 5.0,
-      "event_organisation": 3.8,
-      "location": 3.5,
-      "enjoyment": 2.5,
-      "travel": 3.0
-    }
+    ]
   },
   {
     "id": 2,
@@ -906,17 +897,13 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
-        "Had about 6 weeks training until health crashed for the next 6 weeks prior to event."
-      ],
-      "during": [
+      "race": [
+        "Had about 6 weeks training until health crashed for the next 6 weeks prior to event.",
         "Fueled every 45m: total 5 gels ~450kcal, 5 electrolyte sticks: sodium ~1200g, 250g potassium.",
         "Some preworkout before and during race.",
         "Increased electrolytes significantly helped performance.",
         "Run almost the entire distance, but slowly with some walking at the end.",
-        "Had about 2 oranges, 2 bananas from stations, and water with juice/soda was needed too."
-      ],
-      "post": [
+        "Had about 2 oranges, 2 bananas from stations, and water with juice/soda was needed too.",
         "Quick partial recovery, felt ok within 1 week but need more time.",
         "After 2 weeks I could probably attempt another event since no injuries this time but needed < 3 weeks."
       ],
@@ -1386,14 +1373,7 @@
       [43.5082383, 16.4368313],
       [43.5080442, 16.4375902],
       [43.5078232, 16.438112]
-    ],
-    "ratings": {
-      "exertion": 3.8,
-      "event_organisation": 3.5,
-      "location": 3.2,
-      "enjoyment": 3.6,
-      "travel": 3.0
-    }
+    ]
   },
   {
     "id": 3,
@@ -1411,24 +1391,22 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Mostly observed recovery from previous event so not much training, 1 1/2 marathon + misc.",
         "Carb loaded with low quality pasta and minced beef, avoid, was constipated during race because of this type of meat.",
         "Slept under 5h, felt heavy and unwell because of the meat but not sick, I knew the race would be difficult and sluggish.",
         "Had preworkout before race and in drink.",
         "Took sodium ~200g, potassium ~300g before race, added 1.5x to drink during race.",
-        "Got up at 04:30 like in Lisbon, I prefer starting at 09:00"
-      ],
-      "during": [
+        "Got up at 04:30 like in Lisbon, I prefer starting at 09:00",
         "Fueled every 45m, total 8 gels ~730kcal, 5 electrolyte sticks: sodium ~1200g, 250g potassium.",
         "Ate half a banana, half an orange during race, maybe 3 bottles of blue gatorade + water.",
         "It was hot and sunny so I got a little sunburnt. It drained my energy and I was really slow.",
         "Stopped to walk so many times and yet my time was faster than in Split, Croatia where I felt much better.",
         "All the gels and extra electrolytes helped but calves started to cramp a little after 31km.",
         "Wasted 10 minutes on 2 bathroom breaks so I could have been faster, also 2 minutes waiting after the start of the race.",
-        "Because of the heat I thought I wouldn't finish or have a much worse time."
+        "Because of the heat I thought I wouldn't finish or have a much worse time.",
+        "Feet have some blood blisters but I can walk after the race."
       ],
-      "post": ["Feet have some blood blisters but I can walk after the race."],
       "event": [
         "Sunny, cloudless, exposed route mostly in underdeveloped areas.",
         "Running some of the route by the ocean without much wind so the heat is pretty bad.",
@@ -1774,14 +1752,7 @@
       [34.6788572, 33.0516652],
       [34.6781735, 33.0518262],
       [34.6733736, 33.0462674]
-    ],
-    "ratings": {
-      "exertion": 3.5,
-      "event_organisation": 4.0,
-      "location": 2.0,
-      "enjoyment": 3.2,
-      "travel": 1.3
-    }
+    ]
   },
   {
     "id": 4,
@@ -1799,7 +1770,7 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "For the last 2 weeks I've focused on recovery so I didn't exercise at all (although I could).",
         "Haven't been sleeping well, taking naps during the day.",
         "Waking up multiple times per hour the night before event so didn't sleep much but I didn't feel obviously sleep deprived.",
@@ -1809,17 +1780,13 @@
         "Had preworkout before race and in drink.",
         "Took sodium ~200g, potassium ~300g before race, added same amount to drink for race.",
         "Will use sunscreen and anti-chafe, especially on feet.",
-        "Running to event was difficult enough (only 2km) - CFS."
-      ],
-      "during": [
+        "Running to event was difficult enough (only 2km) - CFS.",
         "Fueled every 45m, total 8 gels ~860kcal, 5 electrolyte sticks: sodium ~1200g, 250g potassium.",
         "Many half cups of isotonic liquid and maybe 1L of water.",
         "Didn't have the energy because of CFS and the sun was draining despite using sunscreen.",
         "Very slow running, waddling from side to side with a bunch of walking.",
         "Because of CFS and the sun I started taking breaks from 18km while usually I last till around 23-24km before I need to walk a bit.",
-        "Severly dehydrated despite drinking a lot. Started mild cramping around that time till the end."
-      ],
-      "post": [
+        "Severly dehydrated despite drinking a lot. Started mild cramping around that time till the end.",
         "Feet are a little blistered, not bad, product helped a little.",
         "Can waddle around slowly. Overall not too bad given the dehydration."
       ],
@@ -2187,14 +2154,7 @@
       [45.46373, 9.19275],
       [45.46374, 9.18858],
       [45.46423, 9.18856]
-    ],
-    "ratings": {
-      "exertion": 4.2,
-      "event_organisation": 2.8,
-      "location": 4.0,
-      "enjoyment": 3.8,
-      "travel": 3.5
-    }
+    ]
   },
   {
     "id": 5,
@@ -2212,14 +2172,12 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Lots of travel to get to the island, feel kinda meh.",
         "Kinda carb loading but with pancakes, jam, chocolate and biscuits, sodas, with a bit of regular spaghetti and meat.",
         "Will wear sunscreen and a light colored long sleeved t-shirt. I'm unsure about the material providing sun protection because of how thin it is.",
         "Using a new anti-chafe cream I randomly picked up at Decathlon.",
-        "Had some time to train so I run a few 10 milers and some high intensity intervals, hoping it helps."
-      ],
-      "during": [
+        "Had some time to train so I run a few 10 milers and some high intensity intervals, hoping it helps.",
         "Carb loaded a bit too much with simple sugars so I only consumed 5+1 gels.",
         "Felt like I may vomit because of the carbs for most of the run.",
         "Started fueling from 30m intervals and pushed it up to an hour or more to not vomit.",
@@ -2231,9 +2189,7 @@
         "Some parts were very easy and others were difficult and really sucked.",
         "First time using new watch and it gave me some trouble early on which really frustrated me but now I know what it does and how to use it there.",
         "Finished pretty strong, barely any stops for the last few miles after I got some water.",
-        "No issues with the bulky chip."
-      ],
-      "post": [
+        "No issues with the bulky chip.",
         "Training definitely helped. I ache but don't feel exhausted. Didn't need to sit down right after but if it wasn't so hot and sunny and there was a place to sit I may have done so.",
         "Almost no friction burns this time because of the cream. I was dehydrated which is when I've noticed it started to rub a bit but pretty good, just needed to stay hydrated.",
         "Feet are a little beaten up and there's minor swelling. Minor blood blisters under some toenails. A few days later I cut the nails and a blister by accident which got infected and I needed to take antibiotics for 1 week."
@@ -8893,14 +8849,7 @@
       [42.744606, 10.234074],
       [42.744646, 10.234072],
       [42.744683, 10.234069]
-    ],
-    "ratings": {
-      "exertion": 2.0,
-      "event_organisation": 2.5,
-      "location": 3.5,
-      "enjoyment": 4.2,
-      "travel": 0.5
-    }
+    ]
   },
   {
     "id": 6,
@@ -8918,13 +8867,11 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Not much time to train plus I was travelling so only did a handful or runs since the last event.",
         "Been on lots of antibiotics for a few weeks partially because of wisdom tooth removal, including 5 days before this event.",
         "Energy felt low for a couple weeks up until event. Excitement must have boosted my energy just before.",
-        "Did a mix of simple carb loading the day before (waffles with chocolate and jam, some biscuits with chocolate) and regular carb loading with pasta etc."
-      ],
-      "during": [
+        "Did a mix of simple carb loading the day before (waffles with chocolate and jam, some biscuits with chocolate) and regular carb loading with pasta etc.",
         "Standard fueling, 7 gels ~30m, 2x 500ml bottles with preworkout and electrolytes that I've been sipping every few minutes.",
         "Run out of my liquids in the last few miles but kept using aid stations throughout. I didn't feel like I needed/could take more liquid but towards the end I was slightly dehydrated and definitely needed it when I run out.",
         "First marathon that I run the whole way, no stops for walking except when zigzagging around people at the aid station for water.",
@@ -8932,9 +8879,7 @@
         "It was warm, I think around the same temperature as most other marathons but this had a little wind, lots of water sprinklers which I avoided and lots of shade from buildings so I wasn't burning in the direct sun the whole time. I didn't really feel that hot.",
         "24000 runners so lots of annoying zigzagging around walls of people.",
         "New running vest really helped with the water and fuel access.",
-        "Didn't really feel sick but a few times it felt like some water was coming up so I thought I shouldn't drink as much."
-      ],
-      "post": [
+        "Didn't really feel sick but a few times it felt like some water was coming up so I thought I shouldn't drink as much.",
         "Needed water, when I sat down later I had a massive calf cramp.",
         "No blisters or friction burns, just a bit sore, needed to sit down and rest.",
         "Walking around things are generally fine the day after but sleep has suffered immediately after."
@@ -12647,14 +12592,7 @@
       [59.344820236, 18.079049129],
       [59.344844979, 18.079086807],
       [59.345157818, 18.079503973]
-    ],
-    "ratings": {
-      "exertion": 3.7,
-      "event_organisation": 4.0,
-      "location": 4.5,
-      "enjoyment": 4.2,
-      "travel": 4.0
-    }
+    ]
   },
   {
     "id": 7,
@@ -12672,13 +12610,11 @@
     },
     "type": "Ultra Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Training volume has increased to a peak of < 40 miles per week.",
         "Trained on inclines.",
         "Mix of simple and complex sugars (carbs) before event, no nausea.",
-        "Used carb mix (20g iirc) in liquids with electrolytes and preworkout."
-      ],
-      "during": [
+        "Used carb mix (20g iirc) in liquids with electrolytes and preworkout.",
         "First half was relatively easy and fun but some parts were very hilly.",
         "Second half was almost entirely up mountains, it was very steep for a long time, repeatedly.",
         "Altitude wasn't really an issue at this level since my HR was lower than expected but I couldn't run up the hills for long.",
@@ -12691,9 +12627,7 @@
         "At the ultra I was barely walking, low energy and tired but I never stopped despite the mountains.",
         "On a few occasions I could have fallen down the mountain, with the amount of rocks and incline that could have been death.",
         "The sun was burning, I have pretty bad sunburn in areas I've not applied sunscreen. The heat itself was manageable.",
-        "About 1/6 did not finish the ultra and 1/5 the marathon."
-      ],
-      "post": [
+        "About 1/6 did not finish the ultra and 1/5 the marathon.",
         "No friction burns and only minor blisters, almost none.",
         "Felt fine, a few days rest and I'll be back to training."
       ],
@@ -18830,14 +18764,7 @@
       [45.983377325115725, 7.782673154491931],
       [45.98335265996866, 7.782796875108033],
       [45.98332433728501, 7.782939927652478]
-    ],
-    "ratings": {
-      "exertion": 3.0,
-      "event_organisation": 4.0,
-      "location": 4.0,
-      "enjoyment": 4.8,
-      "travel": 2.0
-    }
+    ]
   },
   {
     "id": 8,
@@ -18855,22 +18782,18 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Run 100 miles in 1 week as a challange and been training for pace more than distance closer to the event.",
         "It's been hot so it's been difficult to run even in the gym at the treadmill.",
         "It's windy and coldish in Iceland so after travelling I crashed and slept well for the first time in as far as I remember.",
         "Pre-race sleep was back to meh as usual.",
-        "Stomach was a bit off and I felt slightly above average, I didn't feel like I really had the energy to run hard."
-      ],
-      "during": [
+        "Stomach was a bit off and I felt slightly above average, I didn't feel like I really had the energy to run hard.",
         "A bit cold but really windy. It was difficult to run against the wind at times it was so strong.",
         "Took 6 40g carb gels and felt fine. Was a bit hungry before and at the start despite stuffing myself with carbs before.",
         "Since it was windy and cool I didn't drink much but I was aware of it so I kept trying to take sips of electrolytes to prevent fatigue and cramps.",
         "Maintained a decent pace up to around mile 20 where I slightly slowed because of cramp worries and muscle fatigue (need to run more).",
         "Usually I start to drop off around 14-16 miles so gels and training helped.",
-        "If it wasn't for the borderline cramping I would have pushed a bit harder, my heart rate was surprisingly low for most of it so I could have pushed more."
-      ],
-      "post": [
+        "If it wasn't for the borderline cramping I would have pushed a bit harder, my heart rate was surprisingly low for most of it so I could have pushed more.",
         "Generally fine, bit tired, knees a bit questionable but seem fine.",
         "Walked a bunch of miles after getting food and shopping a bit so I'm ok.",
         "I wasn't really clothed appropriately especially towards the end when it started to rain a bit so I was cold and I'm anticipating a cold and decreased everything over the next few weeks but we'll see."
@@ -18888,14 +18811,7 @@
         "Salt pills crumble and make a bit of a mess, maybe bring extra or different product."
       ]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 1.8,
-      "event_organisation": 2.5,
-      "location": 2.5,
-      "enjoyment": 3.2,
-      "travel": 2.5
-    }
+    "route": []
   },
   {
     "id": 9,
@@ -18913,18 +18829,14 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Not many workouts since Iceland, mostly recovering.",
-        "Did not get sick at all but despite not feeling particularly weakened I was not sufficiently recovered to run the event."
-      ],
-      "during": [
+        "Did not get sick at all but despite not feeling particularly weakened I was not sufficiently recovered to run the event.",
         "From the start my legs felt overworked and heart rate shot right up.",
         "Body was disregulated. Started at a faster Iceland pace and felt natural except the legs and heart, quickly slowed after that.",
         "Bit of contrasting weather, clear skies weren't hot but running in shaded woodlands dropped the temp drastically. Running in sweaty clothes with cold winds is unpleasant.",
         "Hills were very difficult in some sections, lots of walking there.",
-        "Fueling was fine but was cramping at times and ended up walking a lot of the event because muscle fibers in legs were overworked. I was not ready since the PB in Iceland."
-      ],
-      "post": [
+        "Fueling was fine but was cramping at times and ended up walking a lot of the event because muscle fibers in legs were overworked. I was not ready since the PB in Iceland.",
         "Waddling along, not so much tired but seriously overworked, fortunately did not get injured."
       ],
       "event": [
@@ -18941,14 +18853,7 @@
         "I must run more consistently to adapt otherwise I will keep cramping and feeling overworked -> slow down."
       ]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 4.2,
-      "event_organisation": 4.8,
-      "location": 4.2,
-      "enjoyment": 4.0,
-      "travel": 2.5
-    }
+    "route": []
   },
   {
     "id": 10,
@@ -18966,22 +18871,18 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
-        "Lots of running before and took a week break, felt like I haven't recovered enough.",
+      "race": [
+        "Overtrained and didn't feel recovered with a 1 week break before event.",
         "Ate more than normal but wasn't properly carb loading. Should have ate a lot more carbs.",
         "Wanted to PB so was nervous and a bit excited for the first time in forever.",
-        "Stomach wasn't ideal but had no issues during the event."
-      ],
-      "during": [
+        "Stomach wasn't ideal but had no issues during the event.",
         "Running faster than usual marathon pace so given insufficient carb loading and recovery even the half way point was more difficult than normal.",
         "Last 10 miles were a grind, especially the last few when I slowed down.",
         "Averaged ~120g of carbs/gels per hour which is significantly more than I've taken.",
         "Literally couldn't keep taking gels towards the end, had to run holding half a gel and finish it a bit later.",
         "Didn't take in enough water so minor cramping in left knee.",
-        "Venice islands were a bit flooded, ankle deep which wasn't pleasant."
-      ],
-      "post": [
-        "Walking was difficult. No blisters or foot issues. Quads and upper thighs are still sore 3 days later.",
+        "Venice islands were a bit flooded, ankle deep which wasn't pleasant.",
+        "Walking was difficult after. No blisters or foot issues. Quads and upper thighs are still sore 3 days later.",
         "Wasn't really hungry or thirsty which is a bit weird but given the number of gels it's understandable.",
         "Some friction burn around groin."
       ],
@@ -18995,14 +18896,7 @@
         "Running more helped but needed more time/gadgets to recover."
       ]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 3.8,
-      "event_organisation": 3.0,
-      "location": 2.0,
-      "enjoyment": 2.0,
-      "travel": 3.5
-    }
+    "route": []
   },
   {
     "id": 11,
@@ -19020,26 +18914,12 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
-        "No training for 2 weeks since Venice except 1 sloppy boxing session.",
-        "In the second week I started to feel a little recovered.",
-        "Been comfort eating too so got a bit fatter.",
+      "race": [
+        "No training for 2 weeks since Venice.",
+        "Been comfort eating so got a bit fatter.",
         "Carb loaded on potatoes only and some confectionaries.",
-        "Day of run I felt pretty good.",
-        "Felt bloated and hoped it would pass."
-      ],
-      "during": [
-        "Had to cross over ropes to get to starting locations, strained left leg and hoped it wouldn't be a problem.",
-        "Started fine for a few miles but limp got worse and limp/run for maybe 20 miles, significantly slower than desired.",
-        "Was extremely bloated and had to make a bathroom stop. Was considering making many stops after that because of extreme bloating, felt pregnant.",
-        "It started cold and wet and got sunnier than I thought but not terrible with sunscreen.",
-        "Struggled taking gels likely because of bloating and for the last hour or more I had to stop taking them.",
-        "Was trying to go slow enough to not cause an injury from the very visible limp and to not excrete in any way.",
-        "No cramps at all and walked a bit here and there since I was expecting a slower event than Venice but not this slow. Just enjoyed the vibes instead."
-      ],
-      "post": [
-        "Moving pretty well right after the finish line and onward.",
-        "Not recovered by fastest recovery ever, same day felt like I could start running a bit."
+        "Injured leg crossing into start line but after a few miles I was limp/running for ~20 miles (slowly)",
+        "Felt pretty good at first but bloating caused a bathroom break with thoughts of many more, struggled taking gels and took none for the last hour."
       ],
       "event": [
         "Except that stupid rope we had to step over and the couple hundred meters to find the medal it was well organised.",
@@ -19051,14 +18931,7 @@
         "First few miles had decent pace so without bloating, leg, and 2 weeks of no training I think I could have had a chance to PB again especially given my recovery time."
       ]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 3.5,
-      "event_organisation": 4.0,
-      "location": 4.0,
-      "enjoyment": 4.0,
-      "travel": 4.0
-    }
+    "route": []
   },
   {
     "id": 12,
@@ -19076,18 +18949,12 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
+      "race": [
         "Only a few training sessions since Nice because of travel.",
-        "Ate a little more than normal but this time mainly lasagna and a bit of pizza.",
-        "Zero digestion issues, amazing, usually I feel bloated and need to use the bathroom but felt light and empty-ish this time.",
-        "Zero degree weather, bit cold but when you're surrounded by people you feel the body heat and it's fine."
-      ],
-      "during": [
-        "Wasn't expecting much given travel but another 10 miles on pace and then started to slow down because of lack of training.",
-        "Had to zone out and focus on running most of the time because of lack of training - felt more difficult than I'd like but fine overall."
-      ],
-      "post": [
-        "No issues until getting up after a restaurant meal post run and suddenly leg felt injured in the same place that I pulled in Nice. After a while it went away.",
+        "Carb loading on lasagna + pizza = no GI issues.",
+        "Zero degree weather but not much wind.",
+        "10 miles on pace and then started to slow down because of lack of training - felt more difficult than I'd like but fine overall.",
+        "Strange temporary post-race-meal leg injury that went away later.",
         "Could walk and run a bit later in the day, run 10 miles slightly under marathon pace 2 days later which ended up being too much and exhausting for a few days.",
         "Malaise and naps for the next week."
       ],
@@ -19096,14 +18963,7 @@
       ],
       "takeaways": ["Need to train more."]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 3.5,
-      "event_organisation": 4.0,
-      "location": 3.0,
-      "enjoyment": 3.0,
-      "travel": 4.0
-    }
+    "route": []
   },
   {
     "id": 13,
@@ -19121,16 +18981,10 @@
     },
     "type": "Marathon",
     "notes": {
-      "pre": [
-        "Messed up meds a few weeks ago still having an impact.",
-        "Only a few training sessions since the Florence.",
-        "Woke up depleted, empty without energy expecting a bad run."
-      ],
-      "during": [
-        "From first mile was already 1m slower per mile and it only got worse."
-      ],
-      "post": [
-        "Walking fine after a small break, aching a bit day after but everything is fine."
+      "race": [
+        "Messed up meds a few weeks ago still having an impact so barely any training since Florence.",
+        "Woke up depleted, empty without energy expecting a bad run.",
+        "1 minute slower per mile and it got worse."
       ],
       "event": [
         "Decent organisation, mainly using bottles of water instead of cups.",
@@ -19139,14 +18993,7 @@
       ],
       "takeaways": ["Need to train more."]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 0.0,
-      "event_organisation": 0.0,
-      "location": 0.0,
-      "enjoyment": 0.0,
-      "travel": 0.0
-    }
+    "route": []
   },
   {
     "id": 14,
@@ -19165,20 +19012,11 @@
     },
     "type": "Ultra Marathon",
     "notes": {
-      "pre": [
-        "Disrupted sleep like usual before events but didn't really feel it.",
-        "Sinus issues before during and after the event."
-      ],
-      "during": [
-        "Freezing with strong winds, keep moving or within minutes - seconds of stillness you'll start to shake/shiver aggressively (lack of fuel).",
-        "Guessing first 10-15 miles were okay and mostly running but after that I struggled to fuel because of bloating and stomach issues.",
-        "Rest of the race was trying not to defecate on myself, or in the woods (had to twice), and keep moving.",
-        "Lack of fuel and stomach issues resulted in hiking/walking like 20 miles, basically rest of event.",
-        "Wasn't paying attention and went off course many times, at the end it turned out I did an extra 3km and 100m of vert by accident.."
-      ],
-      "post": [
-        "Dangerously shivering after leaving cafe at night and walking back.",
-        "No issues otherwise, recovery keeps improving."
+      "race": [
+        "Bad sleep, sinus and GI issues because of protein bars during event.",
+        "Unable to fuel because of GI, had 2 emergency stops in the woods and so was only able to hike most of the event.",
+        "Went off course many times - extra 3km + 100m ascent.",
+        "Strong freezing winds - dangerously shivered after event when trying to return."
       ],
       "event": [
         "Highly technical at times, gotta be careful, otherwise can run most of it except the steep mountains.",
@@ -19193,13 +19031,46 @@
         "Friction cream was surprisingly good for like 10 miles at a time but likely because of weather, need to try other products."
       ]
     },
-    "route": [],
-    "ratings": {
-      "exertion": 0.0,
-      "event_organisation": 0.0,
-      "location": 0.0,
-      "enjoyment": 0.0,
-      "travel": 0.0
-    }
+    "route": []
+  },
+  {
+    "id": 15,
+    "date": "2026-01-24",
+    "start": "09:00",
+    "location": { "lat": 38.6977691, "lng": -0.4779708 },
+    "name": "IV UltraMediterrània",
+    "distance": "27",
+    "ascent": "1550",
+    "time": "04:30",
+    "link": "https://ultramediterrania.com/",
+    "status": "cancelled",
+    "tags": {
+      "date": ["2026", "Q1"],
+      "region": ["Europe", "Spain", "Alcoy"],
+      "type": ["Ultra Marathon"]
+    },
+    "type": "Ultra Marathon",
+    "notes": {
+      "race": [
+        "Took ~80g/h of gels/carbs and at the halfway point I felt a little underfueled.",
+        "Cramped towards the halfway point because of insufficient liquid/electrolyte intake.",
+        "After a 10+ minute aid station stop/prep at the halfway point I felt ready to finsh the 2nd half.",
+        "No digestive issues when only taking gels."
+      ],
+      "event": [
+        "Very well organised.",
+        "First kit check for everyone at the start.",
+        "Nice routes, some of the climbs/drops required you to stop and use hands and feet with volunteers helping you for safety.",
+        "Overall not very technical but don't slip and fall down the mountain to almost certain death",
+        "All events were cancelled partway due to intense winds in the mountains and fire risks."
+      ],
+      "takeaways": [
+        "80g/h is okay but either need to take an extra gel every ~4h or increase per hour intake.",
+        "Gotta come back for a longer distance than 51km.",
+        "Alicante airport -> bus to main bus station -> 2h bus to Alcoy, infrequent buses so pain to travel to but nice towns.",
+        "Vaseline was good but needed to reapply at the halfway point aid station, should have done it earlier to reduce the few small blisters."
+      ]
+    },
+    "route": []
   }
 ]

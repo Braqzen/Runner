@@ -3,22 +3,13 @@
     "marathon": [],
     "ultra-marathon": [
       {
-        "date": "23/01/26",
-        "location": "Alcoy, Spain",
-        "name": "IV UltraMediterrània",
-        "link": "https://ultramediterrania.com/",
-        "distance": "51",
-        "time": "13",
-        "gain": "2300"
-      },
-      {
         "date": "14/02/26",
         "location": "Marbella, Spain",
         "name": "Sierra Blanca - Destroyer",
         "link": "https://en.cxmsierrablanca.com/destroyer",
         "distance": "43",
         "time": "10",
-        "gain": "2800"
+        "gain": "2700"
       },
       {
         "date": "08/03/26",
@@ -27,7 +18,7 @@
         "link": "https://galatzotrail.com/en/",
         "distance": "43",
         "time": "9.5",
-        "gain": "4470"
+        "gain": "2250"
       },
       {
         "date": "28/03/26",
@@ -37,15 +28,6 @@
         "distance": "62.5",
         "time": "17",
         "gain": "4060"
-      },
-      {
-        "date": "25/04/26",
-        "location": "Ajdovščina, Slovenia",
-        "name": "Ultra Trail Vipava Valley",
-        "link": "https://ultratrail.si/",
-        "distance": "64",
-        "time": "16",
-        "gain": "2400"
       }
     ]
   },
