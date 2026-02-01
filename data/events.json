@@ -2163,6 +2163,7 @@
     "location": { "lat": 42.7487541, "lng": 10.2130912 },
     "name": "Maratona dell'Isola d'Elba",
     "distance": "42.2",
+    "ascent": "578",
     "time": "04:43",
     "link": "https://www.maratonadellisoladelba.it/",
     "tags": {
@@ -8858,6 +8859,7 @@
     "location": { "lat": 59.324733, "lng": 18.071206 },
     "name": "adidas Stockholm Marathon",
     "distance": "42.2",
+    "ascent": "223",
     "time": "04:09",
     "link": "https://www.stockholmmarathon.se/eng/",
     "tags": {
@@ -12601,6 +12603,7 @@
     "location": { "lat": 46.0210004, "lng": 7.7474204 },
     "name": "Gornegrat Zermatt Marathon",
     "distance": "45.3",
+    "ascent": "2447",
     "time": "06:54",
     "link": "https://www.zermattmarathon.ch/en/index.html",
     "tags": {
@@ -18773,6 +18776,7 @@
     "location": { "lat": 64.133522, "lng": -21.8936414 },
     "name": "Islandsbanki Reykjavik Marathon",
     "distance": "42.2",
+    "ascent": "251",
     "time": "03:44",
     "link": "https://www.rmi.is/en",
     "tags": {
@@ -18820,6 +18824,7 @@
     "location": { "lat": 46.6845585, "lng": 7.8533601 },
     "name": "Jungfrau-Marathon",
     "distance": "42.2",
+    "ascent": "1993",
     "time": "05:56",
     "link": "https://www.jungfrau-marathon.ch/en/marathon.html",
     "tags": {
@@ -18857,11 +18862,45 @@
   },
   {
     "id": 10,
+    "date": "2025-09-27",
+    "start": "07:00",
+    "location": { "lat": 45.9219778, "lng": 8.5520909 },
+    "name": "Ultra Trail Lake Maggiore",
+    "distance": "12",
+    "ascent": "620",
+    "time": "02:00",
+    "link": "https://utlm.it/en/",
+    "status": "cancelled",
+    "tags": {
+      "date": ["2025", "Q3"],
+      "region": ["Europe", "Italy", "Verbania"],
+      "type": ["Ultra Marathon"]
+    },
+    "type": "Ultra Marathon",
+    "notes": {
+      "race": [
+        "Everything was humid and wet from the start line, running in shin deep water through flooded paths with large vertical falls right next to you.",
+        "Mountains were flooded so you could literally sit and slide down long sections - or slip."
+      ],
+      "event": [
+        "Thunderstorm for days before event caused the route to be altered and then during the race the remaining route would have taken us through a path that was shin deep in water but the storm made it neck high therefore it was too dangerous to cross and the event was cancelled.",
+        "Had to return by foot down the mountain through unmarked paths for many kilometers which was easy to get lost.",
+        "They expected weather conditions to change but were unprepared, overall bad organisation.",
+        "4 months after the event I still haven't received any email for a coupon code to sign up for the next event and it looks like some updates have been made on the site for next year.",
+        "Highly mountainous but not technical at least the start."
+      ],
+      "takeaways": []
+    },
+    "route": []
+  },
+  {
+    "id": 11,
     "date": "2025-10-26",
     "start": "09:50",
     "location": { "lat": 45.4046658, "lng": 12.2225298 },
     "name": "Wizz Air Venicemarathon",
     "distance": "42.2",
+    "ascent": "66",
     "time": "03:35",
     "link": "https://www.venicemarathon.it/en",
     "tags": {
@@ -18899,12 +18938,13 @@
     "route": []
   },
   {
-    "id": 11,
+    "id": 12,
     "date": "2025-11-09",
     "start": "08:30",
     "location": { "lat": 43.7032499, "lng": 7.2116127 },
     "name": "French Riviera Marathon Nice-Cannes",
     "distance": "42.2",
+    "ascent": "116",
     "time": "04:27",
     "link": "https://www.marathon06.com/2025/AN/",
     "tags": {
@@ -18934,12 +18974,13 @@
     "route": []
   },
   {
-    "id": 12,
+    "id": 13,
     "date": "2025-11-30",
     "start": "08:30",
     "location": { "lat": 43.7800127, "lng": 11.1997686 },
     "name": "Florence Marathon",
     "distance": "42.2",
+    "ascent": "93",
     "time": "03:52",
     "link": "https://www.firenzemarathon.it/en/marathon/",
     "tags": {
@@ -18966,12 +19007,13 @@
     "route": []
   },
   {
-    "id": 13,
+    "id": 14,
     "date": "2025-12-14",
     "start": "08:30",
     "location": { "lat": 36.7182837, "lng": -4.4904662 },
     "name": "GENERALI Málaga Marathon",
     "distance": "42.2",
+    "ascent": "137",
     "time": "04:17",
     "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/",
     "tags": {
@@ -18996,13 +19038,13 @@
     "route": []
   },
   {
-    "id": 14,
+    "id": 15,
     "date": "2026-01-04",
     "start": "07:00",
     "location": { "lat": 45.7632561, "lng": 13.6373864 },
     "name": "S1 TransKarst Ultra",
     "distance": "62",
-    "ascent": "2000",
+    "ascent": "2015",
     "time": "13:09",
     "link": "https://www.s1trail.com/en/s1-trail/",
     "tags": {
@@ -19034,13 +19076,13 @@
     "route": []
   },
   {
-    "id": 15,
+    "id": 16,
     "date": "2026-01-24",
     "start": "09:00",
     "location": { "lat": 38.6977691, "lng": -0.4779708 },
     "name": "IV UltraMediterrània",
     "distance": "27",
-    "ascent": "1550",
+    "ascent": "1555",
     "time": "04:30",
     "link": "https://ultramediterrania.com/",
     "status": "cancelled",
