@@ -7,6 +7,7 @@
     "name": "EDP Lisbon Marathon",
     "distance": "42.2",
     "time": "05:37",
+    "time_limit": "06:00",
     "link": "https://www.running-portugal.com/lisbon/marathon/en/home.html",
     "tags": {
       "date": ["2024", "Q4"],
@@ -889,6 +890,7 @@
     "name": "Split Marathon",
     "distance": "42.2",
     "time": "04:31",
+    "time_limit": "06:00",
     "link": "https://splitmarathon.com/marathon/?lang=en",
     "tags": {
       "date": ["2025", "Q1"],
@@ -1383,6 +1385,7 @@
     "name": "OPAP Limassol Marathon",
     "distance": "42.2",
     "time": "04:24",
+    "time_limit": "06:00",
     "link": "https://www.limassolmarathon.com/index.php",
     "tags": {
       "date": ["2025", "Q1"],
@@ -1762,6 +1765,7 @@
     "name": "Wizz Air Milano Marathon",
     "distance": "42.2",
     "time": "04:52",
+    "time_limit": "06:30",
     "link": "https://www.milanomarathon.it/en/marathon/",
     "tags": {
       "date": ["2025", "Q2"],
@@ -2165,6 +2169,9 @@
     "distance": "42.2",
     "ascent": "578",
     "time": "04:43",
+    "time_limit": "06:00",
+    "average_hr": "160",
+    "max_hr": "178",
     "link": "https://www.maratonadellisoladelba.it/",
     "tags": {
       "date": ["2025", "Q2"],
@@ -8861,6 +8868,9 @@
     "distance": "42.2",
     "ascent": "223",
     "time": "04:09",
+    "time_limit": "06:30",
+    "average_hr": "168",
+    "max_hr": "182",
     "link": "https://www.stockholmmarathon.se/eng/",
     "tags": {
       "date": ["2025", "Q2"],
@@ -12605,6 +12615,9 @@
     "distance": "45.3",
     "ascent": "2447",
     "time": "06:54",
+    "time_limit": "07:50",
+    "average_hr": "158",
+    "max_hr": "175",
     "link": "https://www.zermattmarathon.ch/en/index.html",
     "tags": {
       "date": ["2025", "Q3"],
@@ -18778,6 +18791,9 @@
     "distance": "42.2",
     "ascent": "251",
     "time": "03:44",
+    "time_limit": "06:30",
+    "average_hr": "162",
+    "max_hr": "178",
     "link": "https://www.rmi.is/en",
     "tags": {
       "date": ["2025", "Q3"],
@@ -18826,6 +18842,9 @@
     "distance": "42.2",
     "ascent": "1993",
     "time": "05:56",
+    "time_limit": "07:30",
+    "average_hr": "160",
+    "max_hr": "187",
     "link": "https://www.jungfrau-marathon.ch/en/marathon.html",
     "tags": {
       "date": ["2025", "Q3"],
@@ -18869,6 +18888,9 @@
     "distance": "12",
     "ascent": "620",
     "time": "02:00",
+    "time_limit": "17:00",
+    "average_hr": "155",
+    "max_hr": "171",
     "link": "https://utlm.it/en/",
     "status": "cancelled",
     "tags": {
@@ -18902,6 +18924,9 @@
     "distance": "42.2",
     "ascent": "66",
     "time": "03:35",
+    "time_limit": "06:00",
+    "average_hr": "165",
+    "max_hr": "180",
     "link": "https://www.venicemarathon.it/en",
     "tags": {
       "date": ["2025", "Q4"],
@@ -18931,9 +18956,7 @@
         "Stations used water bottles which is great because you can take it and fill up your bottles with electrolytes as you run.",
         "Start zones were weird, slower pacers started way to far into the middle creating walls and somehow my zone was behind them when I was much faster."
       ],
-      "takeaways": [
-        "Running more helped but needed more time/gadgets to recover."
-      ]
+      "takeaways": ["Running more helped but needed more time/gadgets to recover."]
     },
     "route": []
   },
@@ -18946,6 +18969,9 @@
     "distance": "42.2",
     "ascent": "116",
     "time": "04:27",
+    "time_limit": "06:00",
+    "average_hr": "160",
+    "max_hr": "180",
     "link": "https://www.marathon06.com/2025/AN/",
     "tags": {
       "date": ["2025", "Q4"],
@@ -18982,6 +19008,9 @@
     "distance": "42.2",
     "ascent": "93",
     "time": "03:52",
+    "time_limit": "06:00",
+    "average_hr": "167",
+    "max_hr": "184",
     "link": "https://www.firenzemarathon.it/en/marathon/",
     "tags": {
       "date": ["2025", "Q4"],
@@ -19015,6 +19044,9 @@
     "distance": "42.2",
     "ascent": "137",
     "time": "04:17",
+    "time_limit": "05:30",
+    "average_hr": "161",
+    "max_hr": "178",
     "link": "https://www.generalimaratonmalaga.com/marathon-malaga-en/",
     "tags": {
       "date": ["2025", "Q4"],
@@ -19046,6 +19078,9 @@
     "distance": "62",
     "ascent": "2015",
     "time": "13:09",
+    "time_limit": "15:00",
+    "average_hr": "139",
+    "max_hr": "177",
     "link": "https://www.s1trail.com/en/s1-trail/",
     "tags": {
       "date": ["2026", "Q1"],
@@ -19084,6 +19119,9 @@
     "distance": "27",
     "ascent": "1555",
     "time": "04:30",
+    "time_limit": "12:50",
+    "average_hr": "153",
+    "max_hr": "184",
     "link": "https://ultramediterrania.com/",
     "status": "cancelled",
     "tags": {

@@ -12,6 +12,9 @@
  * @property {string} distance - The planned distance of the event.
  * @property {string} ascent - The ascent of the event.
  * @property {string} time - The time taken to finish the event.
+ * @property {string} time_limit - The cutoff time limit for the event.
+ * @property {string} average_hr - Average heart rate during the event.
+ * @property {string} max_hr - Maximum heart rate during the event.
  * @property {string} link - URL to event website.
  * @property {Tags} tags - An array of tags used to filter events.
  * @property {string} type - The category event.
@@ -31,6 +34,9 @@ export interface Event {
   distance: string;
   ascent?: string;
   time: string;
+  time_limit?: string;
+  average_hr?: string;
+  max_hr?: string;
   link: string;
   tags: Tags;
   type: string;

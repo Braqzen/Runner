@@ -124,29 +124,29 @@ const EventTableHead = ({
   </TableHead>
 );
 
-const calculateEffort = (event: Event): number => {
+const parseTimeToHours = (timeStr: string): number => {
+  if (!timeStr) return 0;
+  const parts = timeStr.trim().split(":").map((p) => p.trim());
+  if (parts.length === 2) {
+    const [hours, minutes] = parts.map(Number);
+    return hours + minutes / 60;
+  } else if (parts.length === 3) {
+    const [hours, minutes, seconds] = parts.map(Number);
+    return hours + minutes / 60 + seconds / 3600;
+  }
+  return 0;
+};
+
+const calculateEffort = (event: Event): number | null => {
   const distance = parseFloat(event.distance) || 0;
   const ascent = event.ascent ? parseFloat(event.ascent) : 0;
-
-  const parseTimeToHours = (timeStr: string): number => {
-    const parts = timeStr
-      .trim()
-      .split(":")
-      .map((p) => p.trim());
-    if (parts.length === 2) {
-      const [hours, minutes] = parts.map(Number);
-      return hours + minutes / 60;
-    } else if (parts.length === 3) {
-      const [hours, minutes, seconds] = parts.map(Number);
-      return hours + minutes / 60 + seconds / 3600;
-    }
-    return 0;
-  };
-
   const timeHours = parseTimeToHours(event.time);
-  if (timeHours === 0) return 0;
-
-  const effort = (distance + ascent / 100) / timeHours;
+  if (timeHours === 0) return null;
+  const baseEffort = (distance + ascent / 100) / timeHours;
+  const avgHr = event.average_hr ? parseFloat(event.average_hr) : null;
+  const maxHr = event.max_hr ? parseFloat(event.max_hr) : null;
+  if (avgHr === null || maxHr === null || maxHr === 0) return null;
+  const effort = baseEffort * (avgHr / maxHr);
   return Math.round(effort * 100) / 100;
 };
 
@@ -175,7 +175,9 @@ const EventTableRow = ({ event }: { event: Event }) => {
       <TableCell sx={{ fontSize: "0.9rem" }}>
         {event.ascent ? `${event.ascent}m` : ""}
       </TableCell>
-      <TableCell sx={{ fontSize: "0.9rem" }}>{effort.toFixed(2)}</TableCell>
+      <TableCell sx={{ fontSize: "0.9rem" }}>
+        {effort !== null ? effort.toFixed(2) : ""}
+      </TableCell>
       <TableCell sx={{ fontSize: "0.9rem" }}>{event.time}</TableCell>
       <TableCell sx={{ fontSize: "0.9rem" }}>
         {isCancelled && (
