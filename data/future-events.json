@@ -3,15 +3,6 @@
     "marathon": [],
     "ultra-marathon": [
       {
-        "date": "14/02/26",
-        "location": "Marbella, Spain",
-        "name": "Sierra Blanca - Destroyer",
-        "link": "https://en.cxmsierrablanca.com/destroyer",
-        "distance": "43",
-        "time": "10",
-        "gain": "2700"
-      },
-      {
         "date": "08/03/26",
         "location": "Galatzó, Spain",
         "name": "Galatzó Trail",

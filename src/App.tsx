@@ -14,10 +14,8 @@ function App() {
   const [selectedTile, setSelectedTile] = useState<TileLayerOption>(() => {
     try {
       const savedTile = localStorage.getItem("selectedTile");
-      return savedTile
-        ? (JSON.parse(savedTile) as TileLayerOption)
-        : tileOptions[0];
-    } catch (error) {
+      return savedTile ? (JSON.parse(savedTile) as TileLayerOption) : tileOptions[0];
+    } catch (_error) {
       return tileOptions[0];
     }
   });
@@ -95,13 +93,7 @@ function App() {
         setOpenNotes={setOpenNotes}
       />
 
-      {notes && (
-        <NotesDialog
-          open={openNotes}
-          event={notes}
-          onClose={() => setOpenNotes(false)}
-        />
-      )}
+      {notes && <NotesDialog open={openNotes} event={notes} onClose={() => setOpenNotes(false)} />}
     </div>
   );
 }

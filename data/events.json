@@ -19152,5 +19152,43 @@
       ]
     },
     "route": []
+  },
+  {
+    "id": 17,
+    "date": "2026-02-14",
+    "start": "08:00",
+    "location": { "lat": 36.5008438, "lng": -4.9061914 },
+    "name": "Sierra Blanca Destroyer",
+    "distance": "42.2",
+    "ascent": "2850",
+    "time": "09:10",
+    "time_limit": "10:00",
+    "average_hr": "154",
+    "max_hr": "185",
+    "link": "https://en.cxmsierrablanca.com/destroyer",
+    "tags": {
+      "date": ["2026", "Q1"],
+      "region": ["Europe", "Spain", "Marbella"],
+      "type": ["Marathon"]
+    },
+    "type": "Marathon",
+    "notes": {
+      "race": [
+        "Carb gels only and no GI issues but did underfuel and cramped a bunch.",
+        "Some sections were extremely steep and even had chains and bars bolted into the mountain to climb with all hands and feet.",
+        "Very technical and rocky at times.",
+        "One section was so steep it took me around 35 minutes to do a single kilometer. There were a few sections like this but not as bad.",
+        "Wasn't marked well in a few sections so I went off course, as did a few others around me.",
+        "One off course section was so bad I fell and luckily my pole got stuck in the ground and bent instead of me falling into that brush."
+      ],
+      "event": [
+        "Some markings can be improved a lot.",
+        "Portable aid stations were okay.",
+        "Mostly away from the public so pretty quiet.",
+        "Overall very technical at times and mountainous specifically for this shorter distance it feels brutal and like you've done much more."
+      ],
+      "takeaways": ["Always underfueling and likely need more electrolytes to stop cramping."]
+    },
+    "route": []
   }
 ]
