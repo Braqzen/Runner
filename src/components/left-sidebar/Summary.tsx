@@ -42,7 +42,10 @@ const SummaryDialog = ({ open, events, onClose }: Props) => {
 
 const parseTimeToHours = (timeStr: string): number => {
   if (!timeStr) return 0;
-  const parts = timeStr.trim().split(":").map((p) => p.trim());
+  const parts = timeStr
+    .trim()
+    .split(":")
+    .map((p) => p.trim());
   if (parts.length === 2) {
     const [hours, minutes] = parts.map(Number);
     return hours + minutes / 60;
@@ -74,8 +77,7 @@ const parseDurationToSeconds = (value: string): number | null => {
 const r2 = (v: number): number => Math.round(v * 100) / 100;
 
 const getDa = (event: Event): number =>
-  (parseFloat(event.distance) || 0) +
-  (event.ascent ? parseFloat(event.ascent) / 100 : 0);
+  (parseFloat(event.distance) || 0) + (event.ascent ? parseFloat(event.ascent) / 100 : 0);
 
 const getHrRatio = (event: Event): number | null => {
   const avg = event.average_hr ? parseFloat(event.average_hr) : null;
@@ -112,19 +114,6 @@ const calcActualNormalized = (event: Event): number | null => {
   return r2(t / w);
 };
 
-const calcPhysiologicalIntensity = (event: Event): number | null => {
-  const ratio = getHrRatio(event);
-  if (ratio === null) return null;
-  return r2(ratio);
-};
-
-const calcCardiacLoad = (event: Event): number | null => {
-  const t = parseTimeToHours(event.time);
-  const ratio = getHrRatio(event);
-  if (t === 0 || ratio === null) return null;
-  return r2(t * ratio);
-};
-
 const calcRelativeCardiacLoad = (event: Event): number | null => {
   const t = parseTimeToHours(event.time);
   const tl = parseTimeToHours(event.time_limit ?? "");
@@ -157,9 +146,7 @@ const useTimeSortedEvents = (events: Event[]) => {
   }, [events, timeSort]);
 
   const handleTimeSortClick = () => {
-    setTimeSort((prev) =>
-      prev === "asc" ? "desc" : prev === "desc" ? null : "asc",
-    );
+    setTimeSort((prev) => (prev === "asc" ? "desc" : prev === "desc" ? null : "asc"));
   };
 
   return { sortedEvents, timeSort, handleTimeSortClick };
@@ -172,10 +159,7 @@ const TimeSortCell = ({
   timeSort: "asc" | "desc" | null;
   onTimeSortClick: () => void;
 }) => (
-  <TableCell
-    sx={{ width: 200, fontSize: "1rem" }}
-    sortDirection={timeSort || false}
-  >
+  <TableCell sx={{ width: 200, fontSize: "1rem" }} sortDirection={timeSort || false}>
     <TableSortLabel
       active={Boolean(timeSort)}
       direction={timeSort ?? "asc"}
@@ -208,8 +192,7 @@ const StatusCell = ({ event }: { event: Event }) => {
 };
 
 const OverviewTable = ({ events }: { events: Event[] }) => {
-  const { sortedEvents, timeSort, handleTimeSortClick } =
-    useTimeSortedEvents(events);
+  const { sortedEvents, timeSort, handleTimeSortClick } = useTimeSortedEvents(events);
 
   return (
     <Table>
@@ -221,10 +204,7 @@ const OverviewTable = ({ events }: { events: Event[] }) => {
           <TableCell sx={{ width: 200, fontSize: "1rem" }}>Start</TableCell>
           <TableCell sx={{ width: 200, fontSize: "1rem" }}>Type</TableCell>
           <TableCell sx={{ width: 200, fontSize: "1rem" }}>Distance</TableCell>
-          <TimeSortCell
-            timeSort={timeSort}
-            onTimeSortClick={handleTimeSortClick}
-          />
+          <TimeSortCell timeSort={timeSort} onTimeSortClick={handleTimeSortClick} />
           <TableCell sx={{ width: 150, fontSize: "1rem" }}>Status</TableCell>
         </TableRow>
       </TableHead>
@@ -240,15 +220,11 @@ const OverviewTable = ({ events }: { events: Event[] }) => {
             >
               {event.name}
             </TableCell>
-            <TableCell sx={{ fontSize: "0.9rem" }}>
-              {event.tags.region[1] || "N/A"}
-            </TableCell>
+            <TableCell sx={{ fontSize: "0.9rem" }}>{event.tags.region[1] || "N/A"}</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>{event.date}</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>{event.start}</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>{event.type}</TableCell>
-            <TableCell sx={{ fontSize: "0.9rem" }}>
-              {event.distance}km
-            </TableCell>
+            <TableCell sx={{ fontSize: "0.9rem" }}>{event.distance}km</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>{event.time}</TableCell>
             <StatusCell event={event} />
           </TableRow>
@@ -259,8 +235,7 @@ const OverviewTable = ({ events }: { events: Event[] }) => {
 };
 
 const PerformanceTable = ({ events }: { events: Event[] }) => {
-  const { sortedEvents, timeSort, handleTimeSortClick } =
-    useTimeSortedEvents(events);
+  const { sortedEvents, timeSort, handleTimeSortClick } = useTimeSortedEvents(events);
 
   return (
     <Table>
@@ -268,10 +243,7 @@ const PerformanceTable = ({ events }: { events: Event[] }) => {
         <TableRow>
           <TableCell sx={{ width: 250, fontSize: "1rem" }}>Name</TableCell>
           <TableCell sx={{ width: 200, fontSize: "1rem" }}>Distance</TableCell>
-          <TimeSortCell
-            timeSort={timeSort}
-            onTimeSortClick={handleTimeSortClick}
-          />
+          <TimeSortCell timeSort={timeSort} onTimeSortClick={handleTimeSortClick} />
           <TableCell sx={{ width: 200, fontSize: "1rem" }}>Ascent</TableCell>
           <TableCell sx={{ width: 200, fontSize: "1rem" }}>
             <Tooltip title="W × time_limit, where W = distance + ascent/100" arrow>
@@ -314,25 +286,17 @@ const PerformanceTable = ({ events }: { events: Event[] }) => {
             >
               {event.name}
             </TableCell>
-            <TableCell sx={{ fontSize: "0.9rem" }}>
-              {event.distance}km
-            </TableCell>
+            <TableCell sx={{ fontSize: "0.9rem" }}>{event.distance}km</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>{event.time}</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>
               {event.ascent ? `${event.ascent}m` : ""}
             </TableCell>
-            <TableCell sx={{ fontSize: "0.9rem" }}>
-              {fmtVal(calcExpectedEffort(event))}
-            </TableCell>
+            <TableCell sx={{ fontSize: "0.9rem" }}>{fmtVal(calcExpectedEffort(event))}</TableCell>
             <TableCell sx={{ fontSize: "0.9rem" }}>
               {fmtVal(calcExpectedNormalized(event))}
             </TableCell>
-            <TableCell sx={{ fontSize: "0.9rem" }}>
-              {fmtVal(calcActualEffort(event))}
-            </TableCell>
-            <TableCell sx={{ fontSize: "0.9rem" }}>
-              {fmtVal(calcActualNormalized(event))}
-            </TableCell>
+            <TableCell sx={{ fontSize: "0.9rem" }}>{fmtVal(calcActualEffort(event))}</TableCell>
+            <TableCell sx={{ fontSize: "0.9rem" }}>{fmtVal(calcActualNormalized(event))}</TableCell>
 
             <TableCell sx={{ fontSize: "0.9rem" }}>
               {fmtVal(calcRelativeCardiacLoad(event))}
