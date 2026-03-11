@@ -3,15 +3,6 @@
     "marathon": [],
     "ultra-marathon": [
       {
-        "date": "08/03/26",
-        "location": "Galatzó, Spain",
-        "name": "Galatzó Trail",
-        "link": "https://galatzotrail.com/en/",
-        "distance": "43",
-        "time": "9.5",
-        "gain": "2250"
-      },
-      {
         "date": "28/03/26",
         "location": "Amarante, Portugal",
         "name": "Ultra Trail Marão",

@@ -19190,5 +19190,54 @@
       "takeaways": ["Always underfueling and likely need more electrolytes to stop cramping."]
     },
     "route": []
+  },
+  {
+    "id": 18,
+    "date": "2026-03-08",
+    "start": "08:30",
+    "location": { "lat": 39.5785935, "lng": 2.4706744 },
+    "name": "Galatzó Trail",
+    "distance": "44",
+    "ascent": "2170",
+    "time": "08:21",
+    "time_limit": "09:30",
+    "average_hr": "153",
+    "max_hr": "182",
+    "link": "https://galatzotrail.com/en/",
+    "tags": {
+      "date": ["2026", "Q1"],
+      "region": ["Europe", "Spain", "Galatzó"],
+      "type": ["Ultra Marathon"]
+    },
+    "type": "Ultra Marathon",
+    "notes": {
+      "race": [
+        "Rained so no poles allowed.",
+        "Highly technical course that also required careful and *steep* climbing the *edge* of mountains with hands and feet.",
+        "Could have easily slipped off the first mountain to death. Barely any room to step or grab wet rocks. Can only see fog below you. Practically rock climbing with no safety equipment. Was surprised they didn't cancel the race just because of this section.",
+        "On the very last jump down from the 2nd mountain I slipped and sliced my right hand a bit on the rock. Luckily it's very superficial, almost no blood or pain but visible.",
+        "Climbs drained me like always so took a lot of gels.",
+        "Managed gels and liquids better with frequent intake (down to 20m-25m later from 30m) but in the last quarter it was too much, GI shut down and even if I could eat or drink a little the body was at its limit and it wasn't digesting it so no energy, cramps at times.",
+        "Small talk with a few runners and towards the end travelled a few kms with 1 guy.",
+        "It wasn't a loop but we did run past the same few stations at times but in different directions.",
+        "On the Galatzó mountain I was really low on water. Iirc it was like an 8km section with a massive mountain climb in the middle. They really should have had a water station there because I run out and had to run a few miles without water while already conserving it from before the mountain.",
+        "Beautiful views but I was trying to survive so I didn't have time to stop and enjoy them. Just wanted to make the cut-offs and finish the race.",
+        "Galatzó was meant to have running prohibited but many kinda run down it anyway. I didn't want to risk being seen so I walked, could have maybe saved a few minutes there.",
+        "The 2 mountains are really difficult but otherwise if you have the energy then you can run the rest of it which is still very technical.",
+        "Running with a camalback for the first time in a trail iirc. Only an extra ~500ml but that in addition to all those gels and a coat made it feel heavy at the start. Definitely need to figure out how to save on weight."
+      ],
+      "event": [
+        "Very well marked, only took a few steps off course before immediately seeing another marker.",
+        "Lots of volunteers at all the corners with signs telling you where to go next.",
+        "Galatzó needs a water station.",
+        "Aid stations are a bit underwhelming but fine."
+      ],
+      "takeaways": [
+        "Need to somehow carry enough water and energy but reduce the weight. Maybe satchels to replace some gels?",
+        "Likely need a lot more training, years of slow running to build up the fitness and improve on climbs so I keep a lower heart rate and use fewer gels otherwise when fueled things are fine but eventually body shuts down and can't take any more nutrition.",
+        "While having finished another race with 70m remaining I'm clearly pushing the body to the limit every time. Races are more difficult than I should be doing. The smart thing may be to do shorter races with less elevation but that hurts my ego. I can't even do easy training sessions let alone spend money to travel for events and feel like I haven't pushed myself."
+      ]
+    },
+    "route": []
   }
 ]
