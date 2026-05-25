@@ -58,7 +58,7 @@ const EventMap = ({
     return () => {
       mapInstance.off("zoomend", handleZoom);
     };
-  }, [selectedEvent]);
+  }, [selectedEvent, map]);
 
   useEffect(() => {
     if (!selectedEvent) return;

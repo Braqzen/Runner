@@ -324,7 +324,7 @@ const parseDate = (dateStr: string): Date | null => {
   const match = dateStr.match(/^(\d{2})\/(\d{2})\/(\d{2})$/);
   if (!match) return null;
 
-  const [_, day, month, year] = match;
+  const [, day, month, year] = match;
   const parsed = new Date(
     parseInt(year) + 2000,
     parseInt(month) - 1,
@@ -333,7 +333,7 @@ const parseDate = (dateStr: string): Date | null => {
   return isNaN(parsed.getTime()) ? null : parsed;
 };
 
-export const getEvents = (
+const getEvents = (
   events: FutureEvent[],
 ): (FutureEvent & { parsedDate: Date })[] => {
   const today = new Date();

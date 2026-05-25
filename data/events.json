@@ -19239,5 +19239,80 @@
       ]
     },
     "route": []
+  },
+  {
+    "id": 19,
+    "date": "2026-03-28",
+    "start": "08:00",
+    "location": { "lat": 41.2505392, "lng": -7.9613562 },
+    "name": "Ultra Trail Marão",
+    "distance": "63",
+    "ascent": "4138",
+    "time": "15:18",
+    "time_limit": "17:00",
+    "average_hr": "143",
+    "max_hr": "185",
+    "link": "https://utmarao.pt",
+    "tags": {
+      "date": ["2026", "Q1"],
+      "region": ["Europe", "Portugal", "Amarante"],
+      "type": ["Ultra Marathon"]
+    },
+    "type": "Ultra Marathon",
+    "notes": {
+      "race": [
+        "Probably pushed the 2 mountains harder than I should but I made the cut off times, after that the race is easier.",
+        "GI issues, was really rough and moving slow in some sections but was able to slowly take carbs after that.",
+        "Lots of long steep sections with some short climbs. The descents are very rocky in some places and the ground is questionable.",
+        "Dangerously windy on some of the peaks.",
+        "Run through some fields and streams at night so you need to be careful with the lights or you could fall badly in some places.",
+        "Slipped (a few times) and fortunately fell on the same place otherwise I would have fell a few meters down."
+      ],
+      "event": ["Nice aid stations, even had a suprise one added towards the end."],
+      "takeaways": [
+        "Better to get everything I need at the station instead of stopping to take things out of the vest multiple times."
+      ]
+    },
+    "route": []
+  },
+  {
+    "id": 20,
+    "date": "2026-05-09",
+    "start": "12:00",
+    "location": { "lat": 38.799766, "lng": -9.352262 },
+    "name": "24h Correr Sintra",
+    "distance": "100",
+    "ascent": "531",
+    "time": "24:00",
+    "time_limit": "24:00",
+    "average_hr": "123",
+    "max_hr": "173",
+    "link": "https://24hlx.com",
+    "tags": {
+      "date": ["2026", "Q2"],
+      "region": ["Europe", "Portugal", "Sintra"],
+      "type": ["Ultra Marathon"]
+    },
+    "type": "Ultra Marathon",
+    "notes": {
+      "race": [
+        "Was recovering from a health crash and now it's been 2 weeks since then and I'm still not back to normal.",
+        "Surprisingly I couldn't really go as slowly as I wanted. I felt like I had to go at 6:00-6:30/km and hoped to keep like 7:30-8:00/km for most of the race.",
+        "Around 35km I bonked hard for the first time. 20 minutes or so of bad thoughts because energy was low. Recovered after and could run well again for a while.",
+        "Happened a few times with recovery being longer / running slower after until I could only walk.",
+        "Lots of GI issues even with moderate carb powder. Turns out I just cannot do even 60g/h. After a few hours GI gets nuked, lots of toilet breaks because of bloating. Even if I can take more it doesn't get processed and comes out.",
+        "I was very surprised that regular food seemed to cause absolutely no issues. I started to eat at 12h which is far too late. I relied on coffee and powder until then. Over time I had some crisps, nuts, some burger-like sandwiches and I felt no bloating or anything but I did sit for a while so it digests and I can finally get some energy after so long.",
+        "Even with little food I didn't feel much better but I definitely could have run at pace if it wasn't for getting caught in a flash storm. I could have changed my socks but didn't. Wet feet for hours, ended up getting trench foot. It hurt to walk, not terrible but after thousands of steps the body refuses to move because every step is pain and that's draining energy.",
+        "Managed to avoid every other flash storm. Didn't change socks in case I'd get caught again which was a big mistake. Had to change clothes because having so little food/energy I started to shiver uncontrollably even when running. After minutes I managed to warm up enough.",
+        "After like 60km I was on and off running iirc, by 80km I was walking and pausing every 1 or 2 laps because of foot pain. Walked till 100km and stopped at 21h till event finished.",
+        "Spectators and runners were asking me if I was okay because I was walking so much while overly dressed up to maintain heat and I didn't look ok."
+      ],
+      "event": ["Nice event, nice people, nice food and atmosphere."],
+      "takeaways": [
+        "Bring even more space clothes depending on weather forcast so I don't worry about potentially being stuck in wet clothes till the end and having to sit in an ambulance. 1 spare set is not enough for sintra rain.",
+        "Decrease powder to at most 40g/h and hope that isn't bad over time. Supplement with any normal food for the other 40g."
+      ]
+    },
+    "route": []
   }
 ]

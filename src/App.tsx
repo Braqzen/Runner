@@ -15,7 +15,7 @@ function App() {
     try {
       const savedTile = localStorage.getItem("selectedTile");
       return savedTile ? (JSON.parse(savedTile) as TileLayerOption) : tileOptions[0];
-    } catch (_error) {
+    } catch {
       return tileOptions[0];
     }
   });

@@ -229,7 +229,7 @@ const EventInformation = ({ event }: { event: Event }) => {
   );
 };
 
-const EventTags = ({ tags }: { tags: any }) => (
+const EventTags = ({ tags }: { tags: Event["tags"] }) => (
   <Box>
     <Typography variant="h5" sx={{ mt: 1, mb: 1, fontWeight: "bold" }}>
       Tags

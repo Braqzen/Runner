@@ -1,17 +1,7 @@
 {
   "registered": {
     "marathon": [],
-    "ultra-marathon": [
-      {
-        "date": "28/03/26",
-        "location": "Amarante, Portugal",
-        "name": "Ultra Trail Marão",
-        "link": "https://utmarao.pt/",
-        "distance": "62.5",
-        "time": "17",
-        "gain": "4060"
-      }
-    ]
+    "ultra-marathon": []
   },
   "deferred": {
     "marathon": [
