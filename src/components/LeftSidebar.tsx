@@ -4,9 +4,11 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import EventIcon from "@mui/icons-material/Event";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
 import AlarmIcon from "@mui/icons-material/Alarm";
 import SummaryDialog from "./left-sidebar/Summary";
+import YearCalendarDialog from "./left-sidebar/YearCalendar";
 import ChallengeDialog from "./left-sidebar/Challenge";
 import SettingsDialog from "./left-sidebar/Settings";
 import FutureEventsDialog from "./left-sidebar/FutureEvent";
@@ -34,6 +36,7 @@ const LeftSidebar = ({
   const [openChallenges, setOpenChallenges] = useState(false);
   const [openEvents, setOpenEvents] = useState(false);
   const [openCountdown, setOpenCountdown] = useState(false);
+  const [openYearCalendar, setOpenYearCalendar] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -71,6 +74,14 @@ const LeftSidebar = ({
         onClick={() => setOpenSummary(true)}
       >
         <LeaderboardIcon fontSize="large" />
+      </IconButton>
+
+      <IconButton
+        color="inherit"
+        title="Year Calendar"
+        onClick={() => setOpenYearCalendar(true)}
+      >
+        <CalendarMonthIcon fontSize="large" />
       </IconButton>
 
       <IconButton
@@ -115,6 +126,12 @@ const LeftSidebar = ({
         open={openSummary}
         events={filteredEvents}
         onClose={() => setOpenSummary(false)}
+      />
+
+      <YearCalendarDialog
+        open={openYearCalendar}
+        events={filteredEvents}
+        onClose={() => setOpenYearCalendar(false)}
       />
 
       <ChallengeDialog
