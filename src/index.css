@@ -2,6 +2,15 @@
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
+
+    --sidebar-nav-bg: #252525;
+    --sidebar-content-bg: #e8edf0;
+    --sidebar-content-hover: #dde3e7;
+    --sidebar-content-selected: #cfd6db;
+    --sidebar-content-border: #c5cdd4;
+    --sidebar-content-text: #1a1a1a;
+    --sidebar-content-label: #5c6670;
+    --sidebar-button-bg: #252525;
 }
   
 body {
@@ -19,6 +28,7 @@ body {
 .map-container {
     flex: 1; 
     height: 100vh;
+    position: relative;
 }
   
 .map {
@@ -26,29 +36,22 @@ body {
     height: 100%;
 }
 
-.left-sidebar {
-    width: 2%;
+.app-sidebar {
+    width: 328px;
+    min-width: 328px;
     height: 100vh;
-    background-color: #444;
-    padding: 10px;
-    overflow-y: auto;
-    border-right: 1px solid #000;
+    background-color: var(--sidebar-nav-bg);
+    border-right: 1px solid #1a1a1a;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    position: relative;
+    overflow: hidden;
 }
 
-.right-sidebar {
-    width: 2%;
-    height: 100vh;
-    background-color: #444;
-    padding: 10px;
-    overflow-y: auto;
-    border-left: 1px solid #000;
+.sidebar-content {
+    flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    background-color: var(--sidebar-content-bg);
+    color: var(--sidebar-content-text);
 }

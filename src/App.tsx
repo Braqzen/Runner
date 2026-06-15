@@ -1,16 +1,15 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Event } from "./types/Event";
 import { TileLayerOption, tileOptions } from "./types/Tiles";
 import EventMap from "./components/Map";
-import { TagOption } from "./components/right-sidebar/Tag";
-import LeftSidebar from "./components/LeftSidebar";
-import RightSidebar from "./components/RightSidebar";
+import { TagOption } from "./components/sidebar/Tag";
+import Sidebar from "./components/Sidebar";
 import rawEvents from "../data/events.json";
-import NotesDialog from "./components/right-sidebar/NoteDialog";
 
 function App() {
   const [events, setEvents] = useState<Event[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [hoveredEvent, setHoveredEvent] = useState<Event | null>(null);
   const [selectedTile, setSelectedTile] = useState<TileLayerOption>(() => {
     try {
       const savedTile = localStorage.getItem("selectedTile");
@@ -35,23 +34,38 @@ function App() {
   }, []);
 
   const filteredEvents = useMemo(() => {
-    return events.filter((event) => {
-      const dateMatch =
-        selectedDateTags.length === 0 ||
-        selectedDateTags.some((tag) => event.tags.date.includes(tag.value));
-      const regionMatch =
-        selectedRegionTags.length === 0 ||
-        selectedRegionTags.some((tag) => event.tags.region.includes(tag.value));
-      const typeMatch =
-        selectedTypeTags.length === 0 ||
-        selectedTypeTags.some((tag) => event.tags.type.includes(tag.value));
-      return dateMatch && regionMatch && typeMatch;
-    });
+    return events
+      .filter((event) => {
+        const dateMatch =
+          selectedDateTags.length === 0 ||
+          selectedDateTags.some((tag) => event.tags.date.includes(tag.value));
+        const regionMatch =
+          selectedRegionTags.length === 0 ||
+          selectedRegionTags.some((tag) => event.tags.region.includes(tag.value));
+        const typeMatch =
+          selectedTypeTags.length === 0 ||
+          selectedTypeTags.some((tag) => event.tags.type.includes(tag.value));
+        return dateMatch && regionMatch && typeMatch;
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
   }, [events, selectedDateTags, selectedRegionTags, selectedTypeTags]);
+
+  const handleSelectEvent = useCallback((event: Event) => {
+    setSelectedEvent((prev) => (prev?.id === event.id ? null : event));
+  }, []);
+
+  const handlePinEvent = useCallback((event: Event) => {
+    setSelectedEvent(event);
+  }, []);
+
+  const handleHoverEvent = useCallback((event: Event | null) => {
+    setHoveredEvent(event);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key.toLowerCase() === "n" && selectedEvent) {
+        setNotes(selectedEvent);
         setOpenNotes(true);
       }
     };
@@ -61,39 +75,40 @@ function App() {
 
   return (
     <div className="app-container">
-      <LeftSidebar
-        filteredEvents={filteredEvents}
-        map={map}
-        selectedTile={selectedTile}
-        setSelectedTile={setSelectedTile}
-        tileOptions={tileOptions}
-      />
-
-      <EventMap
-        selectedEvent={selectedEvent}
-        onSelectEvent={setSelectedEvent}
-        selectedTile={selectedTile}
-        map={map}
-        filteredEvents={filteredEvents}
-        setNotes={setNotes}
-        setOpenNotes={setOpenNotes}
-      />
-
-      <RightSidebar
+      <Sidebar
         events={events}
         filteredEvents={filteredEvents}
         selectedEvent={selectedEvent}
-        onSelectEvent={setSelectedEvent}
+        hoveredEvent={hoveredEvent}
+        onSelectEvent={handleSelectEvent}
+        onPinEvent={handlePinEvent}
+        onHoverEvent={handleHoverEvent}
+        selectedDateTags={selectedDateTags}
+        selectedRegionTags={selectedRegionTags}
+        selectedTypeTags={selectedTypeTags}
         onDateChange={setSelectedDateTags}
         onRegionChange={setSelectedRegionTags}
         onTypeChange={setSelectedTypeTags}
+        selectedTile={selectedTile}
+        setSelectedTile={setSelectedTile}
+        tileOptions={tileOptions}
         notes={notes}
         setNotes={setNotes}
         openNotes={openNotes}
         setOpenNotes={setOpenNotes}
       />
 
-      {notes && <NotesDialog open={openNotes} event={notes} onClose={() => setOpenNotes(false)} />}
+      <EventMap
+        selectedEvent={selectedEvent}
+        hoveredEvent={hoveredEvent}
+        onSelectEvent={handleSelectEvent}
+        onHoverEvent={handleHoverEvent}
+        selectedTile={selectedTile}
+        map={map}
+        filteredEvents={filteredEvents}
+        setNotes={setNotes}
+        setOpenNotes={setOpenNotes}
+      />
     </div>
   );
 }

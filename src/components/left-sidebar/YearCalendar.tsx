@@ -7,6 +7,9 @@ import {
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Event } from "../../types/Event";
+import { FutureEvent } from "../../types/FutureEvents";
+import rawFutureEvents from "../../../data/future-events.json";
+import { parseDate as parseFutureDate } from "../../utils/countdown";
 import Dialog from "../common/Dialog";
 
 interface Props {
@@ -14,6 +17,10 @@ interface Props {
   events: Event[];
   onClose: () => void;
 }
+
+type CalendarEntry =
+  | { kind: "past"; event: Event }
+  | { kind: "future"; event: FutureEvent };
 
 const MONTH_NAMES = [
   "January",
@@ -34,19 +41,26 @@ const WEEKDAY_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
 
 const ACCENT = "rgb(106, 246, 101)";
 const CANCELLED = "#ff9800";
+const FUTURE = "#4a9eff";
 const TEXT = "#1a1a1a";
 const TEXT_MUTED = "rgba(0, 0, 0, 0.5)";
 const TOOLTIP_BG = "#2e2e2e";
 const TOOLTIP_TEXT = "#f5f5f5";
 const TOOLTIP_MUTED = "rgba(255, 255, 255, 0.65)";
 
-const parseDate = (dateStr: string): Date => {
+const parsePastDate = (dateStr: string): Date => {
   const [y, m, d] = dateStr.split("-").map(Number);
   return new Date(y, m - 1, d);
 };
 
 const dateKey = (year: number, month: number, day: number): string =>
   `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+const futureToDateKey = (dateStr: string): string | null => {
+  const parsed = parseFutureDate(dateStr);
+  if (!parsed) return null;
+  return dateKey(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+};
 
 const formatLocation = (event: Event): string => {
   const parts = event.tags.region;
@@ -57,31 +71,52 @@ const formatLocation = (event: Event): string => {
 const daysBetween = (a: Date, b: Date): number =>
   Math.round((b.getTime() - a.getTime()) / (1000 * 60 * 60 * 24));
 
-const useEventMeta = (events: Event[]) => {
+const getRegisteredEvents = (): FutureEvent[] => [
+  ...rawFutureEvents.registered.marathon,
+  ...rawFutureEvents.registered["ultra-marathon"],
+];
+
+const useCalendarMeta = (events: Event[]) => {
   return useMemo(() => {
-    const byDate = new Map<string, Event>();
+    const byDate = new Map<string, CalendarEntry>();
     const daysSincePrev = new Map<number, number | null>();
 
     const sorted = [...events].sort(
-      (a, b) => parseDate(a.date).getTime() - parseDate(b.date).getTime(),
+      (a, b) => parsePastDate(a.date).getTime() - parsePastDate(b.date).getTime(),
     );
 
     sorted.forEach((event, i) => {
-      byDate.set(event.date, event);
+      byDate.set(event.date, { kind: "past", event });
       if (i === 0) {
         daysSincePrev.set(event.id, null);
       } else {
-        const prev = parseDate(sorted[i - 1].date);
-        const curr = parseDate(event.date);
+        const prev = parsePastDate(sorted[i - 1].date);
+        const curr = parsePastDate(event.date);
         daysSincePrev.set(event.id, daysBetween(prev, curr));
       }
     });
 
-    const years = [
-      ...new Set(sorted.map((e) => parseDate(e.date).getFullYear())),
-    ].sort((a, b) => a - b);
+    const registered = getRegisteredEvents();
+    registered.forEach((event) => {
+      const key = futureToDateKey(event.date);
+      if (key) {
+        byDate.set(key, { kind: "future", event });
+      }
+    });
 
-    return { byDate, daysSincePrev, years };
+    const years = new Set<number>();
+    sorted.forEach((e) => years.add(parsePastDate(e.date).getFullYear()));
+    registered.forEach((e) => {
+      const key = futureToDateKey(e.date);
+      if (key) years.add(parsePastDate(key).getFullYear());
+    });
+
+    return {
+      byDate,
+      daysSincePrev,
+      years: [...years].sort((a, b) => a - b),
+      registered,
+    };
   }, [events]);
 };
 
@@ -100,7 +135,7 @@ const tooltipSlotProps = {
   },
 };
 
-const EventTooltipContent = ({
+const PastTooltipContent = ({
   event,
   daysSince,
 }: {
@@ -145,13 +180,40 @@ const EventTooltipContent = ({
   );
 };
 
+const FutureTooltipContent = ({ event }: { event: FutureEvent }) => (
+  <Box sx={{ maxWidth: 260 }}>
+    <Box
+      sx={{
+        fontSize: "0.7rem",
+        fontWeight: 700,
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        color: FUTURE,
+        mb: 0.5,
+      }}
+    >
+      Registered
+    </Box>
+    <Box sx={{ fontWeight: 600, fontSize: "0.85rem", color: TOOLTIP_TEXT, mb: 0.5 }}>
+      {event.name}
+    </Box>
+    <Box sx={{ fontSize: "0.8rem", color: TOOLTIP_MUTED }}>{event.location}</Box>
+    {event.distance && (
+      <Box sx={{ fontSize: "0.8rem", color: TOOLTIP_TEXT, mt: 0.5 }}>
+        {event.distance} km
+        {event.time ? ` · ${event.time}h` : ""}
+      </Box>
+    )}
+  </Box>
+);
+
 const DayCell = ({
   day,
-  event,
+  entry,
   daysSince,
 }: {
   day: number;
-  event?: Event;
+  entry?: CalendarEntry;
   daysSince?: number | null;
 }) => {
   const baseSx = {
@@ -167,7 +229,7 @@ const DayCell = ({
     p: 0,
   };
 
-  if (!event) {
+  if (!entry) {
     return (
       <Box sx={baseSx}>
         <Box component="span" sx={{ color: TEXT_MUTED, fontSize: "inherit" }}>
@@ -177,24 +239,28 @@ const DayCell = ({
     );
   }
 
-  const cancelled = event.status === "cancelled";
-  const bg = cancelled ? CANCELLED : ACCENT;
+  const bg =
+    entry.kind === "future"
+      ? FUTURE
+      : entry.event.status === "cancelled"
+        ? CANCELLED
+        : ACCENT;
+
+  const tooltip =
+    entry.kind === "future" ? (
+      <FutureTooltipContent event={entry.event} />
+    ) : (
+      <PastTooltipContent event={entry.event} daysSince={daysSince} />
+    );
 
   return (
-    <Tooltip
-      title={
-        <EventTooltipContent event={event} daysSince={daysSince} />
-      }
-      arrow
-      placement="top"
-      slotProps={tooltipSlotProps}
-    >
+    <Tooltip title={tooltip} arrow placement="top" slotProps={tooltipSlotProps}>
       <Box
         component="span"
         sx={{
           ...baseSx,
           fontWeight: 700,
-          color: TEXT,
+          color: entry.kind === "future" ? "#fff" : TEXT,
           bgcolor: bg,
           cursor: "default",
           "&:hover": {
@@ -214,11 +280,13 @@ const MonthGrid = ({
   month,
   byDate,
   daysSincePrev,
+  isCurrentMonth,
 }: {
   year: number;
   month: number;
-  byDate: Map<string, Event>;
+  byDate: Map<string, CalendarEntry>;
   daysSincePrev: Map<number, number | null>;
+  isCurrentMonth: boolean;
 }) => {
   const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -231,7 +299,9 @@ const MonthGrid = ({
   return (
     <Box
       sx={{
-        border: "1px solid rgba(0,0,0,0.08)",
+        border: isCurrentMonth
+          ? "2px solid rgba(0,0,0,0.32)"
+          : "1px solid rgba(0,0,0,0.08)",
         borderRadius: 2,
         px: 1.75,
         py: 1.25,
@@ -289,14 +359,16 @@ const MonthGrid = ({
           }
 
           const key = dateKey(year, month, day);
-          const event = byDate.get(key);
+          const entry = byDate.get(key);
+          const daysSince =
+            entry?.kind === "past" ? daysSincePrev.get(entry.event.id) : undefined;
 
           return (
             <DayCell
               key={`${month}-day-${day}`}
               day={day}
-              event={event}
-              daysSince={event ? daysSincePrev.get(event.id) : undefined}
+              entry={entry}
+              daysSince={daysSince}
             />
           );
         })}
@@ -306,29 +378,37 @@ const MonthGrid = ({
 };
 
 const YearCalendarDialog = ({ open, events, onClose }: Props) => {
-  const { byDate, daysSincePrev, years } = useEventMeta(events);
+  const { byDate, daysSincePrev, years, registered } = useCalendarMeta(events);
   const [yearIndex, setYearIndex] = useState(0);
+
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
 
   useEffect(() => {
     if (!open || years.length === 0) return;
-    const currentYear = new Date().getFullYear();
     const idx = years.indexOf(currentYear);
     setYearIndex(idx >= 0 ? idx : years.length - 1);
-  }, [open, years]);
+  }, [open, years, currentYear]);
 
   const year = years[yearIndex] ?? years[0];
   const canGoPrev = yearIndex > 0;
   const canGoNext = yearIndex < years.length - 1;
 
-  const eventCount = useMemo(
-    () =>
-      events.filter((e) => parseDate(e.date).getFullYear() === year).length,
-    [events, year],
-  );
+  const eventCount = useMemo(() => {
+    const pastCount = events.filter(
+      (e) => parsePastDate(e.date).getFullYear() === year,
+    ).length;
+    const futureCount = registered.filter((e) => {
+      const key = futureToDateKey(e.date);
+      return key ? parsePastDate(key).getFullYear() === year : false;
+    }).length;
+    return pastCount + futureCount;
+  }, [events, registered, year]);
 
   if (years.length === 0) {
     return (
-      <Dialog open={open} onClose={onClose} title="Year Calendar" maxWidth="1600px">
+      <Dialog open={open} onClose={onClose} title="Calendar" maxWidth="1600px">
         <Box sx={{ color: TEXT, textAlign: "center", py: 4, fontSize: "1rem" }}>
           No events to display
         </Box>
@@ -337,7 +417,7 @@ const YearCalendarDialog = ({ open, events, onClose }: Props) => {
   }
 
   return (
-    <Dialog open={open} onClose={onClose} title="Year Calendar" maxWidth="1600px">
+    <Dialog open={open} onClose={onClose} title="Calendar" maxWidth="1600px">
       <Box
         sx={{
           display: "flex",
@@ -405,6 +485,7 @@ const YearCalendarDialog = ({ open, events, onClose }: Props) => {
               month={month}
               byDate={byDate}
               daysSincePrev={daysSincePrev}
+              isCurrentMonth={year === currentYear && month === currentMonth}
             />
           ))}
         </Box>

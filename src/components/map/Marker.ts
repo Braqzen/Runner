@@ -1,6 +1,7 @@
 import L from "leaflet";
 import defaultMarker from "../../assets/marker-icon-blue.png";
 import selectedMarker from "../../assets/marker-icon-green.png";
+import hoverMarker from "../../assets/marker-icon-red.png";
 import shadowMarker from "../../assets/marker-shadow.png";
 
 const iconOptions = {
@@ -16,6 +17,7 @@ const createIcon = (iconUrl: string): L.Icon =>
 
 export const defaultIcon: L.Icon = createIcon(defaultMarker);
 export const selectedIcon: L.Icon = createIcon(selectedMarker);
+export const hoverIcon: L.Icon = createIcon(hoverMarker);
 
 const labelStyle = `
   font-size: 1.0rem;

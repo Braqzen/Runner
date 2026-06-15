@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 interface Props {
   options: TagOption[];
   onChange: (selected: TagOption[]) => void;
+  selected: TagOption[];
 }
 
 export interface TagOption {
@@ -11,11 +12,13 @@ export interface TagOption {
   value: string;
 }
 
-const Filter = ({ options, onChange }: Props) => {
+const FilterTag = ({ options, onChange, selected }: Props) => {
   return (
     <Autocomplete
       multiple
+      size="small"
       options={options}
+      value={selected}
       getOptionLabel={(option) => option.label}
       filterSelectedOptions
       onChange={(_event, value) => onChange(value)}
@@ -23,26 +26,28 @@ const Filter = ({ options, onChange }: Props) => {
         <TextField
           {...params}
           variant="outlined"
-          placeholder="Select tags"
+          placeholder="Any"
           sx={{
-            input: { color: "#fff" },
-            label: { color: "#fff" },
             "& .MuiOutlinedInput-root": {
+              fontSize: "0.875rem",
+              backgroundColor: "#ffffff",
               "& fieldset": {
-                borderColor: "#fff",
-              },
-              "& .MuiChip-root": {
-                backgroundColor: "#444",
-                color: "#fff",
-                borderColor: "#fff",
+                borderColor: "#c5cdd4",
               },
               "&:hover fieldset": {
-                borderColor: "#ccc",
+                borderColor: "#9aa5b1",
               },
               "&.Mui-focused fieldset": {
-                borderColor: "#fff",
+                borderColor: "#2563eb",
+              },
+              "& .MuiChip-root": {
+                height: 22,
+                fontSize: "0.7rem",
+                backgroundColor: "#2563eb",
+                color: "#ffffff",
               },
             },
+            input: { color: "var(--sidebar-content-text)" },
           }}
         />
       )}
@@ -50,4 +55,4 @@ const Filter = ({ options, onChange }: Props) => {
   );
 };
 
-export default Filter;
+export default FilterTag;

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { CircularProgress, Box, Typography } from "@mui/material";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { Challenge } from "../../types/Challenge";
 import rawChallenges from "../../../data/challenges.json";
 import Dialog from "../common/Dialog";
@@ -19,7 +21,7 @@ const ChallengeDialog = ({ open, onClose }: Props) => {
   }, []);
 
   return (
-    <Dialog open={open} onClose={onClose} title="Challenges">
+    <Dialog open={open} onClose={onClose} title="Achievements">
       {loading ? (
         <Box
           display="flex"
@@ -31,29 +33,45 @@ const ChallengeDialog = ({ open, onClose }: Props) => {
           <CircularProgress />
         </Box>
       ) : (
-        <Challenges challenges={challenges} />
+        <Achievements challenges={challenges} />
       )}
     </Dialog>
   );
 };
 
-const Challenges = ({ challenges }: { challenges: Challenge[] }) => {
+const Achievements = ({ challenges }: { challenges: Challenge[] }) => {
   const completed = challenges.filter((c) => c.completed);
   const incomplete = challenges.filter((c) => !c.completed);
 
-  const Row = ({ label }: { label: string }) => (
+  const Row = ({ label, completed: isCompleted }: { label: string; completed: boolean }) => (
     <Box
       sx={{
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 1.5,
         px: 2,
         py: 1.5,
-        backgroundColor: "rgba(0, 0, 0, 0.01)",
       }}
     >
+      <Box
+        sx={{
+          mt: 0.25,
+          color: isCompleted ? "success.main" : "text.disabled",
+          display: "flex",
+        }}
+      >
+        {isCompleted ? (
+          <CheckCircleOutlineIcon fontSize="small" />
+        ) : (
+          <RadioButtonUncheckedIcon fontSize="small" />
+        )}
+      </Box>
       <Typography
         sx={{
           fontSize: "0.98rem",
           lineHeight: 1.4,
           fontWeight: 500,
+          color: isCompleted ? "text.secondary" : "text.primary",
         }}
       >
         {label}
@@ -61,14 +79,16 @@ const Challenges = ({ challenges }: { challenges: Challenge[] }) => {
     </Box>
   );
 
-  const ChallengeSection = ({
+  const AchievementSection = ({
     title,
     challengeList,
     emptyMessage,
+    isCompleted,
   }: {
     title: string;
     challengeList: Challenge[];
     emptyMessage: string;
+    isCompleted: boolean;
   }) => (
     <Box>
       <Typography
@@ -95,7 +115,7 @@ const Challenges = ({ challenges }: { challenges: Challenge[] }) => {
                 borderColor: "divider",
               }}
             >
-              <Row label={challenge.label} />
+              <Row label={challenge.label} completed={isCompleted} />
             </Box>
           ))
         ) : (
@@ -112,15 +132,17 @@ const Challenges = ({ challenges }: { challenges: Challenge[] }) => {
   return (
     <Box sx={{ padding: 3 }}>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-        <ChallengeSection
+        <AchievementSection
           title="Completed"
           challengeList={completed}
           emptyMessage="None yet."
+          isCompleted
         />
-        <ChallengeSection
+        <AchievementSection
           title="Incomplete"
           challengeList={incomplete}
           emptyMessage="All done."
+          isCompleted={false}
         />
       </Box>
     </Box>

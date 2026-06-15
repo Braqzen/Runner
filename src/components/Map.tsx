@@ -4,14 +4,17 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Event } from "../types/Event";
 import { TileLayerOption } from "../types/Tiles";
-import { defaultIcon, selectedIcon } from "./map/Marker";
+import { defaultIcon, selectedIcon, hoverIcon } from "./map/Marker";
 import { RoutePolyline } from "./map/Route";
 import { Initializer } from "./map/Initializer";
 import PopupContent from "./map/Popup";
+import MapControls from "./map/MapControls";
 
 interface Props {
   selectedEvent: Event | null;
+  hoveredEvent: Event | null;
   onSelectEvent: (event: Event) => void;
+  onHoverEvent: (event: Event | null) => void;
   selectedTile: TileLayerOption;
   map: RefObject<L.Map | null>;
   filteredEvents: Event[];
@@ -19,9 +22,21 @@ interface Props {
   setOpenNotes: (open: boolean) => void;
 }
 
+const getMarkerIcon = (
+  event: Event,
+  selectedEvent: Event | null,
+  hoveredEvent: Event | null,
+) => {
+  if (selectedEvent?.id === event.id) return selectedIcon;
+  if (hoveredEvent?.id === event.id) return hoverIcon;
+  return defaultIcon;
+};
+
 const EventMap = ({
   selectedEvent,
+  hoveredEvent,
   onSelectEvent,
+  onHoverEvent,
   selectedTile,
   map,
   filteredEvents,
@@ -33,10 +48,24 @@ const EventMap = ({
   const minZoomForRoute = 11;
 
   useEffect(() => {
+    if (!map.current) return;
+
+    const activeEvent = hoveredEvent ?? selectedEvent;
+
+    markers.current.forEach((marker, id) => {
+      if (!marker) return;
+      if (activeEvent?.id === id) {
+        marker.openPopup();
+      } else {
+        marker.closePopup();
+      }
+    });
+  }, [hoveredEvent, selectedEvent, map]);
+
+  useEffect(() => {
     if (!selectedEvent || !map.current) return;
 
     const mapInstance = map.current;
-    const marker = markers.current.get(selectedEvent.id);
 
     if (mapInstance.getZoom() >= minZoomForRoute) {
       setShowRoute(true);
@@ -51,10 +80,6 @@ const EventMap = ({
 
     mapInstance.on("zoomend", handleZoom);
 
-    if (marker) {
-      marker.openPopup();
-    }
-
     return () => {
       mapInstance.off("zoomend", handleZoom);
     };
@@ -66,7 +91,7 @@ const EventMap = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
         const index = filteredEvents.findIndex(
-          (event) => event.id === selectedEvent.id
+          (event) => event.id === selectedEvent.id,
         );
         if (index === -1) return;
 
@@ -93,7 +118,13 @@ const EventMap = ({
 
   return (
     <div className="map-container">
-      <MapContainer center={[51.505, -0.09]} zoom={3} className="map">
+      <MapControls map={map} />
+      <MapContainer
+        center={[51.505, -0.09]}
+        zoom={3}
+        className="map"
+        zoomControl={false}
+      >
         <Initializer map={map} />
 
         <TileLayer
@@ -107,12 +138,14 @@ const EventMap = ({
           <Marker
             key={event.id}
             position={[event.location.lat, event.location.lng]}
-            icon={selectedEvent?.id === event.id ? selectedIcon : defaultIcon}
+            icon={getMarkerIcon(event, selectedEvent, hoveredEvent)}
             ref={(ref) => {
               if (ref) markers.current.set(event.id, ref);
             }}
             eventHandlers={{
               click: () => onSelectEvent(event),
+              mouseover: () => onHoverEvent(event),
+              mouseout: () => onHoverEvent(null),
             }}
           >
             <Popup>
